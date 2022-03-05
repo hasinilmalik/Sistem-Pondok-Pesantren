@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('signatures', function (Blueprint $table) {
             $table->id();
+            $table->string('ttd_santri');
+            $table->string('base64_santri');
+            $table->string('ttd_ortu');
+            $table->string('base64_ortu');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('signatures');
     }
 };

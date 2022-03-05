@@ -1,0 +1,49 @@
+['islam','protestan','katolik','hindu','budha','khonghucu']
+['olahraga','kesenian','membaca','menulis','jalan-jalan','lainnya']
+['lainnya','PNS','TNI/Polri','Guru/Dosen','Dokter','Politikus','Wiraswasta','Seniman/Artis','Ilmuwan','Agamawan']
+['tidak ada','tuna netra','tuna rungu','tuna daksa','tuna grahita','tuna laras','tuna wicara','bakat istimewa','kesulitan belajar']
+
+pekerjaan :
+tidak bekerja
+buruh (tani/pabrik/bangunan)
+dokter/bidan/perawat
+guru/dosen
+nelayan
+pedagang
+pegawai swasta
+pengacara/hakim/jaksa/notaris
+pensiunan
+petani/peternak
+pilot/pramugari
+pns
+politikus
+seniman/pelukis/artis/sejenis
+sopir,masinis,kondektur
+tni/polisi
+wiraswasta
+lainnya
+tidak mengisi
+
+pendidikan:
+tidak memiliki pendidikan formal
+sd/mi/sederajat
+smp/mts/sederajat
+sma/ma/smk/sederajat
+d1
+d2
+d3
+d4/s1
+s2
+s3
+
+penghasilan:
+tidak berpenghasilan
+kurang dari 500.000
+500.000 - 1 juta
+1 juta - 2 juta
+2 juta - 3 juta
+3 juta - 4 juta
+4 juta - 5 juta
+lebih dari 5 juta
+
+wali:
