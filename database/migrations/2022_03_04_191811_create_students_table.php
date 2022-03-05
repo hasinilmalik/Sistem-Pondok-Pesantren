@@ -42,6 +42,7 @@ return new class extends Migration
             $table->string('kode_pos')->nullable();
             $table->string('foto')->nullable();
             $table->string('foto_wali')->nullable();
+
             $table->timestamps();
         });
     }

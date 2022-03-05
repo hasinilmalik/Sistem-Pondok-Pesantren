@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +19,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'index')->name('home');
+    Route::get('/', 'index');
     Route::get('/home', 'index')->name('home');
 });
 
 Route::get('/cetak',[CetakController::class,'index'])->name('cetak');
+
+Route::resource('students', StudentController::class);

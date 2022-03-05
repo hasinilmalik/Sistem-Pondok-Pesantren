@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -15,14 +16,11 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $students = Student::where('jenis_kelamin',$user->jk)->get();
+        return view('students.index',compact('students'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //

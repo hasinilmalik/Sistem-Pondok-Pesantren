@@ -1,10 +1,17 @@
 <!--   Core JS Files   -->
+@stack('foot')
+<script>
+    $(document).ready(function() {
+        $('#table_id').DataTable();
+    });
+    console.log('ok');
+</script>
 <script src="{{ asset('assets/softui') }}/js/core/popper.min.js"></script>
 <script src="{{ asset('assets/softui') }}/js/core/bootstrap.min.js"></script>
 <script src="{{ asset('assets/softui') }}/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="{{ asset('assets/softui') }}/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="{{ asset('assets/softui') }}/js/plugins/chartjs.min.js"></script>
-<script>
+{{-- <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
@@ -173,7 +180,7 @@
             },
         },
     });
-</script>
+</script> --}}
 <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

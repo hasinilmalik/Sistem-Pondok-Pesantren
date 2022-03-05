@@ -4,34 +4,61 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
             <div class="card">
-                {{-- <div class="card-header pb-0">
+                <div class="card-body p-3">
                     <div class="row">
-                        <div class="col-lg-6 col-7">
-                            <h6>Projects</h6>
-                            <p class="text-sm mb-0">
-                                <i class="fa fa-check text-info" aria-hidden="true"></i>
-                                <span class="font-weight-bold ms-1">30 done</span> this month
-                            </p>
-                        </div>
-                        <div class="col-lg-6 col-5 my-auto text-end">
-                            <div class="dropdown float-lg-end pe-4">
-                                <a class="cursor-pointer" id="dropdownTable" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="fa fa-ellipsis-v text-secondary" aria-hidden="true"></i>
+                        <div class="col-lg-6">
+                            <div class="d-flex flex-column h-100">
+                                <p class="mb-1 pt-2 text-bold">Built by developers</p>
+                                <h5 class="font-weight-bolder">Soft UI Dashboard</h5>
+                                <p class="mb-5">From colors, cards, typography to complex elements, you will find
+                                    the full documentation.</p>
+                                <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto"
+                                    href="javascript:;">
+                                    Read More
+                                    <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                                 </a>
-                                <ul class="dropdown-menu px-2 py-3 ms-sm-n4 ms-n5" aria-labelledby="dropdownTable">
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Action</a></li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Another action</a>
-                                    </li>
-                                    <li><a class="dropdown-item border-radius-md" href="javascript:;">Something else
-                                            here</a></li>
-                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                            <div class="bg-gradient-primary border-radius-lg h-100">
+                                <img src="../assets/img/shapes/waves-white.svg"
+                                    class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
+                                <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                                    <img class="w-100 position-relative z-index-2 pt-4"
+                                        src="../assets/img/illustrations/rocket-white.png" alt="rocket">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div> --}}
-                <div class="card-body px-0 pb-2">
-                    wire:
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="d-flex flex-column h-100">
+                                <p class="mb-1 pt-2 text-bold">Built by developers</p>
+                                <h5 class="font-weight-bolder">Soft UI Dashboard</h5>
+                                <p class="mb-5">From colors, cards, typography to complex elements, you will find
+                                    the full documentation.</p>
+                                <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto"
+                                    href="javascript:;">
+                                    Read More
+                                    <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                            <div class="bg-gradient-primary border-radius-lg h-100">
+                                <img src="../assets/img/shapes/waves-white.svg"
+                                    class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves">
+                                <div class="position-relative d-flex align-items-center justify-content-center h-100">
+                                    <img class="w-100 position-relative z-index-2 pt-4"
+                                        src="../assets/img/illustrations/rocket-white.png" alt="rocket">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
