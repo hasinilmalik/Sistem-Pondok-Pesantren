@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tambahans', function (Blueprint $table) {
+        Schema::create('achievements', function (Blueprint $table) {
             $table->id();
+            $table->string('bidang')->nullable();
+            $table->string('tingkat')->nullable();
+            $table->string('peringkat')->nullable();
+            $table->string('tahun')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tambahans');
+        Schema::dropIfExists('achievements');
     }
 };

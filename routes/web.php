@@ -23,6 +23,9 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/home', 'index')->name('home');
 });
 
-Route::get('/cetak',[CetakController::class,'index'])->name('cetak');
-
+// Route::get('/cetak',[CetakController::class,'index'])->name('cetak');
+Route::controller(CetakController::class)->name('cetak.')->group(function ()
+{
+    Route::get('/cetak/mahrom/{id}/{name}','mahrom')->name('mahrom');
+});
 Route::resource('students', StudentController::class);

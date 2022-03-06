@@ -18,22 +18,11 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->string('nama')->nullable();
-            $table->string('nism')->nullable();
-            $table->string('kip')->nullable();
-            $table->string('pkh')->nullable();
-            $table->string('kks')->nullable();
             $table->string('nik')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->string('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
-            $table->string('agama')->nullable();
-            $table->string('hobi')->nullable();
-            $table->string('cita_cita')->nullable();
-            $table->string('kewarganegaraan')->nullable();
-            $table->string('kebutuhan_khusus')->nullable();
-            $table->string('status_rumah')->nullable();
-            $table->string('status_mukim')->nullable();
-
+            
             $table->string('alamat')->nullable();
             $table->string('rtrw')->nullable();
             $table->string('provinsi')->nullable();
@@ -42,6 +31,7 @@ return new class extends Migration
             $table->string('kode_pos')->nullable();
             $table->string('foto')->nullable();
             $table->string('foto_wali')->nullable();
+            $table->string('daerah')->nullable();
 
             $table->timestamps();
         });
