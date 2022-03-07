@@ -12,10 +12,24 @@ class CetakController extends Controller
     {
         return view('admin/cetak');
     }
-    public function mahrom($id,$name)
+    public function mahrom($id, $nama_dari_url)
     {
         $data = Student::find($id);
-        return view('documents.coba',compact('data'));
+        $nama_dari_db = str($data->nama)->lower();
+        // $nama_dari_db = str($data->namsa)->title();
+        if($nama_dari_url!=$nama_dari_db){
+            $nama_santri = $nama_dari_url;
+        }else{
+            $nama_santri = $nama_dari_db;
+        }
+        
+        // ubah alamat ke lower semua
+        $desa = str($data->desa)->lower();
+        $kecamatan = str($data->kecamatan)->lower();
+        $kota = str($data->kota)->lower();
+
+        $alamat = str($data->desa)->title().' - '.str($data->kecamatan)->title().' - '.str($data->kota)->title();
+        return view('documents.coba',compact('data','nama_santri','alamat'));
     }
     public function mahromm($id, $name)
     {

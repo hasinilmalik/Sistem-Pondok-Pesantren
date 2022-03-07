@@ -29,3 +29,8 @@ Route::controller(CetakController::class)->name('cetak.')->group(function ()
     Route::get('/cetak/mahrom/{id}/{name}','mahrom')->name('mahrom');
 });
 Route::resource('students', StudentController::class);
+
+Route::get('/ok', function ()
+{
+    return str('nama saya')->title();
+});

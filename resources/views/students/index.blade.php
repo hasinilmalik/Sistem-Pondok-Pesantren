@@ -23,7 +23,7 @@
                                     class="avatar avatar-sm me-3" alt="xd">
                             </div>
                             <div class="d-flex flex-column justify-content-center">
-                                <h6 class="mb-0 text-sm">{{ $item->nama }}</h6>
+                                <h6 class="mb-0 text-sm">{{ str($item->nama)->title() }}</h6>
                             </div>
                         </div>
                     </td>

@@ -19,15 +19,17 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->string('nama')->nullable();
             $table->string('nik')->nullable();
+            $table->string('nis')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->string('tanggal_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
             
             $table->string('alamat')->nullable();
             $table->string('rtrw')->nullable();
-            $table->string('provinsi')->nullable();
-            $table->string('kota')->nullable();
+            $table->string('desa')->nullable();
             $table->string('kecamatan')->nullable();
+            $table->string('kota')->nullable();
+            $table->string('provinsi')->nullable();
             $table->string('kode_pos')->nullable();
             $table->string('foto')->nullable();
             $table->string('foto_wali')->nullable();

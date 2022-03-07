@@ -22,6 +22,10 @@
 
         }
 
+        #right-panel p {
+            font-size: 10px
+        }
+
         img {
             width: 200px;
             margin-bottom: 20px
@@ -76,6 +80,7 @@
         strong.percantikspasi {
             color: white;
         }
+
     </style>
 
     <script src="<?= base_url('vendor/tambahanjs/jquery.min.js') ?>"></script>
@@ -90,7 +95,8 @@
 
     <!-- <div id="html-content-holder" style="background-image:url('<?= base_url('assets/img/bg_muhrim.png') ?>'); width: 1011px;height: 638px;"> -->
 
-    <div id="html-content-holder" style="background-image:url('<?= base_url('assets/img/bg_muhrim.png') ?>'); width: 3000px;height: 1893px;">
+    <div id="html-content-holder"
+        style="background-image:url('<?= base_url('assets/img/bg_muhrim.png') ?>'); width: 3000px;height: 1893px;">
 
         <div id="left-panel">
 
@@ -98,28 +104,30 @@
                 <tr>
                     <th valign="top" width="480px"><strong> NO INDUK</strong></th>
                     <th valign="top"><strong> &nbsp;: &nbsp; </strong></th>
-                    <th valign="top"><strong> <?= strtoupper($snt->nis); ?></strong>
-                        <strong class="percantikspasi"> --------------------------------------------------------</strong></th>
+                    <th valign="top"><strong> <?= strtoupper($snt->nis) ?></strong>
+                        <strong class="percantikspasi"> --------------------------------------------------------</strong>
+                    </th>
                 </tr>
                 <tr>
                     <th valign="top">Nama</th>
                     <th valign="top"><strong> &nbsp;: &nbsp; </strong></th>
-                    <th valign="top"> <strong> <?= strtoupper($snt->nama); ?></strong></th>
+                    <th valign="top"> <strong> <?= strtoupper($snt->nama) ?></strong></th>
                 </tr>
                 <tr>
                     <th valign="top">Asrama</th>
                     <th valign="top"><strong> &nbsp;: &nbsp; </strong></th>
-                    <th valign="top"> <strong> <?= strtoupper($snt->daerah); ?></strong></th>
+                    <th valign="top"> <strong> <?= strtoupper($snt->daerah) ?></strong></th>
                 </tr>
                 <tr>
                     <th valign="top">Orang Tua/Wali</th>
                     <th valign="top"><strong> &nbsp;: &nbsp; </strong></th>
-                    <th valign="top"> <strong> <?= strtoupper($snt->ayah); ?></strong></th>
+                    <th valign="top"> <strong> <?= strtoupper($snt->ayah) ?></strong></th>
                 </tr>
                 <tr>
                     <th valign="top">Alamat</th>
                     <th valign="top"><strong> &nbsp;: &nbsp; </strong></th>
-                    <th valign="top"> <strong> <?= strtoupper($snt->desa . ', ' . $snt->kec . ', ' . $snt->kab); ?></strong></th>
+                    <th valign="top"> <strong>
+                            <?= strtoupper($snt->desa . ', ' . $snt->kec . ', ' . $snt->kab) ?></strong></th>
                 </tr>
             </table>
 
@@ -129,9 +137,9 @@
         </div>
         <div id="right-panel">
             <?php if (isset($snt->foto_wali)) : ?>
-                <img class="default_img" src="<?= base_url() . $snt->foto_wali ?>">
+            <img class="default_img" src="<?= base_url() . $snt->foto_wali ?>">
             <?php else : ?>
-                <img class="default_img" src="<?= base_url('assets/img/user.jfif') ?>">
+            <img class="default_img" src="<?= base_url('assets/img/user.jfif') ?>">
             <?php endif ?><br>
             <img class="barcode" src="<?= base_url('assets/barcode/') . $snt->nis . '.jpg' ?>">
         </div>
@@ -160,7 +168,8 @@
                 var imgageData = getCanvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                $("#btn-Convert-Html2Image").attr("download", "ktmh-<?= strtoupper($snt->nama) ?>.png").attr("href", newData);
+                $("#btn-Convert-Html2Image").attr("download", "ktmh-<?= strtoupper($snt->nama) ?>.png")
+                    .attr("href", newData);
             });
 
         });

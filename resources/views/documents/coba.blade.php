@@ -4,17 +4,17 @@
     <style>
         #left-panel {
             height: auto;
-            width: 25%;
+            width: 24%;
             float: left;
             /* border: 1px solid salmon; */
         }
 
         #right-panel {
             float: right;
-            width: 71%;
+            width: 75%;
             /* border: 1px solid salmon; */
             height: auto;
-            padding-top: 200px;
+            padding-top: 320px;
 
         }
 
@@ -28,7 +28,7 @@
 
         #tgl-panel {
             float: right;
-            width: 31%;
+            width: 54.7%;
             /* border: 1px solid salmon; */
             height: auto;
         }
@@ -73,41 +73,62 @@
 
         p.nis {
             /* font-weight: bold; */
-            font-size: 100px;
+            font-size: 70px;
             text-align: left;
             padding-left: -14px;
-            padding-top: 350px;
+            padding-top: 347px;
             font-family: Arial, Helvetica, sans-serif;
         }
 
         p.nama {
-            font-weight: bold;
-            font-size: 100px;
+            /* font-weight: bold; */
+            font-size: 70px;
             text-align: left;
             padding-left: -14px;
-            padding-top: 30px;
+            padding-top: 40px;
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        p.ttl {
-            font-size: 100px;
+        p.asrama {
+            font-size: 70px;
             text-align: left;
             padding-left: -14px;
-            padding-top: 30px;
+            padding-top: 38px;
             font-family: Arial, Helvetica, sans-serif;
             /* padding-top: 350px; */
         }
 
-        p.tgl {
+        p.ortu {
+            font-size: 70px;
+            text-align: left;
+            padding-left: -14px;
+            padding-top: 35px;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 50px;
-            margin-top: 100px;
+            /* padding-top: 350px; */
+        }
+
+        p.alamat {
+            font-size: 70px;
+            text-align: left;
+            padding-left: -14px;
+            padding-top: 39px;
+            font-family: Arial, Helvetica, sans-serif;
+            /* padding-top: 350px; */
+        }
+
+        p.tgl_cetak {
+            text-align: left;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 40px;
+            margin-top: 140px;
         }
 
     </style>
 
     <script src="{{ asset('assets/bakid/kartu/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('assets/bakid/kartu/html2canvas.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"
+        integrity="sha512-s/XK4vYVXTGeUSv4bRPOuxSDmDlTedEpMEcAQk0t/FMd9V6ft8iXdwSBxV0eD60c6w/tjotSlKu9J2AAW1ckTA=="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -122,17 +143,17 @@
     {
         $bulan = [
             1 => 'Januari',
-            'Februari',
-            'Maret',
-            'April',
+            'Feb',
+            'Mar',
+            'Apr',
             'Mei',
             'Juni',
             'Juli',
             'Agustus',
-            'September',
+            'Sept',
             'Oktober',
-            'November',
-            'Desember',
+            'Nov',
+            'Des',
         ];
         $pecahkan = explode('-', $tanggal);
     
@@ -161,14 +182,15 @@
             // $kota = explode(' ', $data->kota);
         @endphp
         <div id="right-panel">
-            {{-- <p class="nis">{{ $data->nis . ' / ' . $data->nisn }}</p>
-            <p class="nama">{{ $data->nama_lengkap }}</p>
-            <p class="ttl">{{ $data->tempat_lahir . ', ' . tgl_indo($data->tanggal_lahir) }}</p>
-            <p class="ttl" style="text-transform: uppercase;">
-                {{ $data->desa . ' - ' . $data->kecamatan . ' - ' . $kota[0] }}</p> --}}
+            <p class="nis">{{ str($data->nis) }}</p>
+            <p class="nama"> {{ $nama_santri }}</p>
+            <p class="asrama">D02</p>
+            <p class="ortu">
+                {{ str($data->family->a_nama)->title() }}</p>
+            <p class="alamat">{{ $alamat }}</p>
         </div>
         <div id="tgl-panel">
-            <p class="tgl">Lumajang,</p>
+            <p class="tgl_cetak">Lumajang, 17 Sept 2000</p>
         </div>
 
     </div>
@@ -180,8 +202,6 @@
 
     <script>
         $(document).ready(function() {
-
-
             var element = $("#html-content-holder"); // global variable
             var getCanvas; // global variable
 
