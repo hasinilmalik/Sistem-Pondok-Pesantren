@@ -2,125 +2,116 @@
 
 <head>
     <style>
-        #left-panel {
-            height: auto;
-            width: 24%;
+        div.a {
             float: left;
-            /* border: 1px solid salmon; */
+            display: inline-block;
+            width: 700px;
+            padding: 5px;
+            /* border: 1px solid blue; */
         }
 
-        #right-panel {
-            float: right;
-            width: 75%;
-            /* border: 1px solid salmon; */
-            height: auto;
-            padding-top: 320px;
-
+        div.b {
+            float: left;
+            display: inline-block;
+            width: 1450px;
+            /* border: 1px solid blue; */
+            padding-top: 665;
         }
 
-        #fotosiswa {
-            margin-top: 550px;
-            margin-left: 200px;
-            /* border: 1px solid salmon; */
-            width: 500px;
-            height: 700px;
+        div.c {
+            float: left;
+            display: inline-block;
+            /* width: 700px; */
+            /* height: 100%; */
+            /* border: 1px solid blue; */
+            padding-top: 773;
+            padding-left: 36;
         }
 
-        #tgl-panel {
-            float: right;
-            width: 54.7%;
-            /* border: 1px solid salmon; */
-            height: auto;
+
+        #qrcode {
+            padding-top: 1350px;
+            padding-left: 250px;
         }
+
+        #tanggal {
+            padding-top: 1050px;
+            padding-left: 250px;
+        }
+
 
         img {
-            width: 250px;
+            width: 630px;
+            border-radius: 25px;
         }
 
 
-        table {
-            /* vertical-align: top; */
-            font-family: 'gotik';
-            text-transform: capitalize;
-            font-size: 76px;
-            /* font-size: 400%; */
-            padding-top: 550px;
-            padding-left: 110px;
-            padding-bottom: 4px;
-            padding-right: 40px;
-            line-height: 140%;
-        }
 
-        td,
-        th {
+        .nis {
+            padding-left: 35px;
             text-align: left;
-        }
-
-        p {
-            text-transform: capitalize;
-        }
-
-        img.barcode {
-            padding-top: 380px;
-            height: 400px;
-            width: 700px;
-        }
-
-        p {
-            margin: 0;
-            padding: 0;
-        }
-
-        p.nis {
-            /* font-weight: bold; */
+            font-family: Arial,
+                Helvetica,
+                sans-serif;
             font-size: 70px;
-            text-align: left;
-            padding-left: -14px;
-            padding-top: 347px;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
-        p.nama {
-            /* font-weight: bold; */
+        .nama {
+            font-family: Arial,
+                Helvetica,
+                sans-serif;
             font-size: 70px;
+            padding-left: 35px;
             text-align: left;
-            padding-left: -14px;
             padding-top: 40px;
-            font-family: Arial, Helvetica, sans-serif;
         }
 
-        p.asrama {
+        .asrama {
+            font-family: Arial,
+                Helvetica,
+                sans-serif;
             font-size: 70px;
+            padding-left: 35px;
             text-align: left;
-            padding-left: -14px;
+            padding-top: 40px;
+        }
+
+        .ortu {
+            font-family: Arial,
+                Helvetica,
+                sans-serif;
+            font-size: 70px;
+            padding-left: 35px;
+            text-align: left;
             padding-top: 38px;
-            font-family: Arial, Helvetica, sans-serif;
-            /* padding-top: 350px; */
         }
 
-        p.ortu {
+        .alamat {
+            font-family: Arial,
+                Helvetica,
+                sans-serif;
             font-size: 70px;
+            padding-left: 35px;
             text-align: left;
-            padding-left: -14px;
-            padding-top: 35px;
-            font-family: Arial, Helvetica, sans-serif;
-            /* padding-top: 350px; */
+            padding-top: 38px;
         }
 
-        p.alamat {
-            font-size: 70px;
-            text-align: left;
-            padding-left: -14px;
-            padding-top: 39px;
+        .tgl_cetak {
             font-family: Arial, Helvetica, sans-serif;
-            /* padding-top: 350px; */
-        }
-
-        p.tgl_cetak {
             text-align: left;
-            font-family: Arial, Helvetica, sans-serif;
             font-size: 40px;
-            margin-top: 140px;
+            padding-top: 140px;
+        }
+
+        /* .column {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        } */
+
+        img.foto_wali {
+            border-radius: 25px;
+            box-shadow: 10px 10px 10px grey;
         }
 
     </style>
@@ -174,25 +165,27 @@
     {{-- DISINI KONTENNYA --}}
     <div id="html-content-holder"
         style="background-image:url('{{ url('assets/bakid/kartu/kt-mahrom.png') }}'); width: 3000px;height: 1893px;">
-        <div id="left-panel">
-            {{-- <img src="{{ url('Foto/Siswa/' . $data->foto_siswa) }}" id="fotosiswa"> --}}
+        <div class="a">
+            <div id="qrcode">{{ QrCode::size(300)->generate($data->nis) }}</div>
         </div>
-
-        @php
-            // $kota = explode(' ', $data->kota);
-        @endphp
-        <div id="right-panel">
-            <p class="nis">{{ str($data->nis) }}</p>
-            <p class="nama"> {{ $nama_santri }}</p>
-            <p class="asrama">D02</p>
-            <p class="ortu">
-                {{ str($data->family->a_nama)->title() }}</p>
-            <p class="alamat">{{ $alamat }}</p>
+        <div class="b">
+            <div class="nis">{{ str($data->nis) }}</div>
+            <div class="nama"> {{ $nama_santri }}</div>
+            <div class="asrama">D02</div>
+            <div class="ortu">
+                {{ str($data->family->a_nama)->title() }}
+            </div>
+            <div class="alamat">{{ $alamat }}</div>
+            @php
+                \Carbon\Carbon::setLocale('id');
+                App::setlocale('id');
+            @endphp
+            <div class="tgl_cetak" style="padding-left: 648px;">
+                Lumajang, {{ \Carbon\Carbon::now()->format('d M Y') }}</div>
         </div>
-        <div id="tgl-panel">
-            <p class="tgl_cetak">Lumajang, 17 Sept 2000</p>
+        <div class="c">
+            <img class="foto_wali" src="{{ URL::to('/') }}/assets/bakid/kartu/contoh_foto.jpg">
         </div>
-
     </div>
 
     <h3>Preview :</h3>
