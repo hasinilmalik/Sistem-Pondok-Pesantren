@@ -40,13 +40,6 @@
         }
 
 
-        img {
-            width: 630px;
-            border-radius: 25px;
-        }
-
-
-
         .nis {
             padding-left: 35px;
             text-align: left;
@@ -110,8 +103,11 @@
         } */
 
         img.foto_wali {
-            border-radius: 25px;
-            box-shadow: 10px 10px 10px grey;
+            padding-top: 15px;
+            padding-left: 30px;
+            width: 600px;
+            /* border-radius: 25px; */
+            /* box-shadow: 10px 10px 10px grey; */
         }
 
     </style>
