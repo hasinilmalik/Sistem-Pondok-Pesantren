@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // tambahanku
         Spatie\Permission\PermissionServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -193,7 +194,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,        
     ])->toArray(),
 
 ];

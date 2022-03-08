@@ -1,2 +1,4 @@
 note :
 - install imagic
+- import max 250
+- import jangan ada petik

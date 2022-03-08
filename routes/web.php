@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\CetakController;
+use App\Http\Controllers\ConvertController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
+use App\Imports\UserImport;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +32,17 @@ Route::controller(CetakController::class)->name('cetak.')->group(function ()
 {
     Route::get('/cetak/mahrom/{id}/{name}','mahrom')->name('mahrom');
 });
+Route::get('/students/import', [StudentController::class,'import_excel']);
+Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
 Route::resource('students', StudentController::class);
 
 Route::get('/ok', function ()
 {
     return str('nama saya')->title();
+});
+
+// Route::get('convert',[ConvertController::class,'covertNis']);
+Route::get('convert', function ()
+{
+    return view('convert');
 });

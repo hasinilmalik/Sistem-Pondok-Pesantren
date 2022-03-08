@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Imports\StudentImport;
 use App\Models\Student;
+use App\Models\User;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Http\Client\Request as ClientRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
@@ -17,8 +23,8 @@ class StudentController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $students = Student::where('jenis_kelamin',$user->jk)->get();
-        return view('students.index',compact('students'));
+        $students = Student::where('jenis_kelamin', $user->jk)->get();
+        return view('students.index', compact('students'));
     }
 
     public function create()
@@ -80,5 +86,37 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         //
+    }
+    public function import_excel()
+    {
+        return view('documents.import_students');
+    }
+    public function import_data(Request $request)
+    {
+        // dd($request);
+        // validasi
+        // $this->validate($request, [
+        //     'file' => 'required|mimes:csv,xls,xlsx'
+        // ]);
+
+
+ 
+        // menangkap file excel
+        $file = $request->file('file');
+ 
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+ 
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_santri', $nama_file);
+ 
+        // import data
+        Excel::import(new StudentImport, public_path('/file_santri/'.$nama_file));
+ 
+        // notifikasi dengan session
+        session()->flash('sukses', 'Data Siswa Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return back();
     }
 }
