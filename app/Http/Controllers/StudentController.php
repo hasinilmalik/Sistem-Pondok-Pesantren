@@ -89,7 +89,8 @@ class StudentController extends Controller
     }
     public function import_excel()
     {
-        return view('documents.import_students');
+        $terbaru = Student::orderby('id','DESC')->first();
+        return view('documents.import_students',compact('terbaru'));
     }
     public function import_data(Request $request)
     {
@@ -98,9 +99,6 @@ class StudentController extends Controller
         // $this->validate($request, [
         //     'file' => 'required|mimes:csv,xls,xlsx'
         // ]);
-
-
- 
         // menangkap file excel
         $file = $request->file('file');
  
@@ -108,7 +106,7 @@ class StudentController extends Controller
         $nama_file = rand().$file->getClientOriginalName();
  
         // upload ke folder file_siswa di dalam folder public
-        // $file->move('file_santri', $nama_file);
+        $file->move('file_santri', $nama_file);
  
         // import data
         Excel::import(new StudentImport($request->start,$request->limit), public_path('/file_santri/'.$nama_file));
