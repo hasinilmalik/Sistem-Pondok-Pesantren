@@ -8,14 +8,22 @@ use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithLimit;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class StudentImport implements ToCollection
+class StudentImport implements ToCollection, WithLimit, WithStartRow
 {
+    public function __construct()
+    {
+        $this->startRow = 201;
+    }
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) 
         {
             
+            // NOTE:MENGUBAH NIS (MENGHAPUS KODE DAERAH)
+            // ==========================================
             $nis = $row[39];
             $tahun = substr($nis, 0, 2);
             //ambil 4 digit no urut
@@ -23,6 +31,8 @@ class StudentImport implements ToCollection
             // gabungkan tahun dan nomer urut
             $nis_baru = $tahun . $urutan;
             
+            // NOTE:MENGUBAH NIK, KK (MENGHAPUS # yang di input di excel )
+            // ==========================================
             $nik = $row[2];
             $nik_baru = substr($nik, 1);
             
@@ -34,13 +44,15 @@ class StudentImport implements ToCollection
             
             $bunik = $row[28];
             $bunik_baru = substr($bunik, 1);
-
+            
+            // NOTE:MENGUBAH NIS MENJADI EMAIL
+            // ==========================================
             $jk = $row[5];
-            
-            
+            $nis_to_email = $nis.'@bakid.com';
+
             User::create([
                 'name'=>$row[1],
-                'email'=>$row[45],
+                'email'=>$nis_to_email,
                 'password'=>bcrypt('12345678'),
                 'jk'=>$jk,
             ]);
@@ -48,7 +60,7 @@ class StudentImport implements ToCollection
             Student::create([
                 'user_id' => User::orderby('id','DESC')->first()->id,
                 'nama' => $row[1],
-                'nis' => $nis_baru,
+                'nis' => $nis,
                 
                 'nik'=>$nik_baru,
                 'tempat_lahir'=>$row[3],
@@ -114,5 +126,14 @@ class StudentImport implements ToCollection
             ]);
             
         }
+    }
+    public function startRow(): int
+    {
+        return 201;
+    }
+
+    public function limit(): int
+    {
+        return 450;
     }
 }
