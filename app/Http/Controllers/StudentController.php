@@ -93,7 +93,7 @@ class StudentController extends Controller
     }
     public function import_data(Request $request)
     {
-        // dd($request);
+        // dd($request->limit);
         // validasi
         // $this->validate($request, [
         //     'file' => 'required|mimes:csv,xls,xlsx'
@@ -108,10 +108,10 @@ class StudentController extends Controller
         $nama_file = rand().$file->getClientOriginalName();
  
         // upload ke folder file_siswa di dalam folder public
-        $file->move('file_santri', $nama_file);
+        // $file->move('file_santri', $nama_file);
  
         // import data
-        Excel::import(new StudentImport, public_path('/file_santri/'.$nama_file));
+        Excel::import(new StudentImport($request->start,$request->limit), public_path('/file_santri/'.$nama_file));
  
         // notifikasi dengan session
         session()->flash('sukses', 'Data Siswa Berhasil Diimport!');

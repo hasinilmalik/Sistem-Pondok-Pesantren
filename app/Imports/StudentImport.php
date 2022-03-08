@@ -13,9 +13,13 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 
 class StudentImport implements ToCollection, WithLimit, WithStartRow
 {
-    public function __construct()
+    protected $startRow;
+    protected $limit;
+
+    public function __construct(int $startRow,int $limit)
     {
-        $this->startRow = 201;
+        $this->startRow = $startRow;
+        $this->limit = $limit;
     }
     public function collection(Collection $rows)
     {
@@ -50,15 +54,18 @@ class StudentImport implements ToCollection, WithLimit, WithStartRow
             $jk = $row[5];
             $nis_to_email = $nis.'@bakid.com';
 
+            
             User::create([
                 'name'=>$row[1],
                 'email'=>$nis_to_email,
                 'password'=>bcrypt('12345678'),
                 'jk'=>$jk,
             ]);
-            
+
+            $late_id = User::orderby('id','DESC')->first()->id;
+
             Student::create([
-                'user_id' => User::orderby('id','DESC')->first()->id,
+                'user_id' => $late_id,
                 'nama' => $row[1],
                 'nis' => $nis,
                 
@@ -129,11 +136,10 @@ class StudentImport implements ToCollection, WithLimit, WithStartRow
     }
     public function startRow(): int
     {
-        return 201;
+        return $this->startRow;
     }
-
     public function limit(): int
     {
-        return 450;
+        return $this->limit;
     }
 }
