@@ -34,13 +34,15 @@ class StudentImport implements ToCollection
             
             $bunik = $row[28];
             $bunik_baru = substr($bunik, 1);
+
+            $jk = $row[5];
             
             
             User::create([
                 'name'=>$row[1],
                 'email'=>$row[45],
                 'password'=>bcrypt('12345678'),
-                'jk'=>'perempuan',
+                'jk'=>$jk,
             ]);
             
             Student::create([
@@ -51,7 +53,7 @@ class StudentImport implements ToCollection
                 'nik'=>$nik_baru,
                 'tempat_lahir'=>$row[3],
                 'tanggal_lahir'=>$row[4],
-                'jenis_kelamin'=>$row[5],
+                'jenis_kelamin'=>$jk,
                 
                 'alamat'=>$row[9],
                 'rtrw'=>'-',

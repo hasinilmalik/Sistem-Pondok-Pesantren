@@ -34,7 +34,10 @@ Route::controller(CetakController::class)->name('cetak.')->group(function ()
 });
 Route::get('/students/import', [StudentController::class,'import_excel']);
 Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
-Route::resource('students', StudentController::class);
+
+Route::group(['middleware' => ['role:admin']], function () {
+    Route::resource('students', StudentController::class);
+});
 
 Route::get('/ok', function ()
 {

@@ -2,3 +2,10 @@ note :
 - install imagic
 - import max 250
 - import jangan ada petik
+- sebelum import sesuaikan data
+    yang sy sesuaikan adalah menghapus kolom di depan kolom lembaga
+    yang kedua kolom madin di hapus juga
+    menyesuaikan nis nik kk didepan tambahi #
+    pastikan juga tidak terdapat tanda petik
+    foto hapus direktory sisakan namafile.jpg
+    hapus kolom prestasi, tingkat prestasi, peringkat, tahun prestasi
