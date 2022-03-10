@@ -162,7 +162,9 @@
     <div id="html-content-holder"
         style="background-image:url('{{ url('assets/bakid/kartu/kt-mahrom.png') }}'); width: 3000px;height: 1893px;">
         <div class="a">
-            <div id="qrcode">{{ QrCode::size(300)->generate($data->nis) }}</div>
+            <img id="qrcode" src="data:image/png;base64, {!! base64_encode(
+    QrCode::format('png')->size(300)->generate($data->nis),
+) !!} ">
         </div>
         <div class="b">
             <div class="nis">{{ str($data->nis) }}</div>

@@ -189,7 +189,7 @@
                 <div>
                     <h6 class="mb-0">Data Santri</h6>
                 </div>
-                {{-- <a href="javascript:void(0)" class="switch-trigger background-color">
+                <a href="javascript:void(0)" class="switch-trigger background-color">
                     <div class="badge-colors my-2 text-start">
                         <span class="badge filter bg-gradient-primary active" data-color="primary"
                             onclick="sidebarColor(this)"></span>
@@ -226,11 +226,7 @@
                         onclick="navbarFixed(this)">
                 </div>
                 <hr class="horizontal dark my-sm-4">
-                <a class="btn bg-gradient-dark w-100"
-                    href="https://www.creative-tim.com/product/soft-ui-dashboard-pro">Free Download</a>
-                <a class="btn btn-outline-dark w-100"
-                    href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard">View
-                    documentation</a>
+
                 <div class="w-100 text-center">
                     <a class="github-button" href="https://github.com/creativetimofficial/soft-ui-dashboard"
                         data-icon="octicon-star" data-size="large" data-show-count="true"
@@ -244,7 +240,7 @@
                         class="btn btn-dark mb-0 me-2" target="_blank">
                         <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
                     </a>
-                </div> --}}
+                </div>
             </div>
         </div>
     </div>
