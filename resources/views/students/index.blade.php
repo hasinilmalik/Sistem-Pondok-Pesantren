@@ -11,6 +11,7 @@
                 <th>Nama</th>
                 <th>Daerah</th>
                 <th>Kota</th>
+                <th>JK</th>
                 <th>Act</th>
                 {{-- <th>HP</th> --}}
             </tr>
@@ -36,6 +37,7 @@
                     </td>
                     <td>{{ $item->daerah }}</td>
                     <td>{{ $item->kota }}</td>
+                    <td>{{ $item->jenis_kelamin }}</td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn bg-gradient-success dropdown-toggle" data-bs-toggle="dropdown"
