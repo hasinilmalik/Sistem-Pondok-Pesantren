@@ -179,6 +179,9 @@ return [
         // tambahanku
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
+
 
     ],
 
@@ -194,7 +197,8 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,        
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,  
+        'reImage' => Intervention\Image\Facades\Image::class      
     ])->toArray(),
 
 ];

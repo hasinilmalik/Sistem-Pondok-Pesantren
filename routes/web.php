@@ -32,12 +32,12 @@ Route::controller(CetakController::class)->name('cetak.')->group(function ()
 {
     Route::get('/cetak/mahrom/{id}/{name}','mahrom')->name('mahrom');
 });
-Route::get('/students/import', [StudentController::class,'import_excel']);
-Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
 
-Route::group(['middleware' => ['role:admin']], function () {
+Route::group(['middleware' => ['role:super admin']], function () {
+    Route::get('/students/import', [StudentController::class,'import_excel']);
     Route::resource('students', StudentController::class);
 });
+Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
 
 Route::get('/ok', function ()
 {

@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Student;
-use App\Models\Students;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -34,7 +33,7 @@ return new class extends Migration
             $table->string('w_nik')->nullable();
             $table->string('w_nama')->nullable();
             $table->string('w_pekerjaan')->nullable();
-            $table->string('w_peghasilan')->nullable();
+            $table->string('w_penghasilan')->nullable();
             // $table->string('w_nik')->nullable();
             $table->timestamps();
         });

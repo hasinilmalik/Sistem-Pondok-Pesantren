@@ -9,3 +9,5 @@ note :
     pastikan juga tidak terdapat tanda petik
     foto hapus direktory sisakan namafile.jpg
     hapus kolom prestasi, tingkat prestasi, peringkat, tahun prestasi
+
+- jangan lupa storage:link

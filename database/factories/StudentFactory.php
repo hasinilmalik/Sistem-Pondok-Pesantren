@@ -37,6 +37,7 @@ class StudentFactory extends Factory
             'foto'=>$this->faker->name(),
             'foto_wali'=>$this->faker->name(),
             'daerah'=>$this->faker->name(),
+            'status'=>$this->faker->randomElement(['alumni','']),
         ];
     }
 }

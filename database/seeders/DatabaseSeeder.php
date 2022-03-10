@@ -19,9 +19,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Role::create(['name' => 'super admin']);
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'user']);
         // Permission::create(['name' => 'edit articles']);
+        $malik = User::create([
+            'name'=>'Malik',
+            'email'=>'m@m.m',
+            'jk'=>'laki-laki',
+            'password'=>bcrypt('password'),
+        ]);
+        $malik->assignRole('super admin');
         $userpa = User::create([
             'name'=>'admin_pa',
             'email'=>'secret_pa@bakid.com',

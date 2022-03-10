@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $jumlah_putri = Student::where('jenis_kelamin','perempuan')->count();
+        $jumlah_putra = Student::where('jenis_kelamin','laki-laki')->count();
+        $alumni = Student::where('status','alumni')->count();
+        return view('home',compact('jumlah_putri','jumlah_putra','alumni'));
     }
 }

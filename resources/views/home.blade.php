@@ -1,5 +1,6 @@
 @extends('layouts/app')
 @section('judul', 'Dashboard')
+@section('prefix', 'Dashboard')
 @section('content')
     <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -8,16 +9,38 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-capitalize font-weight-bold">Putra</p>
+                                <p class="text-sm mb-0 text-capitalize font-weight-bold">Total</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    53,000
+                                    {{ $jumlah_putra + $jumlah_putri }}
                                     {{-- <span class="text-success text-sm font-weight-bolder">+55%</span> --}}
                                 </h5>
                             </div>
                         </div>
                         <div class="col-4 text-end">
                             <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                                <i class="ni ni-single-02 text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-capitalize font-weight-bold">Putra</p>
+                                <h5 class="font-weight-bolder mb-0">
+                                    {{ $jumlah_putra }}
+                                    {{-- <span class="text-success text-sm font-weight-bolder">+55%</span> --}}
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                <i class="ni ni-single-02 text-lg opacity-10" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
@@ -32,14 +55,14 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Putri</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    2,300
+                                    {{ $jumlah_putri }}
                                     {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
                                 </h5>
                             </div>
                         </div>
                         <div class="col-4 text-end">
                             <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                                <i class="ni ni-single-02 text-lg opacity-10" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
@@ -54,29 +77,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Alumni</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    8,300
-                                    {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
-                                </h5>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-capitalize font-weight-bold">Pendidik</p>
-                                <h5 class="font-weight-bolder mb-0">
-                                    300
+                                    {{ $alumni }}
                                     {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
                                 </h5>
                             </div>
@@ -93,7 +94,7 @@
 
     </div>
 
-    <div class="row my-4">
+    {{-- <div class="row my-4">
         <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
             <div class="card">
                 <div class="card-header pb-0">
@@ -145,7 +146,7 @@
                                         <div class="d-flex px-2 py-1">
                                             <div>
                                                 <img src="../assets/img/small-logos/logo-xd.svg"
-                                                    class="avatar avatar-sm me-3" alt="xd">
+                                                    class="avatar a vatar-sm me-3" alt="xd">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">Soft UI XD Version</h6>
@@ -419,5 +420,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

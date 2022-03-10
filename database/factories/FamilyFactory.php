@@ -35,7 +35,7 @@ class FamilyFactory extends Factory
             'w_nik'=> $this->faker->name(),
             'w_nama'=> $this->faker->name(),
             'w_pekerjaan'=> $this->faker->name(),
-            'w_peghasilan'=> $this->faker->name(),
+            'w_penghasilan'=> $this->faker->name(),
         ];
     }
 }

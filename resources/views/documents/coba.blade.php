@@ -167,11 +167,11 @@
         <div class="b">
             <div class="nis">{{ str($data->nis) }}</div>
             <div class="nama"> {{ $nama_santri }}</div>
-            <div class="asrama">D02</div>
+            <div class="asrama">{{ str($data->daerah)->upper }}</div>
             <div class="ortu">
                 {{ str($data->family->a_nama)->title() }}
             </div>
-            <div class="alamat">{{ $alamat }}</div>
+            <div class="alamat">{{ str($alamat)->title() }}</div>
             @php
                 \Carbon\Carbon::setLocale('id');
                 App::setlocale('id');
@@ -180,7 +180,11 @@
                 Lumajang, {{ \Carbon\Carbon::now()->format('d M Y') }}</div>
         </div>
         <div class="c">
-            <img class="foto_wali" src="{{ URL::to('/') }}/assets/bakid/kartu/contoh_foto.jpg">
+            @if ($data->foto_wali != null || $data->foto_wali == 'tidak_ada_foto.jpg')
+                <img class="foto_wali" src="{{ URL::to('/storage/foto_wali/') . '/' . $data->foto_wali }}">
+            @else
+                <img class="foto_wali" src="{{ URL::to('/') }}/storage/foto_wali/user.jpeg">
+            @endif
         </div>
     </div>
 

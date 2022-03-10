@@ -7,7 +7,9 @@
     @push('foot')
         <script>
             $(document).ready(function() {
-                $('#example').DataTable();
+                $('#example').DataTable({
+                    "ordering": false
+                });
             });
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

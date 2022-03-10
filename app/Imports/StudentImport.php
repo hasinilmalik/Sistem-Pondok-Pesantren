@@ -7,24 +7,48 @@ use App\Models\Family;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithLimit;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class StudentImport implements ToCollection, WithLimit, WithStartRow
+class StudentImport implements ToCollection, WithLimit, WithStartRow, WithValidation
 {
+    use Importable,SkipsErrors;
+    
     protected $startRow;
     protected $limit;
-
+    
     public function __construct(int $startRow,int $limit)
     {
         $this->startRow = $startRow;
         $this->limit = $limit;
     }
+    
+    
     public function collection(Collection $rows)
     {
         foreach ($rows as $row) 
         {
+            //Convert row data into array and store it in a variable.
+            $row = $row->toArray();
+            //Set data to be validated.
+            $data = [
+                'name'      => $row[0],
+                'nis' => $row[39],
+            ];
+            //Set conditions for validation.
+            $conditions = [
+                'name'      =>  'required',
+                'nis' =>  'required|unique:students,nis',
+            ];
+            //Validate the excel data.
+            Validator::make($data, $conditions)->validate();
             
             // NOTE:MENGUBAH NIS (MENGHAPUS KODE DAERAH)
             // ==========================================
@@ -53,7 +77,7 @@ class StudentImport implements ToCollection, WithLimit, WithStartRow
             // ==========================================
             $jk = $row[5];
             $nis_to_email = $nis.'@bakid.com';
-
+            
             
             User::create([
                 'name'=>$row[1],
@@ -61,9 +85,9 @@ class StudentImport implements ToCollection, WithLimit, WithStartRow
                 'password'=>bcrypt('12345678'),
                 'jk'=>$jk,
             ]);
-
+            
             $late_id = User::orderby('id','DESC')->first()->id;
-
+            
             Student::create([
                 'user_id' => $late_id,
                 'nama' => $row[1],
@@ -131,15 +155,25 @@ class StudentImport implements ToCollection, WithLimit, WithStartRow
                 'w_pekerjaan'=>'-',
                 'w_peghasilan'=>'-',
             ]);
-            
         }
+        
     }
+    public function rules(): array
+    {
+        return [
+            // 'nis' => ['nis','unique:students,nis'],
+            '*.email' => ['email','unique:users,email'],
+        ];
+    }
+    
     public function startRow(): int
     {
         return $this->startRow;
     }
+    
     public function limit(): int
     {
         return $this->limit;
     }
+    
 }

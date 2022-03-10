@@ -1,5 +1,5 @@
 @php
-$judul = app()->view->getSections()['judul'];
+$judul = app()->view->getSections()['prefix'];
 @endphp
 <x-menu :judul="$judul" text="Dashboard" url="home" icon="home" />
 {{-- <x-menu :judul="$judul" text="Cetak" url="cetak" icon="print" /> --}}
