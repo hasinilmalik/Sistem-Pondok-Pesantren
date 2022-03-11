@@ -189,7 +189,7 @@
                 <div>
                     <h6 class="mb-0">Data Santri</h6>
                 </div>
-                <a href="javascript:void(0)" class="switch-trigger background-color">
+                {{-- <a href="javascript:void(0)" class="switch-trigger background-color">
                     <div class="badge-colors my-2 text-start">
                         <span class="badge filter bg-gradient-primary active" data-color="primary"
                             onclick="sidebarColor(this)"></span>
@@ -204,9 +204,9 @@
                         <span class="badge filter bg-gradient-danger" data-color="danger"
                             onclick="sidebarColor(this)"></span>
                     </div>
-                </a>
+                </a> --}}
                 <!-- Sidenav Type -->
-                <div class="mt-3">
+                {{-- <div class="mt-3">
                     <h6 class="mb-0">Sidenav Type</h6>
                     <p class="text-sm">Choose between 2 different sidenav types.</p>
                 </div>
@@ -220,14 +220,14 @@
                 <!-- Navbar Fixed -->
                 <div class="mt-3">
                     <h6 class="mb-0">Navbar Fixed</h6>
-                </div>
+                </div> --}}
                 <div class="form-check form-switch ps-0">
                     <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed"
                         onclick="navbarFixed(this)">
                 </div>
-                <hr class="horizontal dark my-sm-4">
+                {{-- <hr class="horizontal dark my-sm-4"> --}}
 
-                <div class="w-100 text-center">
+                {{-- <div class="w-100 text-center">
                     <a class="github-button" href="https://github.com/creativetimofficial/soft-ui-dashboard"
                         data-icon="octicon-star" data-size="large" data-show-count="true"
                         aria-label="Star creativetimofficial/soft-ui-dashboard on GitHub">Star</a>
@@ -240,7 +240,7 @@
                         class="btn btn-dark mb-0 me-2" target="_blank">
                         <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -5,13 +5,12 @@
 <x-datatables />
 @section('content')
     <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Santri</a>
-    <table id="table_id" class="display">
+    <table id="table_id" class="table table-striped dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>Nama</th>
                 <th>Daerah</th>
                 <th>Kota</th>
-                <th>JK</th>
                 <th>Act</th>
                 {{-- <th>HP</th> --}}
             </tr>
@@ -37,7 +36,6 @@
                     </td>
                     <td>{{ $item->daerah }}</td>
                     <td>{{ $item->kota }}</td>
-                    <td>{{ $item->jenis_kelamin }}</td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn bg-gradient-success dropdown-toggle" data-bs-toggle="dropdown"
@@ -45,9 +43,16 @@
 
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('students.show', $item) }}">Lihat</a></li>
-                                <li><a class="dropdown-item" href="{{ route('students.edit', $item) }}">Edit</a></li>
-                                <li><a class="dropdown-item" href="#">Hapus</a></li>
+                                <form action="{{ route('students.destroy', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <li><a class="dropdown-item" href="{{ route('students.show', $item) }}">Lihat</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('students.edit', $item) }}">Edit</a>
+                                    </li>
+                                    <li><button class="dropdown-item" style="color: red" type="submit"
+                                            onclick="confirm('Yakin Hapus Kak?')">Delete</button></li>
+                                </form>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

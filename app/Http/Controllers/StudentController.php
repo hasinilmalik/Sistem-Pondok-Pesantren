@@ -245,7 +245,9 @@ class StudentController extends Controller
     */
     public function destroy(Student $student)
     {
-        //
+        Student::find($student->id)->delete();
+        Alert::success('Berhasil', 'Hapus data');
+        return redirect()->route('students.index');   
     }
     public function import_excel()
     {

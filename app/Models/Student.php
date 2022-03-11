@@ -23,4 +23,13 @@ class Student extends Model
     {
         return $this->hasOne(Addition::class);
     }
+    public static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) { // before delete() method call this
+             $user->family()->delete();
+             $user->addition()->delete();
+             // do the rest of the cleanup...
+        });
+    }
 }

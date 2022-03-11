@@ -7,9 +7,11 @@
     @push('foot')
         <script>
             $(document).ready(function() {
-                $('#example').DataTable({
-                    "ordering": false
+                var table = $('#example').DataTable({
+                    "ordering": false,
+                    responsive: true
                 });
+                new $.fn.DataTable.FixedHeader(table);
             });
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
