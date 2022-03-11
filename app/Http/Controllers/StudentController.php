@@ -65,10 +65,13 @@ class StudentController extends Controller
         //ambil tahun sekarang ex:22
         $year = Carbon::now()->format('y');
         // ambil nis terakhir
-        $datanis = Student::orderby('nis','desc')->first()->nis+1;
+        $datanis = Student::max('nis')+1;
         // buat nis baru
         $datanis = $year.Str::substr($datanis, 2);
-        
+
+        // if($datanis==null){s
+        //     $datanis = $year . 1;
+        // }
         // email
         if($request['email']){
             $email=$request['email'];

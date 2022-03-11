@@ -26,9 +26,9 @@ class Student extends Model
     public static function boot() {
         parent::boot();
 
-        static::deleting(function($user) { // before delete() method call this
-             $user->family()->delete();
-             $user->addition()->delete();
+        static::deleting(function($student) { // before delete() method call this
+             $student->family()->delete();
+             $student->addition()->delete();
              // do the rest of the cleanup...
         });
     }

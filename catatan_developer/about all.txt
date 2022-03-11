@@ -11,3 +11,4 @@ note :
     hapus kolom prestasi, tingkat prestasi, peringkat, tahun prestasi
 
 - jangan lupa storage:link
+- kalau data kosong di db, maka tidak dapat input data sama sekali. karena ia mencari nis. 
