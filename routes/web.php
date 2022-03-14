@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\ConvertController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use App\Imports\UserImport;
@@ -48,4 +49,13 @@ Route::get('/ok', function ()
 Route::get('convert', function ()
 {
     return view('convert');
+});
+
+Route::group(['middleware'=>['role:guest']], function ()
+{ 
+    Route::get('/isi_data',function ()
+    {
+        return view('guest.index');
+    });
+    Route::post('/daftar',[GuestController::class,'store'])->name('guest.store');
 });
