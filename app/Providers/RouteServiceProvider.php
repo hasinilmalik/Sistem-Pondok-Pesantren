@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/isi_data';
+    public const HOME = '/guest/create';
 
     /**
      * Define your route model bindings, pattern filters, etc.

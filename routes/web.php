@@ -53,9 +53,9 @@ Route::get('convert', function ()
 
 Route::group(['middleware'=>['role:guest']], function ()
 { 
-    Route::get('/isi_data',function ()
+    Route::get('/guest/create',function ()
     {
-        return view('guest.index');
+        return view('guest.create');
     });
     Route::post('/daftar',[GuestController::class,'store'])->name('guest.store');
 });
