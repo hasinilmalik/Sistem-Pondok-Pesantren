@@ -15,6 +15,7 @@ class Menu extends Component
     public $text;
     public $url;
     public $icon;
+    
     public function __construct($judul,$text,$url,$icon)
     {
         $this->judul = $judul;

@@ -59,3 +59,8 @@ Route::group(['middleware'=>['role:guest']], function ()
     });
     Route::post('/daftar',[GuestController::class,'store'])->name('guest.store');
 });
+
+Route::get('/coba',function ()
+{
+    return view('coba');
+});

@@ -65,6 +65,6 @@ class GuestController extends Controller
             'no_ijazah'=>$request['no_ijazah'],
             'no_un'=>$request['no_un'],
         ]);
-        return view('home');
+        return redirect()->route('home');
     }
 }

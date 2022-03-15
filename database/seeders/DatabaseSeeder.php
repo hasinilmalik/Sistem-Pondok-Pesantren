@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('password'),
         ]);
         $malik->assignRole('super admin');
+        $malik->assignRole('admin');
         $userpa = User::create([
             'name'=>'admin_pa',
             'email'=>'secret_pa@bakid.com',

@@ -1,6 +1,6 @@
 @include('layouts/partials/head')
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
         id="sidenav-main">
         <div class="sidenav-header">
@@ -12,13 +12,14 @@
             </a>
         </div>
         <hr class="horizontal dark mt-0">
-        <div class="collapse navbar-collapse  w-auto  max-height-vh-100 h-100" id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse w-auto max-height-vh-100 h-100" id="sidenav-collapse-main"
+            style="z-index:999999 !important;">
             <ul class="navbar-nav">
                 @include('layouts/sidebar')
             </ul>
         </div>
     </aside>
-    <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+    <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 border-radius-xl position-sticky blur shadow-blur mt-4 left-auto top-1 z-index-sticky"
             id="navbarBlur" navbar-scroll="true">
@@ -167,7 +168,12 @@
             <div class="card-header pb-0 pt-3 ">
                 <div class="float-start">
                     <div class="author align-items-center">
-                        <img src="{{ asset('storage/foto_santri/user.jpeg') }}" alt="..." class="avatar shadow">
+                        @if ($student = Auth::user()->student)
+                            <img src="{{ asset('storage/foto_santri/') . '/' . $student->foto }}" alt="..."
+                                class="avatar shadow">
+                        @else
+                            <img src="{{ asset('storage/foto_santri/user.jpeg') }}" alt="..." class="avatar shadow">
+                        @endif
                         <div class="name ps-3">
                             <span>{{ Auth::user()->name }}</span>
                             <div class="stats">
@@ -187,7 +193,7 @@
             <div class="card-body pt-sm-3 pt-0">
                 <!-- Sidebar Backgrounds -->
                 <div>
-                    <h6 class="mb-0">Data Santri</h6>
+                    {{-- <h6 class="mb-0">Data Santri</h6> --}}
                 </div>
                 {{-- <a href="javascript:void(0)" class="switch-trigger background-color">
                     <div class="badge-colors my-2 text-start">
@@ -222,8 +228,7 @@
                     <h6 class="mb-0">Navbar Fixed</h6>
                 </div> --}}
                 <div class="form-check form-switch ps-0">
-                    <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed"
-                        onclick="navbarFixed(this)">
+                    <div id="navbarFixed" onclick="navbarFixed(this)" />
                 </div>
                 {{-- <hr class="horizontal dark my-sm-4"> --}}
 
