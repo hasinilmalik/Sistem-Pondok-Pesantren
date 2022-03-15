@@ -209,7 +209,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label for="a_kk" class="form-control-label ucfirst">kk Ayah</label>
+                        <label for="a_kk" class="form-control-label ucfirst">Nomor KK (Kartu Keluarga)</label>
                         <input name="a_kk" value="{{ old('a_kk') }}" placeholder="" class="form-control" id="a_kk"
                             type="number">
                     </div>
@@ -225,23 +225,62 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="a_pendidikan" class="form-control-label ucfirst">Pendidikan Ayah</label>
-                        <input name="a_pendidikan" value="{{ old('a_pendidikan') }}" placeholder=""
-                            class="form-control" id="a_pendidikan" type="text">
+                        <select name="a_pendidikan" id="a_pendidikan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak memiliki pendidikan formal</option>
+                            <option>sd/mi/sederajat</option>
+                            <option>smp/mts/sederajat</option>
+                            <option>sma/ma/smk/sederajat</option>
+                            <option>d1</option>
+                            <option>d2</option>
+                            <option>d3</option>
+                            <option>d4/s1</option>
+                            <option>s2</option>
+                            <option>s3</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="a_pekerjaan" class="form-control-label ucfirst">pekerjaan Ayah</label>
-                        <input name="a_pekerjaan" value="{{ old('a_pekerjaan') }}" placeholder=""
-                            class="form-control" id="a_pekerjaan" type="text">
+                        <select name="a_pekerjaan" id="a_pekerjaan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak bekerja</option>
+                            <option>buruh (tani/pabrik/bangunan)</option>
+                            <option>dokter/bidan/perawat</option>
+                            <option>guru/dosen</option>
+                            <option>nelayan</option>
+                            <option>pedagang</option>
+                            <option>pegawai swasta</option>
+                            <option>pengacara/hakim/jaksa/notaris</option>
+                            <option>pensiunan</option>
+                            <option>petani/peternak</option>
+                            <option>pilot/pramugari</option>
+                            <option>pns</option>
+                            <option>politikus</option>
+                            <option>seniman/pelukis/artis/sejenis</option>
+                            <option>sopir,masinis,kondektur</option>
+                            <option>tni/polisi</option>
+                            <option>wiraswasta</option>
+                            <option>lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="a_phone" class="form-control-label ucfirst">phone Ayah</label>
                         <input name="a_phone" value="{{ old('a_phone') }}" placeholder="" class="form-control"
-                            id="a_phone" type="text">
+                            id="a_phone" type="number">
                     </div>
                     <div class="form-group mb-3">
                         <label for="a_penghasilan" class="form-control-label ucfirst">penghasilan Ayah</label>
-                        <input name="a_penghasilan" value="{{ old('a_penghasilan') }}" placeholder=""
-                            class="form-control" id="a_penghasilan" type="text">
+                        <select name="a_penghasilan" id="a_penghasilan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak berpenghasilan</option>
+                            <option>kurang dari 500.000</option>
+                            <option>500.000 - 1 juta</option>
+                            <option>1 juta - 2 juta</option>
+                            <option>2 juta - 3 juta</option>
+                            <option>3 juta - 4 juta</option>
+                            <option>4 juta - 5 juta</option>
+                            <option>lebih dari 5 juta</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -257,23 +296,62 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="i_pendidikan" class="form-control-label ucfirst">Pendidikan Ibu</label>
-                        <input name="i_pendidikan" value="{{ old('i_pendidikan') }}" placeholder=""
-                            class="form-control" id="i_pendidikan" type="text">
+                        <select name="i_pendidikan" id="i_pendidikan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak memiliki pendidikan formal</option>
+                            <option>sd/mi/sederajat</option>
+                            <option>smp/mts/sederajat</option>
+                            <option>sma/ma/smk/sederajat</option>
+                            <option>d1</option>
+                            <option>d2</option>
+                            <option>d3</option>
+                            <option>d4/s1</option>
+                            <option>s2</option>
+                            <option>s3</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="i_pekerjaan" class="form-control-label ucfirst">pekerjaan Ibu</label>
-                        <input name="i_pekerjaan" value="{{ old('i_pekerjaan') }}" placeholder=""
-                            class="form-control" id="i_pekerjaan" type="text">
+                        <select name="i_pekerjaan" id="i_pekerjaan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak bekerja</option>
+                            <option>buruh (tani/pabrik/bangunan)</option>
+                            <option>dokter/bidan/perawat</option>
+                            <option>guru/dosen</option>
+                            <option>nelayan</option>
+                            <option>pedagang</option>
+                            <option>pegawai swasta</option>
+                            <option>pengacara/hakim/jaksa/notaris</option>
+                            <option>pensiunan</option>
+                            <option>petani/peternak</option>
+                            <option>pilot/pramugari</option>
+                            <option>pns</option>
+                            <option>politikus</option>
+                            <option>seniman/pelukis/artis/sejenis</option>
+                            <option>sopir,masinis,kondektur</option>
+                            <option>tni/polisi</option>
+                            <option>wiraswasta</option>
+                            <option>lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="i_phone" class="form-control-label ucfirst">phone Ibu</label>
                         <input name="i_phone" value="{{ old('i_phone') }}" placeholder="" class="form-control"
-                            id="i_phone" type="text">
+                            id="i_phone" type="number">
                     </div>
                     <div class="form-group mb-3">
                         <label for="i_penghasilan" class="form-control-label ucfirst">penghasilan Ibu</label>
-                        <input name="i_penghasilan" value="{{ old('i_penghasilan') }}" placeholder=""
-                            class="form-control" id="i_penghasilan" type="text">
+                        <select name="i_penghasilan" id="i_penghasilan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak berpenghasilan</option>
+                            <option>kurang dari 500.000</option>
+                            <option>500.000 - 1 juta</option>
+                            <option>1 juta - 2 juta</option>
+                            <option>2 juta - 3 juta</option>
+                            <option>3 juta - 4 juta</option>
+                            <option>4 juta - 5 juta</option>
+                            <option>lebih dari 5 juta</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -289,7 +367,7 @@
                     <div class="form-group mb-3">
                         <label for="w_nik" class="form-control-label ucfirst">nik Wali</label>
                         <input name="w_nik" value="{{ old('w_nik') }}" placeholder="" class="form-control"
-                            id="w_nik" type="text">
+                            id="w_nik" type="number">
                     </div>
                     <div class="form-group mb-3">
                         <label for="w_nama" class="form-control-label ucfirst">nama Wali</label>
@@ -301,13 +379,41 @@
                 <div class="col-md-6">
                     <div class="form-group mb-3">
                         <label for="w_pekerjaan" class="form-control-label ucfirst">pekerjaan Wali</label>
-                        <input name="w_pekerjaan" value="{{ old('w_pekerjaan') }}" placeholder=""
-                            class="form-control" id="w_pekerjaan" type="text">
+                        <select name="w_pekerjaan" id="w_pekerjaan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak bekerja</option>
+                            <option>buruh (tani/pabrik/bangunan)</option>
+                            <option>dokter/bidan/perawat</option>
+                            <option>guru/dosen</option>
+                            <option>nelayan</option>
+                            <option>pedagang</option>
+                            <option>pegawai swasta</option>
+                            <option>pengacara/hakim/jaksa/notaris</option>
+                            <option>pensiunan</option>
+                            <option>petani/peternak</option>
+                            <option>pilot/pramugari</option>
+                            <option>pns</option>
+                            <option>politikus</option>
+                            <option>seniman/pelukis/artis/sejenis</option>
+                            <option>sopir,masinis,kondektur</option>
+                            <option>tni/polisi</option>
+                            <option>wiraswasta</option>
+                            <option>lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="w_penghasilan" class="form-control-label ucfirst">penghasilan Wali</label>
-                        <input name="w_penghasilan" value="{{ old('w_penghasilan') }}" placeholder=""
-                            class="form-control" id="w_penghasilan" type="text">
+                        <select name="w_penghasilan" id="w_penghasilan" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tidak berpenghasilan</option>
+                            <option>kurang dari 500.000</option>
+                            <option>500.000 - 1 juta</option>
+                            <option>1 juta - 2 juta</option>
+                            <option>2 juta - 3 juta</option>
+                            <option>3 juta - 4 juta</option>
+                            <option>4 juta - 5 juta</option>
+                            <option>lebih dari 5 juta</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -343,28 +449,58 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="agama" class="form-control-label ucfirst">agama</label>
-                        <input name="agama" value="{{ old('agama') }}" placeholder="" class="form-control"
-                            id="agama" type="text">
+                        <select name="agama" id="agama" class="form-select">
+                            <option>Islam</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="hobi" class="form-control-label ucfirst">hobi</label>
-                        <input name="hobi" value="{{ old('hobi') }}" placeholder="" class="form-control" id="hobi"
-                            type="text">
+                        <select name="hobi" id="hobi" class="form-select">
+                            <option value="" disabled selected>Pilih</option>
+                            <option>olahraga</option>
+                            <option>kesenian</option>
+                            <option>membaca</option>
+                            <option>menulis</option>
+                            <option>jalan-jalan</option>
+                            <option>lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="cita_cita" class="form-control-label ucfirst">cita cita</label>
-                        <input name="cita_cita" value="{{ old('cita_cita') }}" placeholder="" class="form-control"
-                            id="cita_cita" type="text">
+                        <select name="cita_cita" id="cita_cita" class="form-select">
+                            <option value="" disabled selected>Pilih</option>
+                            <option>lainnya</option>
+                            <option>PNS</option>
+                            <option>TNI/Polri</option>
+                            <option>Guru/Dosen</option>
+                            <option>Dokter</option>
+                            <option>Politikus</option>
+                            <option>Wiraswasta</option>
+                            <option>Seniman/Artis</option>
+                            <option>Ilmuwan</option>
+                            <option>Agamawan</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="kewarganegaraan" class="form-control-label ucfirst">kewarganegaraan</label>
-                        <input name="kewarganegaraan" value="{{ old('kewarganegaraan') }}" placeholder=""
-                            class="form-control" id="kewarganegaraan" type="text">
+                        <select name="kebutuhan_khusus" id="kebutuhan_khusus" class="form-select">
+                            <option selected>WNI</option>
+                            <option>WNA</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="kebutuhan khusus" class="form-control-label ucfirst">kebutuhan khusus</label>
-                        <input name="kebutuhan_khusus" value="{{ old('kebutuhan_khusus') }}" placeholder=" khusus"
-                            class="form-control" id="kebutuhan khusus" type="text">
+                        <select name="kebutuhan_khusus" id="kebutuhan_khusus" class="form-select">
+                            <option value="" disabled selected>Pilih</option>
+                            <option>tuna netra</option>
+                            <option>tuna rungu</option>
+                            <option>tuna daksa</option>
+                            <option>tuna grahita</option>
+                            <option>tuna laras</option>
+                            <option>tuna wicara</option>
+                            <option>bakat istimewa</option>
+                            <option>kesulitan belajar</option>
+                        </select>
                     </div>
 
                 </div>
@@ -395,7 +531,7 @@
                             class="form-control" id="sekolah_asal" type="text">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="alamat_sekolah_asal" class="form-control-label ucfirst">alamat sekolahasal</label>
+                        <label for="alamat_sekolah_asal" class="form-control-label ucfirst">alamat sekolah asal</label>
                         <input name="alamat_sekolah_asal" value="{{ old('alamat_sekolah_asal') }}" placeholder=""
                             class="form-control" id="alamat_sekolah_asal" type="text">
                     </div>
