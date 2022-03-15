@@ -38,11 +38,9 @@ class StudentController extends Controller
         return view('students.create');
     }
     
-    
-    public function store(StoreStudentRequest $request)
+    public function imageStore($foto, $foto_wali)
     {
-        
-        if ($file = $request->file('foto')) {
+        if ($file = $foto) {
             $path = 'foto_santri/';
             $fileName_santri   = time() . $file->getClientOriginalName();
             Storage::disk('public')->put($path . $fileName_santri, File::get($file));
@@ -51,7 +49,7 @@ class StudentController extends Controller
             $filePath   = 'storage/'.$path . $fileName_santri;
             $data['foto']=$fileName_santri;
         }
-        if ($file = $request->file('foto_wali')) {
+        if ($file = $foto_wali) {
             $path = 'foto_wali/';
             $fileName_wali   = time() . $file->getClientOriginalName();
             Storage::disk('public')->put($path . $fileName_wali, File::get($file));
@@ -60,7 +58,16 @@ class StudentController extends Controller
             $filePath   = 'storage/'.$path . $fileName_wali;
             $data['foto_wali']=$fileName_wali;
         }
-        
+    }
+
+    public function store(StoreStudentRequest $request)
+    {     
+        $validatedData = $request->validate([
+            'foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'foto_wali' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $this->imageStore($request->file('foto'), $request->file('foto_wali'));
         $data = $request->all();
         //ambil tahun sekarang ex:22
         $year = Carbon::now()->format('y');
@@ -78,6 +85,8 @@ class StudentController extends Controller
         }else{
             $email = $datanis . '@bakid.com';
         }
+
+        
         // input ke tabel users
         $id = DB::table('users')->insertGetId([
             'email' => $email,
@@ -86,8 +95,16 @@ class StudentController extends Controller
             'password'=>bcrypt('12345678')
         ]);
         
-        $data['user_id']=$id;
         
+        if($foto = $request->file('foto')){
+            $data['foto']  = time() . $foto->getClientOriginalName();
+        }
+        if($foto_wali = $request->file('foto_wali')){
+            $data['foto_wali'] = time() . $foto_wali->getClientOriginalName();
+        }
+        
+        $data['user_id']=$id;
+
         $data['nis']=$datanis;
         
         $student_id = Student::create($data);

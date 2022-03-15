@@ -21,8 +21,11 @@
                     <td>
                         <div class="d-flex px-2 py-1">
                             <div>
+                                @php
+                                    
+                                @endphp
                                 @if ($item->foto)
-                                    <img src="{{ asset('storage/foto_santri/' . $item->foto) }}"
+                                    <img src="{{ asset('storage/foto_santri') . '/' . $item->foto }}"
                                         class="avatar avatar-sm me-3" alt="xd">
                                 @else
                                     <img src="{{ asset('storage/foto_santri/user.jpeg') }}" class="avatar avatar-sm me-3"
