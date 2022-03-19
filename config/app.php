@@ -197,6 +197,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,  
         'reImage' => Intervention\Image\Facades\Image::class      
     ])->toArray(),

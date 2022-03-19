@@ -7,6 +7,8 @@ use App\Models\Student;
 use App\Models\Addition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class GuestController extends Controller
 {
@@ -65,6 +67,40 @@ class GuestController extends Controller
             'no_ijazah'=>$request['no_ijazah'],
             'no_un'=>$request['no_un'],
         ]);
+        return redirect()->route('home')->with('info','Terima kasih telah mendaftar, lengkapi foto dan selesaikan pembayaran');
+    }
+    
+    public function store_foto(Request $request)
+    {
+        $validatedData = $request->validate([
+            'foto' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'foto_wali' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        
+        $foto = $request->file('foto');
+        $foto_wali  = $request->file('foto_wali');
+        //bikin nama untuk save di db
+        if($foto!=null){
+            $nama_foto = time().$foto->getClientOriginalName();
+        }else{
+            $nama_foto=null;
+        }
+        if($foto_wali!=null){
+            $nama_foto_wali = time().$foto_wali->getClientOriginalName();
+        }else{
+            $nama_foto_wali=null;
+        }
+
+        $student = new StudentController();
+        $student->imageStore($foto, $foto_wali, $nama_foto, $nama_foto_wali);
+        Alert::success('Berhasil', 'Sekarang, Selesaikan Pembayaran');
         return redirect()->route('home');
     }
+    public function show()
+    {   
+        $student = Auth::user()->student;
+        $ambil = new StudentController();
+        $forView = 'show';
+        return view('students.edit',compact('student','forView'));
+    }   
 }

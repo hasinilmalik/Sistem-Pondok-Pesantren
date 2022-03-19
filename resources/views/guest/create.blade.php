@@ -361,8 +361,13 @@
                 <div class="col-md-6">
                     <div class="form-group mb-3">
                         <label for="w_hubungan_wali" class="form-control-label ucfirst">hubungan Wali</label>
-                        <input name="w_hubungan_wali" value="{{ old('w_hubungan_wali') }}" placeholder=""
-                            class="form-control" id="w_hubungan_wali" type="text">
+                        <select name="w_hubungan_wali" id="w_hubungan_wali" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>Kakek/nenek</option>
+                            <option>Paman/bibi</option>
+                            <option>kakak</option>
+                            <option>lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="w_nik" class="form-control-label ucfirst">nik Wali</label>
@@ -507,8 +512,16 @@
                 <div class="col-md-6">
                     <div class="form-group mb-3">
                         <label for="status_rumah" class="form-control-label ucfirst">status rumah</label>
-                        <input name="status_rumah" value="{{ old('status_rumah') }}" placeholder=""
-                            class="form-control" id="status_rumah" type="text">
+                        <select name="status_rumah" id="status_rumah" class="form-select">
+                            <option value="" selected disabled>Pilih</option>
+                            <option>tinggal dengan orang tua/wali</option>
+                            <option>ikut saudara/kerabat</option>
+                            <option>kontrak/kost</option>
+                            <option>rumah singgah</option>
+                            <option>panti asuhan</option>
+                            <option>asrama bukan milik lembaga</option>
+                            <option>lainnya</option>
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="status_mukim" class="form-control-label ucfirst">status mukim</label>

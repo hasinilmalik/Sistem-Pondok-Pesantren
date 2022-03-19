@@ -12,18 +12,13 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
+        $this->call(BillTypeSeeder::class);
         Role::create(['name' => 'super admin']);
         Role::create(['name' => 'admin']);
         Role::create(['name' => 'user']);
         Role::create(['name' => 'guest']);
-
         
         // Permission::create(['name' => 'edit articles']);
         $malik = User::create([
