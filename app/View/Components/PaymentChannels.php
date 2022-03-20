@@ -6,14 +6,10 @@ use Illuminate\View\Component;
 
 class PaymentChannels extends Component
 {
-    public $item;
-    public $name;
-    public $code;
-    public function __construct($name,$code,$item)
+    public $channel;
+    public function __construct($channel)
     {
-        $this->item = $item;
-        $this->name = $name;
-        $this->code = $code;
+        $this->channel = $channel;
     }
 
     /**

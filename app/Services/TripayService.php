@@ -35,7 +35,7 @@ class TripayService{
         
     }
     
-    public function requestTransaction($method,$type)
+    public function requestTransaction($method)
     {
         $apiKey       = config('tripay.api_key');
         $privateKey   = config('tripay.private_key');
@@ -43,8 +43,8 @@ class TripayService{
         $merchantRef  = 'px-'.time();
         
         $user = Auth::user();
-        $amount = 32300;
-                
+        $amount = 44000;
+        
         $data = [
             'method'         => $method,
             'merchant_ref'   => $merchantRef,
@@ -81,8 +81,34 @@ class TripayService{
         
         curl_close($curl);
         $response = json_decode($response)->data;
-        dd($response);
         return $response?:$error;
         
+    }
+    
+    public function detail($reference)
+    {
+        
+        $apiKey = config('tripay.api_key');
+        
+        $payload = ['reference'	=> $reference];
+        
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, [
+            CURLOPT_FRESH_CONNECT  => true,
+            CURLOPT_URL            => 'https://tripay.co.id/api-sandbox/transaction/detail?'.http_build_query($payload),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+            CURLOPT_FAILONERROR    => false,
+        ]);
+        
+        $response = curl_exec($curl);
+        $error = curl_error($curl);
+        
+        curl_close($curl);
+        
+        $response=json_decode($response)->data;
+        return $response?:$error;
     }
 }

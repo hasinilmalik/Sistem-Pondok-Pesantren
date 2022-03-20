@@ -19,13 +19,12 @@ class TransactionController extends Controller
     
     public function store(Request $request)
     {
-        dd($request->all());
         $method = $request->method;
         $bill_type_id = $request->bill_type_id;
-
+        
         $tripay = new TripayService();
-        $transaction = $tripay->requestTransaction($method,$bill_type_id);
-
+        $transaction = $tripay->requestTransaction($method);
+        
         // create new data in transaction model
         $user = Auth::user();
         Transaction::create([
@@ -36,11 +35,12 @@ class TransactionController extends Controller
             'total_amount'=>$transaction->amount,
             'status'=>$transaction->status
         ]);
-        
-        return redirect()->route('pay.show',['transaction'=>$transaction->reference]);
+        return redirect()->route('pay.detail',['reference'=>$transaction->reference]);
     }
-    public function show($transaction)
+    public function show($reference)
     {
-        dd($transaction);
+        $tripay = new TripayService();
+        $transaction = $tripay->detail($reference);
+        return view('payment.show', compact('transaction'));
     }
 }

@@ -11,6 +11,12 @@
         }
 
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endpush
 @section('content')
     <!-- Button trigger modal -->
@@ -34,7 +40,7 @@
                         @csrf
                         <input type="hidden" name="bill_type_id" value="1">
                         <input type="hidden" name="method" value="TUNAI">
-                        <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">
+                        <a href="javascript:{}" onclick="">
                             <div class="d-flex justify-content-between my-2">
                                 <div class="col-1">
                                     <img class="icon" src="{{ asset('assets/bakid/favicon.png') }}">
@@ -45,40 +51,35 @@
                                 <span class="primary">></span>
                             </div>
                         </a>
-                        <hr>
-                        @foreach ($channels as $item)
-                            <form action="{{ route('pay.request') }}" method="POST" id="my_form">
-                                @csrf
-                                <input type="hidden" name="bill_type_id" value="1">
-                                <input type="hidden" name="method" value="{{ $item->name }}">
-                                <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">
-                                    <div class="d-flex justify-content-between my-2">
-                                        <div class="col-1">
-                                            <img style="width:50px;"
-                                                src="{{ asset('storage/icons') . '/' . $item->code . '.png' }}">
-                                        </div>
-                                        <div class="col-7">
-                                            <strong>{{ $name }}</strong>
-                                        </div>
-                                        <span class="primary">></span>
+                    </form>
+                    <hr>
+                    @foreach ($channels as $channel)
+                        <form action="{{ route('pay.request') }}" method="POST" id="my_form{{ $channel->code }}">
+                            @csrf
+                            <input type="hidden" name="bill_type_id" value="1">
+                            <input type="hidden" name="method" value="{{ $channel->code }}">
+                            <a href=javascript:{} onclick="onSubmit('{{ $channel->code }}')">
+                                <div class="d-flex justify-content-between my-2">
+                                    <div class="col-1">
+                                        <img style="width:50px;"
+                                            src="{{ asset('storage/icons') . '/' . $channel->code . '.png' }}">
                                     </div>
-                                </a>
-                            </form>
-                            <hr>
-                        @endforeach
+                                    <div class="col-7">
+                                        <strong>{{ $channel->name }}</strong>
+                                    </div>
+                                    <span class="primary">></span>
+                                </div>
+                            </a>
+                        </form>
+                        <hr>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
-
-    {{-- @foreach ($channels as $item)
-        <form action="{{ route('pay.request') }}" method="POST">
-            @csrf
-            <button type="submit">
-                <input type="hidden" name="bill_type_id" value="1">
-                <input type="hidden" name="method" value="{{ $item->code }}">
-                {{ $item->code }}
-            </button>
-        </form>
-    @endforeach --}}
+    <script>
+        function onSubmit(form_id) {
+            $('#my_form' + form_id).submit();
+        }
+    </script>
 @endsection
