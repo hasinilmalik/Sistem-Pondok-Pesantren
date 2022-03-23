@@ -1,18 +1,16 @@
 <div>
     @push('head')
+        <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+        <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
     @endpush
     @push('foot')
         <script>
             $(document).ready(function() {
-                var table = $('#example').DataTable({
-                    "ordering": false,
-                    responsive: true
+                $('#datatable').DataTable({
+                    // serverSide: true,
                 });
-                new $.fn.DataTable.FixedHeader(table);
             });
         </script>
-        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-        <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     @endpush
 </div>

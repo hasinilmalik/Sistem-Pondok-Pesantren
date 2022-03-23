@@ -3,14 +3,14 @@
 @section('prefix', 'Detail')
 @section('content')
     @php
-    if ($transaction->status == 'UNPAID') {
+    if ($transaction->status == 'unpaid') {
         $status = 'Belum';
     } else {
         $status = $transaction->status;
     }
     @endphp
     <div class="row">
-        <div class="col-md-7 mt-4">
+        <div class="col-md-7 mt-3">
             <div class="card">
                 <div class="card-header pb-0 px-3 d-flex justify-content-between">
                     <div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="card-body pt-4 p-3">
                     <ul class="list-group">
-                        Total :
+                        Jenis Pembayaran: {{ $transaction->payment_name }}
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-200 border-radius-lg">
                             <div class="">
                                 <h3 class="mb-0">Rp. {{ number_format($transaction->amount) }}</h3>
@@ -50,29 +50,30 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-5 mt-4">
+        <div class="col-md-5 mt-3">
             <div class="row">
-                <div class="card h-100 mb-4">
-                    <div class="card-body pt-4 p-2">
+                <div class="card mb-3">
+                    <div class="card-body pt-4 p-3">
                         <h6 class="text-uppercase text-body text-sm font-weight-bolder"><span
                                 class="badge bg-gradient-info">Rincian</span></h6>
                         <ul class="list-group">
                             @foreach ($transaction->order_items as $item)
-                            @endforeach
-                            <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                                <div class="d-flex align-items-center">
-                                    <button
-                                        class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
-                                            class="fas fa-dollar" aria-hidden="true"></i></button>
-                                    <div class="d-flex flex-column">
-                                        <h6 class="mb-1 text-dark text-sm">{{ $item->name }}</h6>
-                                        {{-- <span class="text-xs">27 March 2020, at 12:30 PM</span> --}}
+                                <li
+                                    class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                                    <div class="d-flex align-items-center">
+                                        <button
+                                            class="btn btn-icon-only btn-rounded btn-outline-success mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i
+                                                class="fas fa-dollar" aria-hidden="true"></i></button>
+                                        <div class="d-flex flex-column">
+                                            <h6 class="mb-1 text-dark text-sm">{{ $item->name }}</h6>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
-                                    Rp. {{ number_format($item->price) }}
-                                </div>
-                            </li>
+                                    <div
+                                        class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold">
+                                        Rp. {{ number_format($item->price) }}
+                                    </div>
+                                </li>
+                            @endforeach
                             <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                                 <div class="d-flex align-items-center">
                                     <button
@@ -92,33 +93,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="card h-100 mb-4">
-                    <div class="card-body pt-4 p-2">
+                <div class="card mb-3">
+                    <div class="card-body pt-4 p-3">
                         <h6 class="text-uppercase text-body text-sm font-weight-bolder"><span
                                 class="badge bg-gradient-info">Cara Bayar</span></h6>
                         <div class="accordion accordion-flush" id="accordionFlushExample">
                             @foreach ($transaction->instructions as $intruksi)
                                 <div class="accordion-item">
-                                    {{-- <h2 class="accordion-header" id="flush-heading{{ str($intruksi->title)->snake() }}"> --}}
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#flush-collapse{{ str($intruksi->title)->snake() }}"
                                         aria-expanded="false"
                                         aria-controls="flush-collapse{{ str($intruksi->title)->snake() }}">
-                                        {{ $intruksi->title }}
+                                        <strong class="text-info text-sm"> {{ $intruksi->title }}</strong>
                                     </button>
-                                    {{-- </h2> --}}
                                     <div id="flush-collapse{{ str($intruksi->title)->snake() }}"
                                         class="accordion-collapse collapse"
                                         aria-labelledby="flush-heading{{ str($intruksi->title)->snake() }}"
                                         data-bs-parent="#accordionFlushExample">
-                                        {{-- <div class="accordion-body"> --}}
                                         <ul style="list-style-type: none;">
                                             @foreach ($intruksi->steps as $step)
                                                 <li class="text-sm list">{{ $loop->iteration }}.
                                                     {!! $step !!}</li>
                                             @endforeach
                                         </ul>
-                                        {{-- </div> --}}
                                     </div>
                                 </div>
                             @endforeach

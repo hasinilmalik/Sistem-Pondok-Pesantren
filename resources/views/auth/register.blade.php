@@ -1,18 +1,3 @@
-<!--
-=========================================================
-* Soft UI Dashboard - v1.0.3
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -128,7 +113,7 @@
                                 @csrf
                                 <div class="mb-3">
                                     <input type="text" class="form-control  @error('name') is-invalid @enderror"
-                                        value="{{ old('name') }}" placeholder="Name" name="name" aria-label="Name"
+                                        value="" placeholder="Name" name="name" aria-label="Name"
                                         aria-describedby="email-addon">
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -138,8 +123,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <input type="email" class="form-control  @error('name') is-invalid @enderror"
-                                        value="{{ old('email') }}" placeholder="Email" name="email"
-                                        aria-label="Email" aria-describedby="email-addon">
+                                        value="{{ old('email') }}" placeholder="Email" name="email" aria-label="Email"
+                                        aria-describedby="email-addon">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -201,10 +186,7 @@
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
     </script>
-    <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-    {{-- <script src="{{ asset('assets/softui') }}/js/soft-ui-dashboard.min.js?v=1.0.3"></script> --}}
 </body>
 
 </html>

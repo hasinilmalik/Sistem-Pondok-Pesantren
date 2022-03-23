@@ -180,7 +180,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
 
     ],
@@ -199,7 +200,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,  
-        'reImage' => Intervention\Image\Facades\Image::class      
+        'reImage' => Intervention\Image\Facades\Image::class,
+        'dataTables'=> Yajra\DataTables\DataTablesServiceProvider::class,
     ])->toArray(),
 
 ];

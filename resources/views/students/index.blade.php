@@ -5,7 +5,7 @@
 <x-datatables />
 @section('content')
     <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Santri</a>
-    <table id="table_id" class="table table-striped dt-responsive nowrap" style="width:100%">
+    <table id="datatable" class="table table-striped dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>Nama</th>

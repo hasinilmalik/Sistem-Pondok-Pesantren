@@ -128,7 +128,7 @@
                     <div class="form-group mb-3">
                         <label for="nama" class="form-control-label ucfirst">nama</label>
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                        <input name="nama" value="{{ old('nama') }}" placeholder=""
+                        <input name="nama" value="{{ Auth::user()->name }}" placeholder=""
                             class="form-control @error('nama') is-invalid @enderror" id="nama" type="text"
                             oninput="this.value = this.value.toUpperCase()" value="{{ old('nama') }}" autofocus
                             required>

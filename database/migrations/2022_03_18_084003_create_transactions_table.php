@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('merchant_ref');
             $table->integer('total_amount');
             $table->enum('status',['paid','unpaid','tunai','expired','failed'])->default('unpaid');
+            $table->boolean('is_cash')->default(false);
             $table->timestamps();
         });
     }

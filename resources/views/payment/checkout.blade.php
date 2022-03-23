@@ -20,7 +20,7 @@
 @endpush
 @section('content')
     <!-- Button trigger modal -->
-    <button type="button" class="btn bg-gradient-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
         PILIH METODE PEMBAYARAN
     </button>
 
@@ -36,11 +36,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('pay.request') }}" method="POST" id="my_form">
+                    <form action="{{ route('pay.request') }}" method="POST" id="my_form1">
                         @csrf
                         <input type="hidden" name="bill_type_id" value="1">
-                        <input type="hidden" name="method" value="TUNAI">
-                        <a href="javascript:{}" onclick="">
+                        <input type="hidden" name="method" value="tunaicash">
+                        <a href="javascript:{}" onclick="onSubmit('1')">
                             <div class="d-flex justify-content-between my-2">
                                 <div class="col-1">
                                     <img class="icon" src="{{ asset('assets/bakid/favicon.png') }}">

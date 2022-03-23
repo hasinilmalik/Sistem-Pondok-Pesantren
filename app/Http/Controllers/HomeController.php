@@ -41,4 +41,5 @@ class HomeController extends Controller
         $alumni = Student::where('status','alumni')->count();
         return view('home',compact('jumlah_putri','jumlah_putra','alumni','profil'));
     }
+    
 }

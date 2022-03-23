@@ -1,15 +1,21 @@
 <?php
 
-use App\Http\Controllers\CetakController;
-use App\Http\Controllers\ConvertController;
-use App\Http\Controllers\GuestController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Payment\TransactionController;
-use App\Http\Controllers\StudentController;
-use App\Imports\UserImport;
 use App\Models\User;
-use Illuminate\Support\Facades\Route;
+use App\Imports\UserImport;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CobaController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CetakController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\ConvertController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\DataTableAjaxCRUDController;
+use App\Http\Controllers\Payment\TransactionController;
+
 // NOTE:AUTH
 // =======================================================
 Auth::routes();
@@ -63,10 +69,12 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
 
 // NOTE:TRY
 // =======================================================
-Route::get('/coba',function ()
-{
-    return view('coba');
-});
+// Route::get('coba1', [UserController::class, 'coba1'])->name('coba1');
+Route::get('ajax-crud-datatable', [DataTableAjaxCRUDController::class, 'index']);
+Route::post('store-company', [DataTableAjaxCRUDController::class, 'store']);
+Route::post('edit-company', [DataTableAjaxCRUDController::class, 'edit']);
+Route::post('delete-company', [DataTableAjaxCRUDController::class, 'destroy']);
+
 Route::get('/ok', function ()
 {
     return str('nama saya')->title();

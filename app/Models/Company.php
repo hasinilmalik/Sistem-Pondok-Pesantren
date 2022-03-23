@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Company extends Model
 {
     use HasFactory;
-    protected $fillable=['user_id','bill_type_id','reference', 'merchant_ref','total_amount','status','is_cash'];
+    protected $fillable = [ 'name', 'email', 'address' ];
 }
