@@ -15,6 +15,7 @@ use App\Http\Controllers\ConvertController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DataTableAjaxCRUDController;
 use App\Http\Controllers\Payment\TransactionController;
+use App\Http\Controllers\Payment\TripayCallbackController;
 
 // NOTE:AUTH
 // =======================================================
@@ -62,10 +63,10 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
    {
        Route::get('/transaction/detail/{reference}','show')->name('pay.detail');
        Route::get('/checkout/{for}','checkout')->name('pay.checkout');
-       Route::post('/checkout','store')->name('pay.request');
+       Route::post('/checkout','store')->name('pay.request');   
    });
 });
-
+Route::post('callback',[TripayCallbackController::class,'handle']);
 
 // NOTE:TRY
 // =======================================================

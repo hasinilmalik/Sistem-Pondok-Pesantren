@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class TripayCallbackController extends Controller
 {
+    // protected $privateKey = 'I-Dvhwf-vPwdR';
     protected $privateKey = 'Iw7ib-Aoi6B-Ghqh2-Dvhwf-vPwdR';
 
     public function handle(Request $request)
@@ -25,20 +26,19 @@ class TripayCallbackController extends Controller
         }
 
         $data = json_decode($json);
-        $uniqueRef = $data->merchant_ref;
+        // dd($data);
+        $reference = $data->reference;
         $status = strtoupper((string) $data->status);
-
-        dd($data);
         /*
         |--------------------------------------------------------------------------
         | Proses callback untuk closed payment
         |--------------------------------------------------------------------------
         */
         if (1 === (int) $data->is_closed_payment) {
-            $invoice = Transaction::where('reference', $uniqueRef)->first();
+            $invoice = Transaction::where('reference', $reference)->first();
 
             if (! $invoice) {
-                return 'No invoice found for this unique ref: ' . $uniqueRef;
+                return 'No invoice found for this unique ref: ' . $reference;
             }
 
             $invoice->update(['status' => $status]);
@@ -51,7 +51,7 @@ class TripayCallbackController extends Controller
         | Proses callback untuk open payment
         |--------------------------------------------------------------------------
         */
-        $invoice = Transaction::where('unique_ref', $uniqueRef)
+        $invoice = Transaction::where('reference', $reference)
             ->where('status', 'UNPAID')
             ->first();
 
