@@ -15,13 +15,14 @@ class Menu extends Component
     public $text;
     public $url;
     public $icon;
-    
-    public function __construct($judul,$text,$url,$icon)
+    public $status=null;
+    public function __construct($judul,$text,$url,$icon, $status='')
     {
         $this->judul = $judul;
         $this->text = $text;
         $this->url = $url;
         $this->icon = $icon;
+        $this->status = $status;
     }
 
     /**

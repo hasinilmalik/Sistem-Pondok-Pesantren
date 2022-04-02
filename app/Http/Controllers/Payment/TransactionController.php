@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Payment;
 use Illuminate\Http\Request;
 use App\Services\TripayService;
 use App\Http\Controllers\Controller;
+use App\Models\BillType;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,9 +20,11 @@ class TransactionController extends Controller
     
     public function store(Request $request)
     {
-        
         $method = $request->method;
-        $bill_type_id = $request->bill_type_id;
+        $bill = BillType::where('name',$request->bill_type_id)->first();
+        $bill_type_id = $bill->id;
+        $amount = $bill->amount;
+        dd($amount);
         $user = Auth::user();
         
         if($method=='tunaicash'){ 

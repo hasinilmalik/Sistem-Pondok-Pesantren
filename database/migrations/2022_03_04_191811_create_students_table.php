@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('foto_wali')->nullable();
             $table->string('daerah')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status',['baru','santri','alumni'])->default('baru');
 
             $table->timestamps();
         });

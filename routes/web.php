@@ -33,10 +33,11 @@ Route::controller(CetakController::class)->name('cetak.')->group(function ()
 
 // NOTE:STUDENTS
 // =======================================================
-Route::group(['middleware' => ['role:super admin']], function () {
+Route::group(['middleware' => ['role:super admin|admin']], function () {
     Route::controller(StudentController::class)->group( function ()
     {
         Route::get('/students/import','import_excel');
+        Route::get('/students/status/{status}','indexStatus')->name('students.status');
     });  
     Route::resource('students', StudentController::class);
 });
@@ -84,3 +85,5 @@ Route::get('convert', function ()
 {
     return view('convert');
 });
+
+Route::get('cuaca/{kota}',[StudentController::class,'getWeather']);

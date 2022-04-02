@@ -17,19 +17,19 @@ class BillTypeSeeder extends Seeder
     {
         $data = [
             [
-                'name'=>'Pendaftaran',
+                'name'=>'pendaftaran',
                 'amount'=>450000
             ],
             [
-                'name'=>'Syahriah',
+                'name'=>'syahriah',
                 'amount'=>300000
             ],
             [
-                'name'=>'Haflah',
+                'name'=>'haflah',
                 'amount'=>60000
             ],
             [
-                'name'=>'Kalender',
+                'name'=>'kalender',
                 'amount'=>15000
             ],
         ];

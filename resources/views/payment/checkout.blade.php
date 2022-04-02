@@ -38,7 +38,7 @@
                 <div class="modal-body">
                     <form action="{{ route('pay.request') }}" method="POST" id="my_form1">
                         @csrf
-                        <input type="hidden" name="bill_type_id" value="1">
+                        <input type="hidden" name="bill_type_id" value="{{ Request::segment(2) }}">
                         <input type="hidden" name="method" value="tunaicash">
                         <a href="javascript:{}" onclick="onSubmit('1')">
                             <div class="d-flex justify-content-between my-2">

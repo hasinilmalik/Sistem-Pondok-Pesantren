@@ -4,7 +4,19 @@
 
 <x-datatables />
 @section('content')
-    <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Santri</a>
+    <div class="d-flex justify-content-between">
+        <div>
+            <a href="{{ route('students.status', 'calon_santri') }}" type="button"
+                class="btn btn-default position-relative">
+                Baru
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-info  ml-5">
+                    <span class="visually-hidden"></span>{{ $jml_baru }}
+                </span>
+            </a>
+            <a href="{{ route('students.status', 'alumni') }}" class="btn btn-default">Alumni</a>
+        </div>
+        <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Santri</a>
+    </div>
     <table id="datatable" class="table table-striped dt-responsive nowrap" style="width:100%">
         <thead>
             <tr>

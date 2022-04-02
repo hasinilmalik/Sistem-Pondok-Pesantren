@@ -3,7 +3,7 @@
 @section('prefix', 'Detail')
 @section('content')
     @php
-    if ($transaction->status == 'unpaid') {
+    if ($transaction->status == 'UNPAID') {
         $status = 'Belum';
     } else {
         $status = $transaction->status;
@@ -22,10 +22,10 @@
                 </div>
                 <div class="card-body pt-4 p-3">
                     <ul class="list-group">
-                        Jenis Pembayaran: {{ $transaction->payment_name }}
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-200 border-radius-lg">
                             <div class="">
-                                <h3 class="mb-0">Rp. {{ number_format($transaction->amount) }}</h3>
+                                Total :
+                                <h3 class="mb-0 text-primary">Rp. {{ number_format($transaction->amount) }}</h3>
                             </div>
                         </li>
                         @if ($transaction->order_items[0]->name == 'Pendaftaran')
