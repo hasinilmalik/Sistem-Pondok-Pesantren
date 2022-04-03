@@ -1,4 +1,4 @@
-@include('layouts/partials/head')
+@include('layouts.partials.head')
 @php
 $student = Auth::user()->student;
 if ($student == null) {

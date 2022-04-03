@@ -44,7 +44,7 @@
                 <nav
                     class="navbar navbar-expand-lg blur blur-rounded top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
                     <div class="container-fluid">
-                        <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="../pages/dashboard.html">
+                        <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " href="{{ route('home') }}">
                             MUBAKID
                         </a>
                         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -63,7 +63,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link me-2" href="{{ route('register') }}">
                                                 <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
-                                                Sign Up
+                                                {{ __('Mendaftar') }}
                                             </a>
                                         </li>
                                     @endif
@@ -71,7 +71,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link me-2" href="{{ route('login') }}">
                                                 <i class="fas fa-key opacity-6 text-dark me-1"></i>
-                                                Sign In
+                                                {{ __('Masuk') }}
                                             </a>
                                         </li>
                                     @endif
@@ -106,14 +106,14 @@
                         <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
                             <div class="card card-plain mt-8">
                                 <div class="card-header pb-0 text-left bg-transparent">
-                                    <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
-                                    <p class="mb-0">Enter your email and password to sign in</p>
+                                    <h3 class="font-weight-bolder text-info text-gradient">{{ __('Selamat Datang') }}</h3>
+                                    <p class="mb-0">{{__('Masukkan Email dan password untuk masuk') }}</p>
                                 </div>
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('login') }}" role="form">
                                         @csrf
                                         @method('POST')
-                                        <label>{{ __('Email Address') }}</label>
+                                        <label>{{ __('Email') }}</label>
                                         <div class="mb-3">
                                             <input type="email"
                                                 class="form-control @error('email') is-invalid @enderror"
@@ -138,22 +138,20 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                        <div class="form-check form-switch">
+                                        {{-- <div class="form-check form-switch">
                                             <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
-                                            <label class="form-check-label" for="rememberMe">Remember me</label>
-                                        </div>
+                                            <label class="form-check-label" for="rememberMe">{{ __('Ingatkan saya') }}</label>
+                                        </div> --}}
                                         <div class="text-center">
-                                            <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Sign
-                                                in</button>
+                                            <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">{{__('Masuk')}}</button>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
-                                        Don't have an account?
+                                        {{ __('Belum punya akun?') }}
                                         <a href="{{ route('register') }}"
-                                            class="text-info text-gradient font-weight-bold">Sign
-                                            up</a>
+                                            class="text-info text-gradient font-weight-bold">{{__('Mendaftar')}}</a>
                                     </p>
                                 </div>
                             </div>
