@@ -6,7 +6,7 @@
 @section('content')
     <div class="d-lg-flex justify-content-between">
         <div>
-            <a href="{{ route('students.index') }}/alumni" class="badge bg-gradient-primary">Alumni</a>
+            <a href="{{ route('students.index') }}/alumni" class="badge bg-gradient-primary">+ Tambah</a>
         </div>
         <div>
             @php
