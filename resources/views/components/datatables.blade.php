@@ -9,6 +9,9 @@
             $(document).ready(function() {
                 $('#datatable').DataTable({
                     // serverSide: true,
+                    lengthChange: false,
+                    lengthMenu: [10, 25, 50, 100],
+                    pageLength: 50,
                 });
             });
         </script>

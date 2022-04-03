@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Family;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -10,11 +12,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 */
 class StudentFactory extends Factory
 {
-    /**
-    * Define the model's default state.
-    *
-    * @return array<string, mixed>
-    */
     public function definition()
     {
         return [
@@ -25,7 +22,7 @@ class StudentFactory extends Factory
             'tanggal_lahir'=>$this->faker->word(),
             'tempat_lahir'=>$this->faker->word(),
             'jenis_kelamin'=>$this->faker->randomElement(['laki-laki','perempuan']),
-
+            
             // alamat rumah
             'alamat' => $this->faker->name(),
             'rtrw' => $this->faker->name(),

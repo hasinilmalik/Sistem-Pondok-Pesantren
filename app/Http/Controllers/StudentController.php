@@ -19,27 +19,30 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 class StudentController extends Controller
 {
-    public function index()
+    public function index($status=null)
     {
         $jml_baru = $this->_getCountNewStudent();
-        $user = Auth::user();
-        if(Auth::user()->roles->first()->name=='super admin'){
-            $students = Student::where('status','santri')->orderBy('user_id','desc')->get();
-            // $jml_baru = $
+        if ($status==null) {
+            $students = $this->getStudents();
         }else{
-            $students = Student::where('jenis_kelamin', $user->jk)->where('status','santri')->orderBy('user_id','desc')->get();
-        }        
+            $students = $this->getStudents($status);
+        }  
         return view('students.index', compact('students','jml_baru'));
     }
-    public function indexStatus($status)
+    public function getStudents($status='santri')
     {
         $user = Auth::user();
         if(Auth::user()->roles->first()->name=='super admin'){
-            $students = Student::where('status',$status)->orderBy('user_id','desc')->get();
+            $students = Student::with('family')
+            ->where('status',$status)
+            ->orderBy('user_id','desc')->get();
         }else{
-            $students = Student::where('jenis_kelamin', $user->jk)->where('status',$status)->orderBy('user_id','desc')->get();
-        }        
-        return view('students.index', compact('students'));
+            $students = Student::with('family')
+            ->where('jenis_kelamin', $user->jk)
+            ->where('status',$status)
+            ->orderBy('user_id','desc')->get();
+        }      
+        return $students;
     }
     public function create()
     {

@@ -37,7 +37,7 @@ Route::group(['middleware' => ['role:super admin|admin']], function () {
     Route::controller(StudentController::class)->group( function ()
     {
         Route::get('/students/import','import_excel');
-        Route::get('/students/status/{status}','indexStatus')->name('students.status');
+        Route::get('/students/{status?}','index')->name('students.index');
     });  
     Route::resource('students', StudentController::class);
 });

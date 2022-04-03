@@ -4,18 +4,27 @@
 
 <x-datatables />
 @section('content')
-    <div class="d-flex justify-content-between">
+    <div class="d-lg-flex justify-content-between">
         <div>
-            <a href="{{ route('students.status', 'calon_santri') }}" type="button"
-                class="btn btn-default position-relative">
+            <a href="{{ route('students.index') }}/alumni" class="badge bg-gradient-primary">Alumni</a>
+        </div>
+        <div>
+            @php
+                $segment = Request::segment(2);
+            @endphp
+            <a href="{{ route('students.index') }}/baru" type="button"
+                class="badge @if ($segment == 'baru') bg-gradient-success @else bg-secondary @endif position-relative">
                 Baru
                 <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-info  ml-5">
                     <span class="visually-hidden"></span>{{ $jml_baru }}
                 </span>
             </a>
-            <a href="{{ route('students.status', 'alumni') }}" class="btn btn-default">Alumni</a>
+            <a href="{{ route('students.index') }}"
+                class="badge @if ($segment == '') bg-gradient-success @else bg-secondary @endif">Santri
+                aktif</a>
+            <a href="{{ route('students.index') }}/alumni"
+                class="badge @if ($segment == 'alumni') bg-gradient-success @else bg-secondary @endif">Alumni</a>
         </div>
-        <a href="{{ route('students.create') }}" class="btn btn-primary">Tambah Santri</a>
     </div>
     <table id="datatable" class="table table-striped dt-responsive nowrap" style="width:100%">
         <thead>
