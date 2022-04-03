@@ -20,9 +20,11 @@
 @endpush
 @section('content')
     <!-- Button trigger modal -->
-    <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        PILIH METODE PEMBAYARAN
-    </button>
+    <div class="row justify-content-center mx-auto d-block">
+        <button type="button" class="btn bg-gradient-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            PILIH METODE PEMBAYARAN
+        </button>
+    </div>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -56,7 +58,7 @@
                     @foreach ($channels as $channel)
                         <form action="{{ route('pay.request') }}" method="POST" id="my_form{{ $channel->code }}">
                             @csrf
-                            <input type="hidden" name="bill_type_id" value="1">
+                            <input type="hidden" name="bill_type_id" value="{{ Request::segment(2) }}">
                             <input type="hidden" name="method" value="{{ $channel->code }}">
                             <a href=javascript:{} onclick="onSubmit('{{ $channel->code }}')">
                                 <div class="d-flex justify-content-between my-2">

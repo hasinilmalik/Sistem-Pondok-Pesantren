@@ -6,14 +6,10 @@ use Illuminate\View\Component;
 
 class AdminDashboard extends Component
 {
-    public $putra;
-    public $putri;
-    public $alumni;
-    public function __construct($putra, $putri,$alumni)
+    public $jumlah;
+    public function __construct($jumlah)
     {
-        $this->putra = $putra;
-        $this->putri = $putri;
-        $this->alumni = $alumni;
+        $this->jumlah = $jumlah;
     }
 
     /**

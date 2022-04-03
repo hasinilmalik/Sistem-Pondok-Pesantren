@@ -3,8 +3,8 @@
 @section('prefix', 'Detail')
 @section('content')
     @php
-    if ($transaction->status == 'UNPAID') {
-        $status = 'Belum';
+    if ($transaction->status = 'UNPAID') {
+        $status = 'Belum Bayar';
     } else {
         $status = $transaction->status;
     }
@@ -125,4 +125,8 @@
             </div>
         </div>
     </div>
+    @if ($transaction->status = 'unpaid')
+        <a href="{{ route('pay.checkout', 'pendaftaran') }}" class="card fixed-bottom text-center p-3">Ubah Metode
+            Pembayaran</a>
+    @endif
 @endsection

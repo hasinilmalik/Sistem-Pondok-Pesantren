@@ -64,7 +64,8 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
    {
        Route::get('/transaction/detail/{reference}','show')->name('pay.detail');
        Route::get('/checkout/{for}','checkout')->name('pay.checkout');
-       Route::post('/checkout','store')->name('pay.request');   
+       Route::post('/checkout_proses','store')->name('pay.request');   
+       Route::get('/guest/bills','guestBills')->name('guest.bills');   
    });
 });
 Route::post('callback',[TripayCallbackController::class,'handle']);

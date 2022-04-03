@@ -9,4 +9,5 @@ $judul = app()->view->getSections()['prefix'];
 @endhasrole
 @hasrole('guest')
     <x-menu :judul="$judul" text="Data Santri" url="guest.show" icon="list" />
+    <x-menu :judul="$judul" text="Daftar Tagihan" url="guest.bills" icon="list" />
 @endhasrole

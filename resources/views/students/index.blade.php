@@ -6,7 +6,7 @@
 @section('content')
     <div class="d-lg-flex justify-content-between">
         <div>
-            <a href="{{ route('students.index') }}/alumni" class="mt-2 badge bg-gradient-primary">+ Tambah</a>
+            <a href="{{ route('students.create') }}" class="mt-2 badge bg-gradient-primary">+ Tambah</a>
         </div>
         <div>
             @php
@@ -19,11 +19,11 @@
                     <span class="visually-hidden"></span>{{ $jml_baru }}
                 </span>
             </a>
+            <a href="{{ route('students.index') }}/alumni"
+            class="mt-2 badge @if ($segment == 'alumni') bg-gradient-success @else bg-secondary @endif">Alumni</a>
             <a href="{{ route('students.index') }}"
                 class="mt-2 badge @if ($segment == '') bg-gradient-success @else bg-secondary @endif">Santri
                 aktif</a>
-            <a href="{{ route('students.index') }}/alumni"
-                class="mt-2 badge @if ($segment == 'alumni') bg-gradient-success @else bg-secondary @endif">Alumni</a>
         </div>
     </div>
     <div class="mt-3">

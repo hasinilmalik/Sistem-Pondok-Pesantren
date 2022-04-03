@@ -9,7 +9,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Total</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    {{ $putra + $putri }}
+                                    {{ $jumlah['jumlah_putra'] + $jumlah['jumlah_putri'] }}
                                     {{-- <span class="text-success text-sm font-weight-bolder">+55%</span> --}}
                                 </h5>
                             </div>
@@ -31,7 +31,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Putra</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    {{ $putra }}
+                                    {{ $jumlah['jumlah_putra'] }}
                                     {{-- <span class="text-success text-sm font-weight-bolder">+55%</span> --}}
                                 </h5>
                             </div>
@@ -53,7 +53,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Putri</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    {{ $putri }}
+                                    {{ $jumlah['jumlah_putri'] }}
                                     {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
                                 </h5>
                             </div>
@@ -75,7 +75,7 @@
                             <div class="numbers">
                                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Alumni</p>
                                 <h5 class="font-weight-bolder mb-0">
-                                    {{ $alumni }}
+                                    {{ $jumlah['alumni'] }}
                                     {{-- <span class="text-success text-sm font-weight-bolder">+3%</span> --}}
                                 </h5>
                             </div>

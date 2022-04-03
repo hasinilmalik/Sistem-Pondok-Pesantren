@@ -35,7 +35,7 @@ class TripayService{
         
     }
     
-    public function requestTransaction($method)
+    public function requestTransaction($method,$amount)
     {
         $apiKey       = config('tripay.api_key');
         $privateKey   = config('tripay.private_key');
@@ -43,7 +43,6 @@ class TripayService{
         $merchantRef  = 'px-'.time();
         
         $user = Auth::user();
-        $amount = 44000;
         
         $data = [
             'method'         => $method,

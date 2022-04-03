@@ -17,33 +17,36 @@ class TransactionController extends Controller
         $channels= $tripay->getPaymentChannels();
         return view('payment.checkout',compact('channels'));
     }
-    
     public function store(Request $request)
     {
+        // dd($request->all());
         $method = $request->method;
         $bill = BillType::where('name',$request->bill_type_id)->first();
-        $bill_type_id = $bill->id;
-        $amount = $bill->amount;
-        dd($amount);
-        $user = Auth::user();
-        
-        if($method=='tunaicash'){ 
-            $reference = 'MBKD-'.time();
-            $this->storeToDatabase($bill_type_id,$user,$reference);
-            return redirect()->route('pay.detail', ['reference'=>$reference]);
+        if($bill!=null){
+            $bill_type_id = $bill->id;
+            $amount = $bill->amount;
+            $user = Auth::user();
+            // dd($amount);
+            if($method=='tunaicash'){ 
+                $reference = 'MBKD-'.time();
+                $this->storeToDatabase($bill_type_id,$user,$reference,$amount);
+                return redirect()->route('pay.detail', ['reference'=>$reference]);
+            }else{
+                $tripay = new TripayService();
+                $transaction = $tripay->requestTransaction($method,$amount);
+                
+                Transaction::create([
+                    'user_id'=>$user->id,
+                    'bill_type_id'=>$bill_type_id,
+                    'reference'=>$transaction->reference,
+                    'merchant_ref'=>$transaction->merchant_ref,
+                    'total_amount'=>$transaction->amount,
+                    'status'=>$transaction->status
+                ]);
+                return redirect()->route('pay.detail', ['reference'=>$transaction->reference]);
+            }
         }else{
-            $tripay = new TripayService();
-            $transaction = $tripay->requestTransaction($method);
-            
-            Transaction::create([
-                'user_id'=>$user->id,
-                'bill_type_id'=>$bill_type_id,
-                'reference'=>$transaction->reference,
-                'merchant_ref'=>$transaction->merchant_ref,
-                'total_amount'=>$transaction->amount,
-                'status'=>$transaction->status
-            ]);
-            return redirect()->route('pay.detail', ['reference'=>$transaction->reference]);
+            return back()->with('error','Bill type not found');
         }
     }
     public function show($reference){   
@@ -78,16 +81,12 @@ class TransactionController extends Controller
                 ]), 
                 "instructions" => collect([
                     (object)[
-                        "title" => "Internet Banking", 
+                        "title" => "Tunai", 
                         "steps" => [
-                            "Login ke internet banking Bank BRI Anda", 
-                            "Pilih menu <b>Pembayaran</b> lalu klik menu <b>BRIVA</b>", 
-                            "Pilih rekening sumber dan masukkan Kode Bayar (<b>291198618420086</b>) lalu klik <b>Kirim</b>", 
-                            "Detail transaksi akan ditampilkan, pastikan data sudah sesuai", 
-                            "Masukkan nominal pembayaran", 
-                            "Klik <b>Lanjutkan</b>", 
-                            "Masukkan kata sandi ibanking lalu klik <b>Request</b> untuk mengirim m-PIN ke nomor HP Anda", 
-                            "Periksa HP Anda dan masukkan m-PIN yang diterima lalu klik <b>Kirim</b>", 
+                            "Mendatangi kantor kami di Pondok pesantren PP Mubakid", 
+                            "Berikan uang tunai kepada Petugas kami",
+                            "Kami akan memberikan bukti pembayaran berupa Nota/struk atau",
+                            "Kami akan mengirimkan bukti pembayaran ke email/wa anda",
                             "Transaksi sukses, simpan bukti transaksi Anda" 
                         ], 
                     ], 
@@ -102,10 +101,9 @@ class TransactionController extends Controller
             return view('payment.show', compact('transaction'));
         }
     }
-    public function storeToDatabase($bill_type_id,$user,$reference)
+    public function storeToDatabase($bill_type_id,$user,$reference,$amount)
     {
         $merchant_ref = 'REG'.time();
-        $amount = 450000;
         Transaction::create([
             'user_id'=>$user->id,
             'bill_type_id'=>$bill_type_id,
@@ -114,5 +112,13 @@ class TransactionController extends Controller
             'total_amount'=>$amount,
             'is_cash'=>true,
         ]);
+    }
+    public function guestBills()
+    {
+        $bill_type_id = BillType::where('name','pendaftaran')->first()->id;
+        $bills = Transaction::where('user_id',Auth::user()->id)
+        ->where('bill_type_id',$bill_type_id)
+        ->latest()->first();
+        return redirect()->route('pay.detail', ['reference'=>$bills->reference]);
     }
 }
