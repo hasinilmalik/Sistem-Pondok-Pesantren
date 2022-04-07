@@ -9,6 +9,10 @@
         $status = $transaction->status;
     }
     @endphp
+    <div class="alert alert-success">Segera lakukan pembayaran sebelum <strong
+            style="color: white">{{ Carbon\Carbon::parse($transaction->expired_time)->isoFormat('dddd, D MMM Y') }}
+        </strong> Jam <strong
+            style="color: white">{{ Carbon\Carbon::parse($transaction->expired_time)->isoFormat('H:m') }}</strong> </div>
     <div class="row">
         <div class="col-md-7 mt-3">
             <div class="card">
@@ -25,7 +29,7 @@
                         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-200 border-radius-lg">
                             <div class="">
                                 Total :
-                                <h3 class="mb-0 text-primary">Rp. {{ number_format($transaction->amount) }}</h3>
+                                <h3 class="mb-0 text-dark">Rp. {{ number_format($transaction->amount) }}</h3>
                             </div>
                         </li>
                         @if ($transaction->order_items[0]->name == 'Pendaftaran')
@@ -126,7 +130,7 @@
         </div>
     </div>
     @if ($transaction->status = 'unpaid')
-        <a href="{{ route('pay.checkout', 'pendaftaran') }}" class="card fixed-bottom text-center p-3">Ubah Metode
-            Pembayaran</a>
+        <a class="fixed-bottom text-center btn bg-gradient-info" style="border: 0; border-radius: 0px;"
+            href="{{ route('pay.checkout', 'pendaftaran') }}">Ubah Metode Pembayaran</a>
     @endif
 @endsection
