@@ -137,7 +137,10 @@
         </div>
     </div>
     @if ($transaction->status = 'unpaid')
-        <a class="fixed-bottom text-center btn bg-gradient-info" style="border: 0; border-radius: 0px;"
+        <a class="fixed-bottom text-center btn bg-gradient-info" style="border: 0; border-radius: 0px;" <<<<<<< HEAD
             href="{{ route('pay.change', $transaction->reference) }}">Ubah Metode Pembayaran</a>
+        =======
+        href="{{ route('pay.checkout', 'pendaftaran') }}">Ubah Metode Pembayaran</a>
+        >>>>>>> b65f53af3980e303272347df375680afffea2f84
     @endif
 @endsection

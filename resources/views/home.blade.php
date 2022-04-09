@@ -9,9 +9,12 @@
         @if ($profil == 'user.jpeg')
             <strong> Segera Lengkapi Foto</strong>
         @endif
-        {{-- @if ($isPaid == false)
+        <<<<<<< HEAD {{-- @if ($isPaid == false)
             dan <strong>Selesaikan pembayaran</strong>
-        @endif --}}
+        @endif --}}=======@if ($tagihan == true)
+            <strong>Selesaikan pembayaran</strong>
+            @endif
+            >>>>>>> b65f53af3980e303272347df375680afffea2f84
     </span>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
