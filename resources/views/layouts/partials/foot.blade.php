@@ -1,4 +1,5 @@
 <!--   Core JS Files   -->
+@livewireScripts
 @stack('foot')
 @include('layouts.partials.alert')
 <script src="{{ asset('assets/softui') }}/js/core/popper.min.js"></script>

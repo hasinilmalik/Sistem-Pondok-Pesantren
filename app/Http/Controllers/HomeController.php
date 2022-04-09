@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Payment\TransactionController;
 use App\Models\Student;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -9,27 +10,43 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-    * Create a new controller instance.
-    *
-    * @return void
-    */
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
-    /**
-    * Show the application dashboard.
-    *
-    * @return \Illuminate\Contracts\Support\Renderable
-    */
     public function index()
     {
         $profil = $this->cekFoto();
         $jumlah = $this->cekJumlahSantri();
-        $tagihan = $this->cekTagihan();
-        return view('home',compact('jumlah','profil','tagihan'));
+        $isNew = $this->isNewStudent();
+        // jika dia santri baru
+        if($isNew){
+            //cek pendaftarannya sdh lunas atau belum
+            $trans = new TransactionController();
+            // cek apakah sdh buat methode pembayaran
+            $isBill = $trans->isCreateBill();
+            if($isBill==true){
+                // jika sudah buat tagihan
+                // cek apa sdh bayar
+                $isPaid = $trans->isPaid(1);
+                    // jika sudah bayar
+                    if($isPaid==true){
+                        $link = 'kosong';
+                        // Maka kosongkan penagihan
+                    }else{
+                        // cek kode tagihan
+                        $link = $trans->checkReference(1)->reference;
+                    }
+            }else{
+                // jika belum buat tagihan
+                // link baru adalah buat tagihan
+                $link = 'baru';
+            }
+            // kode 1 adalah untuk pendaftaran
+
+        }else{ //jika dia bukan santri baru
+        }
+        return view('home',compact('profil','jumlah','link'));
     }
     public function cekFoto()
     {
@@ -45,7 +62,7 @@ class HomeController extends Controller
             }
         }
         return $profil;
-    }    
+    }
     public function cekJumlahSantri()
     {
         $jumlah_putri = Student::where('jenis_kelamin','perempuan')->count();
@@ -58,14 +75,14 @@ class HomeController extends Controller
         ];
         return $jumlah;
     }
-    public function cekTagihan()
+    public function isNewStudent()
     {
-        $cek_tagihan = Transaction::where('user_id',Auth::user()->id)->where('status','paid')->latest()->first();
-        if ($cek_tagihan==null) {
-            $tagihan = true;
-        }else{
-            $tagihan = false;
+        $student = Auth::user()->student->status;
+        if ($student == 'baru') {
+            $isNewStudent = true;
+        } else {
+            $isNewStudent = false;
         }
-        return $tagihan;
+        return $isNewStudent;
     }
 }

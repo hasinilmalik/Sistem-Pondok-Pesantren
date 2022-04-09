@@ -33,7 +33,7 @@ class TransactionController extends Controller
                 return redirect()->route('pay.detail', ['reference'=>$reference]);
             }else{
                 $tripay = new TripayService();
-                $transaction = $tripay->requestTransaction($method,$amount);
+                $transaction = $tripay->requestTransaction($method,$bill);
                 
                 Transaction::create([
                     'user_id'=>$user->id,
@@ -51,53 +51,14 @@ class TransactionController extends Controller
     }
     public function show($reference){   
         $transaksi = Transaction::where('reference',$reference)->first();
+        $bill_type_id = $transaksi->bill_type_id;
         if($transaksi->is_cash==true){            
-            $transaction = [
-                'reference' => $transaksi->reference, 
-                'merchant_ref' => $transaksi->merchant_reff, 
-                'payment_method' => 'TUNAI', 
-                'payment_name' => 'Tunai', 
-                'customer_name' => Auth::user()->name, 
-                'customer_email' => Auth::user()->email, 
-                'customer_phone' => Auth::user()->student->family->a_phone, 
-                // 'callback_url' => null, 
-                // 'return_url' => null, 
-                'amount' => 450000, 
-                'fee_merchant' => 0, 
-                'fee_customer' => 0, 
-                'total_fee' => 450000, 
-                'status' => 'UNPAID', 
-                'paid_at' => null, 
-                'expired_time' => null, 
-                'order_items' => collect([
-                    (object)[
-                        "name" => "Pendaftaran", 
-                        "price" => 450000, 
-                        "quantity" => 1, 
-                        "subtotal" => 450000, 
-                        "product_url" => null, 
-                        "image_url" => null 
-                    ], 
-                ]), 
-                "instructions" => collect([
-                    (object)[
-                        "title" => "Tunai", 
-                        "steps" => [
-                            "Mendatangi kantor kami di Pondok pesantren PP Mubakid", 
-                            "Berikan uang tunai kepada Petugas kami",
-                            "Kami akan memberikan bukti pembayaran berupa Nota/struk atau",
-                            "Kami akan mengirimkan bukti pembayaran ke email/wa anda",
-                            "Transaksi sukses, simpan bukti transaksi Anda" 
-                        ], 
-                    ], 
-                ]),
-            ];
+            $transaction = $this->_cashSteps($bill_type_id, $transaksi);
             $transaction = (object) $transaction;
             return view('payment.show', compact('transaction'));
         }else{
             $tripay = new TripayService();
             $transaction = $tripay->detail($reference);
-            // dd($transaction);
             return view('payment.show', compact('transaction'));
         }
     }
@@ -120,5 +81,94 @@ class TransactionController extends Controller
         ->where('bill_type_id',$bill_type_id)
         ->latest()->first();
         return redirect()->route('pay.detail', ['reference'=>$bills->reference]);
+    }
+    public function _cashSteps($id, $transaksi)
+    {
+        $transaction = [
+            'reference' => $transaksi->reference, 
+            'merchant_ref' => $transaksi->merchant_reff, 
+            'payment_method' => 'TUNAI', 
+            'payment_name' => 'Tunai', 
+            'customer_name' => Auth::user()->name, 
+            'customer_email' => Auth::user()->email, 
+            'customer_phone' => Auth::user()->student->family->a_phone, 
+            // 'callback_url' => null, 
+            // 'return_url' => null, 
+            'amount' => $transaksi->total_amount, 
+            'fee_merchant' => 0, 
+            'fee_customer' => 0, 
+            'total_fee' => $transaksi->total_amount, 
+            'status' => 'UNPAID', 
+            'paid_at' => null, 
+            'expired_time' => null, 
+            'order_items' => collect([
+                (object)[
+                    "name" => "Pendaftaran", 
+                    "price" => $transaksi->amount, 
+                    "quantity" => 1, 
+                    "subtotal" => $transaksi->amount, 
+                    "product_url" => null, 
+                    "image_url" => null 
+                ], 
+            ]), 
+            "instructions" => collect([
+                (object)[
+                    "title" => "Tunai", 
+                    "steps" => [
+                        "Mendatangi kantor kami di Pondok pesantren PP Miftahul Ulum Banyuputih Kidul Lumajang", 
+                        "Berikan Kode beserta uang tunai kepada Petugas",
+                        "Kami akan memberikan bukti pembayaran berupa Nota/struk atau",
+                        "Kami akan mengirimkan bukti pembayaran ke email/wa anda",
+                        "Transaksi sukses, simpan bukti transaksi Anda" 
+                    ], 
+                ], 
+            ]),
+        ];
+        return $transaction;
+    }
+    public function isCreateBill()
+    {
+        $bill_type_id = BillType::where('name','pendaftaran')->first()->id;
+        $bill = Transaction::where('user_id',Auth::user()->id)
+        ->where('bill_type_id',$bill_type_id)
+        ->latest()->first();
+        if($bill==null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    public function isPaid($bill_type_id){
+        $transaksi = Transaction::where('bill_type_id',$bill_type_id)
+        ->where('user_id',Auth::user()->id)
+        ->where('status','PAID')
+        ->first();
+        if($transaksi==null){
+            return false;
+        }else{
+            return $transaksi;
+        }
+    }
+    public function checkReference($bill_type_id)
+    {
+        $reference = Auth::user()->transactions
+        ->where('status','unpaid')
+        ->where('bill_type_id',$bill_type_id)
+        ->first();
+        return $reference;
+    }
+    public function changeMethod($reference)
+    {
+        // sebelum mengubah pastikan dulu, bahwa ia belum membayar
+        if($this->checkStatus($reference)=='unpaid'){
+            //hapus methode lama
+            Transaction::where('reference',$reference)->delete();
+            return redirect()->route('pay.checkout','pendaftaran');
+        }
+    }
+    public function checkStatus($reference)
+    {
+        $transaksi = Transaction::where('reference',$reference)->first();
+        return $transaksi->status;
     }
 }

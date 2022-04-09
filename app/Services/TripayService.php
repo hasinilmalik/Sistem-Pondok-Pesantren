@@ -35,7 +35,7 @@ class TripayService{
         
     }
     
-    public function requestTransaction($method,$amount)
+    public function requestTransaction($method,$bill)
     {
         $apiKey       = config('tripay.api_key');
         $privateKey   = config('tripay.private_key');
@@ -47,19 +47,19 @@ class TripayService{
         $data = [
             'method'         => $method,
             'merchant_ref'   => $merchantRef,
-            'amount'         => $amount,
+            'amount'         => $bill->amount,
             'customer_name'  => $user->student->nama,
             'customer_email' => $user->email,
             'customer_phone' => $user->student->family->a_phone,
             'order_items'    => [
                 [
-                    'name'        => 'Pendaftaran',
-                    'price'       => $amount,
+                    'name'        => $bill->name,
+                    'price'       => $bill->amount,
                     'quantity'    => 1,
                 ],
             ],
             'expired_time' => (time() + (24 * 60 * 60)), // 24 jam
-            'signature'    => hash_hmac('sha256', $merchantCode.$merchantRef.$amount, $privateKey)
+            'signature'    => hash_hmac('sha256', $merchantCode.$merchantRef.$bill->amount, $privateKey)
         ];
         
         $curl = curl_init();

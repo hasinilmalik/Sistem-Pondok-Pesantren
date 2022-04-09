@@ -8,18 +8,11 @@
     } else {
         $status = $transaction->status;
     }
-    // dd($transaction);
     @endphp
-
-    @if ($transaction->expired_time == null)
-        <div class="alert alert-success">Pembayaran dilakukan di pondok pesantren</div>
-    @else
-        <div class="alert alert-success">Segera lakukan pembayaran sebelum <strong
-                style="color: white">{{ Carbon\Carbon::createFromTimestamp($transaction->expired_time)->isoFormat('dddd, D MMMM Y') }}
-                Jam: {{ Carbon\Carbon::createFromTimestamp($transaction->expired_time)->isoFormat('H:m') }}
-            </strong>
-        </div>
-    @endif
+    <div class="alert alert-success">Segera lakukan pembayaran sebelum <strong
+            style="color: white">{{ Carbon\Carbon::parse($transaction->expired_time)->isoFormat('dddd, D MMM Y') }}
+        </strong> Jam <strong
+            style="color: white">{{ Carbon\Carbon::parse($transaction->expired_time)->isoFormat('H:m') }}</strong> </div>
     <div class="row">
         <div class="col-md-7 mt-3">
             <div class="card">
@@ -39,7 +32,7 @@
                                 <h3 class="mb-0 text-dark">Rp. {{ number_format($transaction->amount) }}</h3>
                             </div>
                         </li>
-                        @if ($transaction->order_items[0]->name = 'pendaftaran')
+                        @if ($transaction->order_items[0]->name == 'Pendaftaran')
                             <li class="list-group-item border-0 d-flex p-2 mt-2 border-radius-lg">
                                 <div class="">
                                     Pembayaran diatas mencangkup :
@@ -138,6 +131,6 @@
     </div>
     @if ($transaction->status = 'unpaid')
         <a class="fixed-bottom text-center btn bg-gradient-info" style="border: 0; border-radius: 0px;"
-            href="{{ route('pay.change', $transaction->reference) }}">Ubah Metode Pembayaran</a>
+            href="{{ route('pay.checkout', 'pendaftaran') }}">Ubah Metode Pembayaran</a>
     @endif
 @endsection

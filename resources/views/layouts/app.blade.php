@@ -66,6 +66,7 @@ if ($student == null) {
                                 @csrf
                             </form>
                         </li>
+
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
@@ -151,6 +152,12 @@ if ($student == null) {
                 <div class="mt-3">
                     <h6 class="mb-0">Navbar Fixed</h6>
                 </div> --}}
+                @livewire('dropdown-notification')
+                {{-- <div class="d-flex">
+                    <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="navbar-dark"
+                        onclick="navbarFixed(this)">Dark</button>
+                    <button class="btn bg-gradient-primary w-100 px-3 mb-2 ms-2" data-class="navbar-light"
+                        onclick="navbarFixed(this)">Light</button>
                 <div class="form-check form-switch ps-0">
                     <div id="navbarFixed" onclick="navbarFixed(this)" />
                 </div>
@@ -173,4 +180,4 @@ if ($student == null) {
             </div>
         </div>
     </div>
-    @include('layouts/partials/foot')
+    @include('layouts.partials.foot')

@@ -63,6 +63,7 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
    Route::controller(TransactionController::class)->group(function ()
    {
        Route::get('/transaction/detail/{reference}','show')->name('pay.detail');
+       Route::get('/transaction/change-method/{reference}','changeMethod')->name('pay.change');
        Route::get('/checkout/{for}','checkout')->name('pay.checkout');
        Route::post('/checkout_proses','store')->name('pay.request');   
        Route::get('/guest/bills','guestBills')->name('guest.bills');   
