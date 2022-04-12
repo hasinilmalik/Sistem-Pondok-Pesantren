@@ -2,16 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\Book;
+use Error;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class TripayService{
-    public function getPaymentsChannels()
+    
+    public function getPaymentChannels()
     {
-        
         $apiKey = config('tripay.api_key');
         
-        $payload = ['code' => 'BRIVA'];
+        // $payload = ['code' => 'BRIVA'];
         
         $curl = curl_init();
         
@@ -29,12 +30,12 @@ class TripayService{
         
         curl_close($curl);
         
-        // echo empty($error) ? $response : $error;
         $response = json_decode($response)->data;
-        return $response ?: $error;
+        return $response ? : $error;
         
     }
-    public function requestTransaction($method, $book)
+    
+    public function requestTransaction($method,$bill)
     {
         $apiKey       = config('tripay.api_key');
         $privateKey   = config('tripay.private_key');
@@ -42,25 +43,23 @@ class TripayService{
         $merchantRef  = 'px-'.time();
         
         $user = Auth::user();
-        $book = Book::find($book->id);
-        $amount = $book->price;
         
         $data = [
             'method'         => $method,
             'merchant_ref'   => $merchantRef,
-            'amount'         => $amount,
-            'customer_name'  => $user->name,
+            'amount'         => $bill->amount,
+            'customer_name'  => $user->student->nama,
             'customer_email' => $user->email,
-            // 'customer_phone' => '081234567890',
+            'customer_phone' => $user->student->family->a_phone,
             'order_items'    => [
                 [
-                    'name'        => $book->title,
-                    'price'       => $book->price,
+                    'name'        => $bill->name,
+                    'price'       => $bill->amount,
                     'quantity'    => 1,
                 ],
             ],
             'expired_time' => (time() + (24 * 60 * 60)), // 24 jam
-            'signature'    => hash_hmac('sha256', $merchantCode.$merchantRef.$amount, $privateKey)
+            'signature'    => hash_hmac('sha256', $merchantCode.$merchantRef.$bill->amount, $privateKey)
         ];
         
         $curl = curl_init();
@@ -84,7 +83,8 @@ class TripayService{
         return $response?:$error;
         
     }
-    public function detailTranscation($reference)
+    
+    public function detail($reference)
     {
         
         $apiKey = config('tripay.api_key');
@@ -106,7 +106,37 @@ class TripayService{
         $error = curl_error($curl);
         
         curl_close($curl);
-        $response = json_decode($response)->data;
-       return $response?:$error;
+        
+        $response=json_decode($response)->data;
+        return $response?:$error;
+    }
+    public function daftarTransaksi()
+    {
+        $apiKey = config('tripay.api_key');
+        
+        // $payload = [
+        //     'page' => 1,
+        //     'per_page' => 3,
+        // ];
+        
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, [
+            CURLOPT_FRESH_CONNECT  => true,
+            CURLOPT_URL            => 'https://tripay.co.id/api-sandbox/merchant/transactions',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+            CURLOPT_FAILONERROR    => false
+        ]);
+        
+        $response = curl_exec($curl);
+        $error = curl_error($curl);
+        
+        curl_close($curl);
+        
+        $response=json_decode($response)->data;
+        return $response?:$error;
+        
     }
 }
