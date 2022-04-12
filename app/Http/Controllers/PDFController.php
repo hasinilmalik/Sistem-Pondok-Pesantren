@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class PDFController extends Controller
