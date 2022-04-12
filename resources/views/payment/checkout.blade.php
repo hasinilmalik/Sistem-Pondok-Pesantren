@@ -64,7 +64,7 @@
                                 <div class="d-flex justify-content-between my-2">
                                     <div class="col-1">
                                         <img style="width:50px;"
-                                            src="{{ asset('storage/icons') . '/' . $channel->code . '.png' }}">
+                                            src="{{ asset('assets/bakid/icons') . '/' . $channel->code . '.png' }}">
                                     </div>
                                     <div class="col-7">
                                         <strong>{{ $channel->name }}</strong>
