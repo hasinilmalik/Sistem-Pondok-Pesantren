@@ -58,7 +58,7 @@
                     </g>
                 </svg>
             </div>
-            <div class="d-flex flex-column justify-content-center">
+            {{-- <div class="d-flex flex-column justify-content-center">
                 <h6 class="text-sm font-weight-normal mb-1">
                     Payment successfully completed
                 </h6>
@@ -66,7 +66,7 @@
                     <i class="fa fa-clock me-1" aria-hidden="true"></i>
                     2 days
                 </p>
-            </div>
+            </div> --}}
         </div>
     </a>
 
