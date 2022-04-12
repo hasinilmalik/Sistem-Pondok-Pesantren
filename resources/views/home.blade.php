@@ -31,8 +31,9 @@
             Foto</a>
     </div>
     <div class="col-md-6 col-sm-12">
-        <a href="{{ route('pdf.mou', Auth::user()->student->id) }}" class="btn bg-gradient-info input-block-level form-control "
-            style="padding: 50px; font-size:16px">Cetak Surat Pernyataan</a>
+        <a href="{{ route('pdf.mou', Auth::user()->student->id) }}"
+            class="btn bg-gradient-info input-block-level form-control " style="padding: 50px; font-size:16px">Cetak
+            Surat Pernyataan</a>
     </div>
     <div class="col-md-6 col-sm-12">
         <a href="{{ route('pdf.biodata', Auth::user()->student->id) }}"
@@ -44,8 +45,7 @@
 @endhasrole
 @hasrole('admin')
 <x-admin-dashboard :jumlah='$jumlah' />
-
-<div class="mt-4 row">
+{{-- <div class="mt-4 row">
     <div class="mb-4 col-lg-5 mb-lg-0">
         <div class="card z-index-2">
             <div class="p-3 card-body">
@@ -218,6 +218,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endhasrole
 @endsection

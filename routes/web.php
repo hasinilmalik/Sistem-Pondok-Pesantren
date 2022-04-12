@@ -36,15 +36,15 @@ Route::controller(CetakController::class)->name('cetak.')->group(function ()
 
 // NOTE:STUDENTS
 // =======================================================
+Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
 Route::group(['middleware' => ['role:super admin|admin']], function () {
     Route::controller(StudentController::class)->group( function ()
     {
-        Route::get('/students/import','import_excel');
-        Route::get('/students/{status?}','index')->name('students.index');
+        Route::get('/student/import','import_excel');
+        Route::get('/student/{status?}','index')->name('students.status');
     });  
     Route::resource('students', StudentController::class);
 });
-Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
 
 // NOTE:GUEST
 // =======================================================
