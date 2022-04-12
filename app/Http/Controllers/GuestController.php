@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\Student;
 use App\Models\Addition;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -23,7 +25,17 @@ class GuestController extends Controller
         ]);
    
         $data = $request->all();
+        //ambil tahun sekarang ex:22
+        $year = Carbon::now()->format('y');
+        // ambil nis terakhir
+        $datanis = Student::max('nis')+1;
+        // buat nis baru
+        $datanis = $year.Str::substr($datanis, 2);
+
+        $data['nis']=$datanis;
+        
         $student_id = Student::create($data);
+
         Family::create([
             'student_id'=>$student_id->id,
             'a_kk'=>$request['a_kk'],

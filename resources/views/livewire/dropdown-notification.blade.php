@@ -36,7 +36,7 @@
     </a> --}}
 
 
-    <a class="dropdown-item border-radius-md" href="javascript:;">
+    {{-- <a class="dropdown-item border-radius-md" href="javascript:;">
         <div class="d-flex py-1">
             <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
                 <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@
                     </g>
                 </svg>
             </div>
-            {{-- <div class="d-flex flex-column justify-content-center">
+            <div class="d-flex flex-column justify-content-center">
                 <h6 class="text-sm font-weight-normal mb-1">
                     Payment successfully completed
                 </h6>
@@ -66,8 +66,8 @@
                     <i class="fa fa-clock me-1" aria-hidden="true"></i>
                     2 days
                 </p>
-            </div> --}}
+            </div>
         </div>
-    </a>
+    </a> --}}
 
 </div>

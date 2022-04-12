@@ -97,6 +97,7 @@ class StudentController extends Controller
         // ambil nis terakhir
         $datanis = Student::max('nis')+1;
         // buat nis baru
+        
         $datanis = $year.Str::substr($datanis, 2);
         
         if($request['email']){
