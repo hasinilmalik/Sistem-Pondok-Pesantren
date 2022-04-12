@@ -19,7 +19,7 @@ class PDFController extends Controller
     {
         $data = Student::findOrFail($id);
         $pdf = PDF::loadView('pdf.mou', compact('data'));
-        return $pdf->stream('filename.pdf');
-        // return $pdf->download('mou-'.$data->nama.'.pdf');    
+        // return $pdf->stream('filename.pdf');
+        return $pdf->download('mou-'.$data->nama.'.pdf');    
     }
 }
