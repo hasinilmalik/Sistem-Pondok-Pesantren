@@ -8,6 +8,6 @@ $judul = app()->view->getSections()['prefix'];
     <x-menu :href="route('pay.list', 'offline')" :icon="'fas fa-list'" :text="'Pembayaran'" :active="request()->is('transaction/list/offline')" />
 @endhasrole
 @hasrole('guest')
-    <x-menu :href="route('guest.show')" :icon="'fas fa-list'" :text="'Data santri'" :active="request()->is('students')" />
+    <x-menu :href="route('guest.show')" :icon="'fas fa-list'" :text="'Data santri'" :active="request()->is('guest/show')" />
     <x-menu :href="route('guest.bills')" :icon="'fas fa-dollar-sign'" :text="'Daftar tagihan'" :active="request()->is('students')" />
 @endhasrole
