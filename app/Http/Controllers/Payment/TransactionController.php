@@ -86,6 +86,7 @@ class TransactionController extends Controller
     }
     public function _cashSteps($id, $transaksi)
     {
+        dd($transaksi);
         $transaction = [
             'reference' => $transaksi->reference, 
             'merchant_ref' => $transaksi->merchant_reff, 
@@ -106,9 +107,9 @@ class TransactionController extends Controller
             'order_items' => collect([
                 (object)[
                     "name" => "Pendaftaran", 
-                    "price" => $transaksi->amount, 
+                    "price" => $transaksi->total_amount, 
                     "quantity" => 1, 
-                    "subtotal" => $transaksi->amount, 
+                    "subtotal" => $transaksi->total_amount, 
                     "product_url" => null, 
                     "image_url" => null 
                 ], 
