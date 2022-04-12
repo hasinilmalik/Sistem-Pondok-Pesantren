@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head><body>
+    <img style="width: 100%" src="assets/img/kop.png" alt="assets/img/kop.png">
+    <div style="text-align:center"><b>
+            <p> <b> SURAT PERNYATAAN WALI SANTRI</b></p>
+    </div><br><br>
+    yang bertanda tangan dibawah ini :
+    <table border="0" cellspacing="5" cellpading="10">
+        <tr>
+            <td width="200">
+                Nama Wali/Orang Tua<br>
+                Tempat Tanggal Lahir<br>
+                No. Hp<br>
+                Wali Santri Dari<br>
+                Tempat Tanggal Lahir<br>
+                Alamat<br>
+            </td>
+            <?php foreach ($siswa as $s) : ?>
+                <td width="500">
+                    : <?= $s->ayah ?> <br>
+                    : <?= $s->tempatlahirayah ?>, <?= $s->tgllahirayah ?> <br>
+                    : <?= $s->hp ?> <br>
+                    : <?= $s->nama ?> <br>
+                    : <?= $s->tempatlahir ?>, <?= $s->tgllahir ?> <br>
+                    : <?= $s->kab ?> <br>
+                </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <p> Menyatakan bahwa kami :
+                    <br>1. Menyerahkan anak kami sepenuhnya kepada pengasuh dan pengurus Pondok Pesantren Miftahul
+                    Ulum Banyuputih Kidul Jatiroto Lumajang untuk mendidik dan mengawasi menurut ajaran agama
+                    Islam Ahlus Sunnah Wal Jamaah dan Hukum Negara Republik Indonesia;
+                    <br>2. Ridlo atas segala sanksi yang diberikan oleh pengasuh, pengurus, kepala atau ketua lembaga
+                    kepada anak kami, jika anak kami melakukan pelanggaran terhadap peraturan Pondok Pesantren;
+                    <br>3. Menerima dengan hati legawa atas pengembalian anak kami jika anak kami sudah tidak sanggup
+                    untuk mentaati peraturan atau melampaui poin pelanggaran yang telah ditetapkan oleh Pondok
+                    Pesantren;
+                    <br>4. Siap mengajukan permohonan pengunduran diri anak kami kepada pihak Madrasah dan Sekolah
+                    Tinggi jika anak kami bermasalah di Pondok Pesantren dan kemudian anak kami dikeluarkan dari
+                    Pondok Pesantren;
+                    <br>5. Siap menghadap pengasuh, pengurus, kepala atau ketua lembaga jika kami dipanggil ke Pondok
+                    Pesantren yang berkaitan dengan anak kami;
+                    <br>6. Bertanggung jawab atas biaya administrasi anak kami di Pondok Pesantren;
+                    <br>7. Menyelesaikan secara kekeluargaan atas kemungkinan terjadinya konflik anak kami dengan
+                    keluarga besar Pondok Pesantren;
+                    <br>8. Sanggup menjaga nama baik almamater Pondok Pesantren;
+                    <br>9. Tidak memperkenankan atau menjemput anak kami lebih dari satu kali dalam waktu tiga bulan
+                    dengan tanpa adanya keperluan yang bersifat syar&#39;i;
+                    <br>10. Memintakan ijin anak kami kepada pengasuh dan pengurus Pondok Pesantren pada saat pulang
+                    atau boyong;
+                    <br>11. Ikut serta dalam mendidik dan mengawasi anak kami ketika berada di rumah ;
+                    <br>12. Memperbolehkan/tidak memperbolehkan merokok kepada kami jika sudah kelas Madrasah
+                    Tsanawiyah Diniyah (MTsD); <br>
+                    Demikian surat pernyataan ini kami buat dengan sebenarnya.
+                </p>
+            </td>
+        </tr>
+    </table>
+    <?php
+        $where = ['nik' => $s->nik];
+        $namaayah = $s->ayah
+        ?>
+<?php endforeach; ?>
+
+<?php
+$this->db->order_by('id','DESC');
+$this->db->where($where);
+$a = $this->db->get('signaturew',1)->result_array();
+foreach ($a as $row) : ?>
+
+    <table>
+        <tr>
+            <td align="left" valign="top">
+                <img src="assets/img/kopttd.png" width="190" height="105" />
+            </td>
+            <td align="left" width="150" height="105">
+            </td>
+            <td align="left">
+                Lumajang, <?= date('d M Y') ?> <br>
+                Orang tua / Wali Santri <br>
+                <?php $filename = $row['ttd'];
+                    $image = $row['base64'];
+                    $pecah = explode(",", $image);
+                    echo '<img src="data:image/png;base64,' . $hasil = $pecah[1] . '" width="240px"/>';
+                    ?>
+                <?= $namaayah ?>
+            </td>
+        </tr>
+    </table>
+<?php endforeach; ?>
+</body></html>

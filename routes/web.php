@@ -16,6 +16,9 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DataTableAjaxCRUDController;
 use App\Http\Controllers\Payment\TransactionController;
 use App\Http\Controllers\Payment\TripayCallbackController;
+use App\Http\Controllers\PDFController;
+use App\Models\FormalInstitution;
+use App\Models\MadinInstitution;
 
 // NOTE:AUTH
 // =======================================================
@@ -49,11 +52,21 @@ Route::group(['middleware'=>['role:guest']], function (){
     Route::controller(GuestController::class)->group(function ()
     { 
         Route::get('guest/upload_foto', function (){return view('guest.upload_foto');})->name('guest.upload_foto');
-        Route::get('/guest/create',function (){return view('guest.create');});
+        Route::get('/guest/create',function (){
+            $madin = MadinInstitution::get();
+            $formal = FormalInstitution::get();
+            return view('guest.create',compact('madin','formal'));
+        });
         Route::get('/guest/show','show')->name('guest.show');
         Route::post('guest/upload_foto',[GuestController::class,'store_foto'])->name('guest.store_foto');
         Route::post('/daftar',[GuestController::class,'store'])->name('guest.store');
     });
+});
+
+Route::controller(PDFController::class)->name('pdf.')->group(function ()
+{
+    Route::get('/pdf/biodata/{id}','biodata')->name('biodata');
+    Route::get('/pdf/mou/{id}','mou')->name('mou');
 });
 
 
@@ -62,11 +75,13 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
 {
    Route::controller(TransactionController::class)->group(function ()
    {
+       Route::post('/transaction/cash','payCash')->name('pay.cash');
        Route::get('/transaction/detail/{reference}','show')->name('pay.detail');
        Route::get('/transaction/change-method/{reference}','changeMethod')->name('pay.change');
+       Route::get('/transaction/list/{method}','daftarTransaksi')->name('pay.list');
        Route::get('/checkout/{for}','checkout')->name('pay.checkout');
        Route::post('/checkout_proses','store')->name('pay.request');   
-       Route::get('/guest/bills','guestBills')->name('guest.bills');   
+       Route::get('/guest/bills','guestBills')->name('guest.bills');
    });
 });
 Route::post('callback',[TripayCallbackController::class,'handle']);

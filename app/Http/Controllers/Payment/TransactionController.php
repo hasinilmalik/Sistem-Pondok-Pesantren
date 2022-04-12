@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Models\BillType;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TransactionController extends Controller
 {
@@ -171,4 +173,20 @@ class TransactionController extends Controller
         $transaksi = Transaction::where('reference',$reference)->first();
         return $transaksi->status;
     }
+    public function daftarTransaksi($method)
+    {
+        if($method=='offline'){
+            $transactions = 'offline';
+        }else{
+            $tripay = new TripayService();
+            $transactions = $tripay->daftarTransaksi();
+        }
+        return view('payment.list', compact('transactions'));
+    }
+    // public function payCash(Request $request)
+    // {
+    //     $transaksi = Transaction::where('reference',$request->reference)->update(['status'=>'PAID']);
+    //     Alert::success('Success','Pembayaran Berhasil');
+    //     return redirect()->route('pay.list','offline');
+    // }
 }

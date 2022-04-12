@@ -18,17 +18,20 @@ class HomeController extends Controller
     {
         $profil = $this->cekFoto();
         $jumlah = $this->cekJumlahSantri();
-        $isNew = $this->isNewStudent();
-        // jika dia santri baru
-        if($isNew){
-            //cek pendaftarannya sdh lunas atau belum
-            $trans = new TransactionController();
-            // cek apakah sdh buat methode pembayaran
-            $isBill = $trans->isCreateBill();
-            if($isBill==true){
-                // jika sudah buat tagihan
-                // cek apa sdh bayar
-                $isPaid = $trans->isPaid(1);
+        if($this->_isAdmin()==true){
+            return view('home',compact('profil','jumlah'));
+        }else{
+            $isNew = $this->isNewStudent();
+            // jika dia santri baru
+            if($isNew){
+                //cek pendaftarannya sdh lunas atau belum
+                $trans = new TransactionController();
+                // cek apakah sdh buat methode pembayaran
+                $isBill = $trans->isCreateBill();
+                if($isBill==true){
+                    // jika sudah buat tagihan
+                    // cek apa sdh bayar
+                    $isPaid = $trans->isPaid(1);
                     // jika sudah bayar
                     if($isPaid==true){
                         $link = 'kosong';
@@ -37,16 +40,17 @@ class HomeController extends Controller
                         // cek kode tagihan
                         $link = $trans->checkReference(1)->reference;
                     }
-            }else{
-                // jika belum buat tagihan
-                // link baru adalah buat tagihan
-                $link = 'baru';
+                }else{
+                    // jika belum buat tagihan
+                    // link baru adalah buat tagihan
+                    $link = 'baru';
+                }
+                // kode 1 adalah untuk pendaftaran
+                
+            }else{ //jika dia bukan santri baru
             }
-            // kode 1 adalah untuk pendaftaran
-
-        }else{ //jika dia bukan santri baru
+            return view('home',compact('profil','jumlah','link'));
         }
-        return view('home',compact('profil','jumlah','link'));
     }
     public function cekFoto()
     {
@@ -84,5 +88,10 @@ class HomeController extends Controller
             $isNewStudent = false;
         }
         return $isNewStudent;
+    }
+    public function _isAdmin()
+    {
+        $role = Auth::user()->HasRole('super admin');
+        return $role;
     }
 }

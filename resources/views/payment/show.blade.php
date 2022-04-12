@@ -103,8 +103,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="card mb-3">
+            <div class="row mb-5">
+                <div class="card">
                     <div class="card-body pt-4 p-3">
                         <h6 class="text-uppercase text-body text-sm font-weight-bolder"><span
                                 class="badge bg-gradient-info">Cara Bayar</span></h6>

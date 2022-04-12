@@ -1,97 +1,103 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" value="{{ old('viewport') }}" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<style>
-    * {
-        box-sizing: border-box;
-    }
 
-    body {
-        background-color: #f1f1f1;
-    }
+<head>
+    <meta name="viewport" value="{{ old('viewport') }}" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-    #regForm {
-        background-color: #ffffff;
-        margin: 100px auto;
-        font-family: Raleway;
-        padding: 40px;
-        width: 70%;
-        min-width: 300px;
-    }
+        body {
+            background-color: #f1f1f1;
+        }
 
-    h3 {
-        text-align: center;
-    }
+        #regForm {
+            background-color: #ffffff;
+            margin: 100px auto;
+            font-family: Raleway;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
 
-    input {
-        padding: 10px;
-        width: 100%;
-        font-size: 17px;
-        font-family: Raleway;
-        border: 1px solid #aaaaaa;
-    }
+        h3 {
+            text-align: center;
+        }
 
-    /* Mark input boxes that gets an error on validation: */
-    input.invalid {
-        background-color: #ffdddd;
-    }
+        input {
+            padding: 10px;
+            width: 100%;
+            font-size: 17px;
+            font-family: Raleway;
+            border: 1px solid #aaaaaa;
+        }
 
-    /* Hide all steps by default: */
-    .tab {
-        display: none;
-    }
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
 
-    button {
-        background-color: #04AA6D;
-        color: #ffffff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 17px;
-        font-family: Raleway;
-        cursor: pointer;
-    }
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
 
-    button:hover {
-        opacity: 0.8;
-    }
+        button {
+            background-color: #04AA6D;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-family: Raleway;
+            cursor: pointer;
+        }
 
-    #prevBtn {
-        background-color: #bbbbbb;
-    }
+        button:hover {
+            opacity: 0.8;
+        }
 
-    /* Make circles that indicate the steps of the form: */
-    .step {
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: grey;
-        border: none;
-        border-radius: 50%;
-        display: inline-block;
-        opacity: 0.5;
-    }
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
 
-    .step.active {
-        opacity: 1;
-    }
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: grey;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
 
-    /* Mark the steps that are finished and valid: */
-    .step.finish {
-        background-color: #04AA6D;
-    }
+        .step.active {
+            opacity: 1;
+        }
 
-    .ucfirst {
-        text-transform: lowercase;
-    }
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #04AA6D;
+        }
 
-    .ucfirst:first-letter {
-        text-transform: uppercase;
-    }
+        .ucfirst {
+            text-transform: lowercase;
+        }
 
-</style>
+        .ucfirst:first-letter {
+            text-transform: uppercase;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
+        integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -530,13 +536,25 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="lembaga_formal" class="form-control-label ucfirst">lembaga formal</label>
-                        <input name="lembaga_formal" value="{{ old('lembaga_formal') }}" placeholder=""
-                            class="form-control" id="lembaga_formal" type="text">
+                        <p><small style="color: gray; font-style:italic"> (Lembaga formal yang akan ditempuh di
+                                pesantren) </small>
+                        </p>
+                        <select name="lembaga_formal" id="formal" class="form-control">
+                            @foreach ($formal as $m)
+                                <option value="{{ $m->id }}">{{ $m->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="madin" class="form-control-label ucfirst">madin</label>
-                        <input name="madin" value="{{ old('madin') }}" placeholder="" class="form-control"
-                            id="madin" type="text">
+                        <p><small style="color: gray; font-style:italic"> (Madrasah diniyah yang akan ditempuh di
+                                pesantren) </small>
+                        </p>
+                        <select name="madin" id="madin" class="form-select">
+                            @foreach ($madin as $m)
+                                <option value="{{ $m->id }}">{{ $m->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group mb-3">
                         <label for="sekolah_asal" class="form-control-label ucfirst">sekolah asal</label>
@@ -585,12 +603,24 @@
             <span class="step"></span>
         </div>
     </form>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+        integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function() {
+            $("#formal").select2({
+                placeholder: "Pilih lembaga formal"
+            });
 
+            $("#madin").select2({
+                placeholder: "Pilih Madin"
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-
-
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
@@ -688,7 +718,6 @@
             x[n].className += " active";
         }
     </script>
-
 </body>
 
 </html>

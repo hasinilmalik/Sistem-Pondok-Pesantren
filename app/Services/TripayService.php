@@ -110,4 +110,33 @@ class TripayService{
         $response=json_decode($response)->data;
         return $response?:$error;
     }
+    public function daftarTransaksi()
+    {
+        $apiKey = config('tripay.api_key');
+        
+        // $payload = [
+        //     'page' => 1,
+        //     'per_page' => 3,
+        // ];
+        
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, [
+            CURLOPT_FRESH_CONNECT  => true,
+            CURLOPT_URL            => 'https://tripay.co.id/api-sandbox/merchant/transactions',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HEADER         => false,
+            CURLOPT_HTTPHEADER     => ['Authorization: Bearer '.$apiKey],
+            CURLOPT_FAILONERROR    => false
+        ]);
+        
+        $response = curl_exec($curl);
+        $error = curl_error($curl);
+        
+        curl_close($curl);
+        
+        $response=json_decode($response)->data;
+        return $response?:$error;
+        
+    }
 }

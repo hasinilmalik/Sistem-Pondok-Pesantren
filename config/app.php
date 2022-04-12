@@ -181,7 +181,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
