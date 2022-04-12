@@ -86,7 +86,6 @@ class TransactionController extends Controller
     }
     public function _cashSteps($id, $transaksi)
     {
-        dd($transaksi);
         $transaction = [
             'reference' => $transaksi->reference, 
             'merchant_ref' => $transaksi->merchant_reff, 
