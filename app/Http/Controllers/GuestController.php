@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\Student;
 use App\Models\Addition;
+use App\Services\WaService;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -79,6 +80,10 @@ class GuestController extends Controller
             'no_ijazah'=>$request['no_ijazah'],
             'no_un'=>$request['no_un'],
         ]);
+        // disini tempat kirim wa beserta informasi akun
+        $wa = new WaService();
+        $wa->infoAkun('6285333920007',session()->get('secretData'));
+        session()->forget('secretData');
         return redirect()->route('home')->with('info','Terima kasih telah mendaftar, lengkapi foto dan selesaikan pembayaran');
     }
     

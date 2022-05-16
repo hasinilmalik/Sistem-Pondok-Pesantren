@@ -173,7 +173,7 @@ class StudentController extends Controller
         
         
         Alert::success('Berhasil', 'Tambah data santri');
-        return redirect()->route('home');
+        return redirect()->route('students.status','baru');
     }
     public function show(Student $student)
     {

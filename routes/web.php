@@ -19,6 +19,7 @@ use App\Http\Controllers\Payment\TripayCallbackController;
 use App\Http\Controllers\PDFController;
 use App\Models\FormalInstitution;
 use App\Models\MadinInstitution;
+use App\Services\WaService;
 
 // NOTE:AUTH
 // =======================================================
@@ -94,13 +95,19 @@ Route::post('store-company', [DataTableAjaxCRUDController::class, 'store']);
 Route::post('edit-company', [DataTableAjaxCRUDController::class, 'edit']);
 Route::post('delete-company', [DataTableAjaxCRUDController::class, 'destroy']);
 
-Route::get('/ok', function ()
+Route::get('/coba', function ()
 {
-    return str('nama saya')->title();
+   return (new WaService())->infoAkun('6285233002598',session()->get('secretData'));
+    // $sender = ["6285233002598", "6285333920007"];
+    // echo $sender[array_rand($sender)];
 });
+
+route::get('cekwa', function ()
+{
+    return (new WaService())->cekWa();
+});
+
 Route::get('convert', function ()
 {
     return view('convert');
 });
-
-Route::get('cuaca/{kota}',[StudentController::class,'getWeather']);

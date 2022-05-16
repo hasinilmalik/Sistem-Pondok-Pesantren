@@ -494,7 +494,7 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="kewarganegaraan" class="form-control-label ucfirst">kewarganegaraan</label>
-                        <select name="kebutuhan_khusus" id="kebutuhan_khusus" class="form-select">
+                        <select name="kewarganegaraan" id="kewarganegaraan" class="form-select">
                             <option selected>WNI</option>
                             <option>WNA</option>
                         </select>
@@ -503,6 +503,7 @@
                         <label for="kebutuhan khusus" class="form-control-label ucfirst">kebutuhan khusus</label>
                         <select name="kebutuhan_khusus" id="kebutuhan_khusus" class="form-select">
                             <option value="" disabled selected>Pilih</option>
+                            <option value="">Tidak ada</option>
                             <option>tuna netra</option>
                             <option>tuna rungu</option>
                             <option>tuna daksa</option>
@@ -636,7 +637,7 @@
                 document.getElementById("prevBtn").style.display = "inline";
             }
             if (n == (x.length - 1)) {
-                document.getElementById("nextBtn").innerHTML = "Submit";
+                document.getElementById("nextBtn").innerHTML = "Kirim";
             } else {
                 document.getElementById("nextBtn").innerHTML = "Next";
             }

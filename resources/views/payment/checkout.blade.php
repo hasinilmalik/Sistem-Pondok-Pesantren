@@ -50,7 +50,7 @@
                                 <div class="col-7">
                                     <strong>Bayar Tunai / Di Pondok</strong>
                                 </div>
-                                <span class="primary">></span>
+                                <span class="primary"> <i class="fas fa-angle-double-right"> </i> </span>
                             </div>
                         </a>
                     </form>
@@ -69,7 +69,7 @@
                                     <div class="col-7">
                                         <strong>{{ $channel->name }}</strong>
                                     </div>
-                                    <span class="primary">></span>
+                                    <span class="primary"> <i class="fas fa-arrow-alt-circle-right"></i></span>
                                 </div>
                             </a>
                         </form>

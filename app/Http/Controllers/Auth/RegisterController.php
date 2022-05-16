@@ -69,6 +69,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        session()->put('secretData',$data);
         $user->assignRole('guest');
         return $user;
     }

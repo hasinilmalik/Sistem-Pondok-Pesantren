@@ -2,50 +2,54 @@
 @section('judul', 'Dashboard')
 @section('prefix', 'Dashboard')
 <x-datatables />
-@section('content') @hasrole('guest')
-<div class="alert alert-secondary alert-dismissible fade show" role="alert">
-    <span class="alert-icon"><i class="ni ni-like-2"></i></span>
-    <span class="font-bold text-white alert-text"><strong>INFO!</strong> Terima kasih telah melakukan pendaftaran,
-        Jangan lupa Cetak Biodata dan Surat Pernyataan !
-    </span>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<div class="row">
-    <div class="col-md-6 col-sm-12">
-        @if ($link == 'kosong')
-        @elseif($link == 'baru')
-            <a href="{{ route('pay.checkout', 'pendaftaran') }}"
-                class="btn bg-gradient-success input-block-level form-control "
-                style="padding: 50px; font-size:16px">Lakukan Pembayaran</a>
-        @else
-            <a href="{{ route('pay.detail', $link) }}" class="btn bg-gradient-success input-block-level form-control "
-                style="padding: 50px; font-size:16px">Rincian Tagihan</a>
-        @endif
-    </div>
+@section('content')
+    @if (session()->has('secretData'))
+        dfkjdsfkjhsdkjfhkdsjfhkjdhsfkjh
+    @endif
+    @hasrole('guest')
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+            <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+            <span class="font-bold text-white alert-text"><strong>INFO!</strong> Terima kasih telah melakukan pendaftaran,
+                Jangan lupa Cetak Biodata dan Surat Pernyataan !
+            </span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                @if ($link == 'kosong')
+                @elseif($link == 'baru')
+                    <a href="{{ route('pay.checkout', 'pendaftaran') }}"
+                        class="btn bg-gradient-success input-block-level form-control "
+                        style="padding: 50px; font-size:16px">Lakukan Pembayaran</a>
+                @else
+                    <a href="{{ route('pay.detail', $link) }}" class="btn bg-gradient-success input-block-level form-control "
+                        style="padding: 50px; font-size:16px">Rincian Tagihan</a>
+                @endif
+            </div>
 
-    <div class="col-md-6 col-sm-12">
-        <a href="{{ route('guest.upload_foto') }}" class="btn bg-gradient-info input-block-level form-control "
-            style="padding: 50px; font-size:16px">Lengkapi
-            Foto</a>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <a href="{{ route('pdf.mou', Auth::user()->student->id) }}"
-            class="btn bg-gradient-info input-block-level form-control " style="padding: 50px; font-size:16px">Cetak
-            Surat Pernyataan</a>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <a href="{{ route('pdf.biodata', Auth::user()->student->id) }}"
-            class="btn bg-gradient-info input-block-level form-control " style="padding: 50px; font-size:16px">Cetak
-            Biodata</a>
-    </div>
+            <div class="col-md-6 col-sm-12">
+                <a href="{{ route('guest.upload_foto') }}" class="btn bg-gradient-info input-block-level form-control "
+                    style="padding: 50px; font-size:16px">Lengkapi
+                    Foto</a>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <a href="{{ route('pdf.mou', Auth::user()->student->id) }}"
+                    class="btn bg-gradient-info input-block-level form-control " style="padding: 50px; font-size:16px">Cetak
+                    Surat Pernyataan</a>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <a href="{{ route('pdf.biodata', Auth::user()->student->id) }}"
+                    class="btn bg-gradient-info input-block-level form-control " style="padding: 50px; font-size:16px">Cetak
+                    Biodata</a>
+            </div>
 
-</div>
-@endhasrole
-@hasrole('admin')
-<x-admin-dashboard :jumlah='$jumlah' />
-{{-- <div class="mt-4 row">
+        </div>
+    @endhasrole
+    @hasrole('admin')
+        <x-admin-dashboard :jumlah='$jumlah' />
+        {{-- <div class="mt-4 row">
     <div class="mb-4 col-lg-5 mb-lg-0">
         <div class="card z-index-2">
             <div class="p-3 card-body">
@@ -219,5 +223,5 @@
         </div>
     </div>
 </div> --}}
-@endhasrole
+    @endhasrole
 @endsection
