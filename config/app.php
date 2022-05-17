@@ -182,6 +182,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        App\Providers\MalikServiceProvider::class,
 
     ],
 
@@ -200,6 +201,7 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,  
         'reImage' => Intervention\Image\Facades\Image::class,
+        'Malik' => App\Helpers\Malik::class,
     ])->toArray(),
 
 ];

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Student;
+use App\Models\MadinInstitution;
+use App\Models\FormalInstitution;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -37,5 +39,13 @@ class Addition extends Model
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+    public function madinInst()
+    {
+        return $this->hasOne(MadinInstitution::class);
+    }
+    public function formalInst()
+    {
+        return $this->hasOne(FormalInstitution::class);
     }
 }

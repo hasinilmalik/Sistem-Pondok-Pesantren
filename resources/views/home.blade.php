@@ -3,9 +3,7 @@
 @section('prefix', 'Dashboard')
 <x-datatables />
 @section('content')
-    @if (session()->has('secretData'))
-        dfkjdsfkjhsdkjfhkdsjfhkjdhsfkjh
-    @endif
+
     @hasrole('guest')
         <div class="alert alert-secondary alert-dismissible fade show" role="alert">
             <span class="alert-icon"><i class="ni ni-like-2"></i></span>

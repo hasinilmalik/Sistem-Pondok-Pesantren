@@ -7,6 +7,7 @@ use App\Services\TripayService;
 use App\Http\Controllers\Controller;
 use App\Models\BillType;
 use App\Models\Transaction;
+use App\Services\WaService;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -45,6 +46,12 @@ class TransactionController extends Controller
                     'total_amount'=>$transaction->amount,
                     'status'=>$transaction->status
                 ]);
+
+                $wa = new WaService();
+                $nohp = $user->student->family->a_phone;
+                $nohp2 = $user->student->family->i_phone;
+                $wa->infoBayar($nohp,$transaction);
+                $wa->infoBayar($nohp2,$transaction);
                 return redirect()->route('pay.detail', ['reference'=>$transaction->reference]);
             }
         }else{

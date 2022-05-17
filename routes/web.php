@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Malik;
 use App\Models\User;
 use App\Imports\UserImport;
 use Illuminate\Http\Request;
@@ -97,14 +98,15 @@ Route::post('delete-company', [DataTableAjaxCRUDController::class, 'destroy']);
 
 Route::get('/coba', function ()
 {
-   return (new WaService())->infoAkun('6285233002598',session()->get('secretData'));
+//    return (new WaService())->infoAkun('6285233002598',session()->get('secretData'));
     // $sender = ["6285233002598", "6285333920007"];
     // echo $sender[array_rand($sender)];
+    return Malik::convertHp('085233002598');
 });
 
 route::get('cekwa', function ()
 {
-    return (new WaService())->cekWa();
+    return (new WaService())->cekWa('6285 33392 0007');
 });
 
 Route::get('convert', function ()

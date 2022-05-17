@@ -384,7 +384,7 @@
                             <div class="form-group">
                                 <label for="madin" class="form-control-label ucfirst">madin</label>
                                 <input @if ($forView == 'show') disabled @endif name="madin"
-                                    value="{{ $student->addition->madin }}" placeholder="madin" class="form-control"
+                                    value="{{ $student->madin->name }}" placeholder="madin" class="form-control"
                                     id="madin" type="text" />
                             </div>
                             <div class="form-group">

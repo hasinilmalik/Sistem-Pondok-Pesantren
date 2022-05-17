@@ -182,6 +182,7 @@ class StudentController extends Controller
     }
     public function edit(Student $student)
     {
+        // dd($student);
         $forView = 'edit';
         return view('students.edit', compact('student','forView'));
     }

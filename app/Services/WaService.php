@@ -1,5 +1,7 @@
 <?php
 namespace App\Services;
+
+use Carbon\Carbon;
 Class WaService{
     protected $random_sender;
     public function __construct()
@@ -13,7 +15,7 @@ Class WaService{
             'api_key' => 'b2d95af932eedb4de92b3496f338aa5f97b36ae0',
             'sender'  => $this->random_sender,
             'number'  => $number,
-            'message' => "Terima kasih telah melakukan pendaftaran di \nPP. Miftahul Ulum Banyuputih Kidul Lumajang.\nBerikut kami informasikan akun ananda: \n\nNama: *".$data['name']."*\nEmail: ".$data['email']."\nPassword: ".$data['password']." \n\n_Wa ini dikirim otomatis, untuk informasi lebih lanjut hubungi kami di +6285216329458_",
+            'message' => "Terima kasih telah melakukan pendaftaran di \nPP. Miftahul Ulum Banyuputih Kidul Lumajang.\nBerikut kami informasikan akun ananda: \n\nNama: *".$data['name']."*\nEmail: ".$data['email']."\nPassword: ".$data['password']." \n\n_Wa ini dikirim otomatis, untuk informasi lebih lanjut hubungi kami di +6285216329458_\n\nwww.mubakid.or.id",
         ];
         
         $curl = curl_init();
@@ -34,13 +36,13 @@ Class WaService{
         curl_close($curl);
         return $response;
     }
-    public function infoBayar($number,$data)
+    public function infoBayar($number,$transaction)
     {
         $data = [
             'api_key' => 'b2d95af932eedb4de92b3496f338aa5f97b36ae0',
             'sender'  => $this->random_sender,
             'number'  => $number,
-            'message' => "Terima kasih telah melakukan pendaftaran di \nPP. Miftahul Ulum Banyuputih Kidul Lumajang.\nBerikut kami informasikan akun ananda: \n\nNama: *".$data['name']."*\nEmail: ".$data['email']."\nPassword: ".$data['password']." \n\n_Wa ini dikirim otomatis, untuk informasi lebih lanjut hubungi kami di +6285216329458_",
+            'message' => "Assalamualaikum wr.wb.\nBerikut rincian tagihan untuk pendaftaran ananda: \n*".$transaction->customer_name."*\n\n~~~~~~~~~~~\nNominal : *Rp. ".number_format($transaction->amount)."*\nMelalui : ".$transaction->payment_name."\nKode Pembayaran : *".$transaction->pay_code."*\nLakukan pembayaran sebelum : ".Carbon::createFromTimestamp($transaction->expired_time)->isoFormat('dddd, D MMMM Y, H:m')."\n~~~~~~~~~~~\n\n_Wa ini dikirim otomatis, untuk informasi lebih lanjut hubungi kami di +6285216329458_\n\nwww.mubakid.or.id",
         ];
         
         $curl = curl_init();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Malik;
 use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\Student;
@@ -44,13 +45,13 @@ class GuestController extends Controller
             'a_nama'=>$request['a_nama'],
             'a_pekerjaan'=>$request['a_pekerjaan'],
             'a_pendidikan'=>$request['a_pendidikan'],
-            'a_phone'=>$request['a_phone'],
+            'a_phone'=>Malik::convertHp($request['a_phone']),
             'a_penghasilan'=>$request['a_penghasilan'],
             'i_nik'=>$request['i_nik'],
             'i_nama'=>$request['i_nama'],
             'i_pekerjaan'=>$request['i_pekerjaan'],
             'i_pendidikan'=>$request['i_pendidikan'],
-            'i_phone'=>$request['i_phone'],
+            'i_phone'=>Malik::convertHp($request['i_phone']),
             'w_hubungan_wali'=>$request['w_hubungan_wali'],
             'w_nik'=>$request['w_nik'],
             'w_nama'=>$request['w_nama'],
@@ -82,7 +83,8 @@ class GuestController extends Controller
         ]);
         // disini tempat kirim wa beserta informasi akun
         $wa = new WaService();
-        $wa->infoAkun('6285333920007',session()->get('secretData'));
+        $wa->infoAkun(Malik::convertHp($request['a_phone']),session()->get('secretData'));
+        $wa->infoAkun(Malik::convertHp($request['i_phone']),session()->get('secretData'));
         session()->forget('secretData');
         return redirect()->route('home')->with('info','Terima kasih telah mendaftar, lengkapi foto dan selesaikan pembayaran');
     }
@@ -115,7 +117,8 @@ class GuestController extends Controller
     }
     public function show()
     {   
-        $student = Auth::user()->student;
+        $student = Auth::user()->student->id;
+        $student = Student::with('madin')->find($student);
         $ambil = new StudentController();
         $forView = 'show';
         return view('students.edit',compact('student','forView'));

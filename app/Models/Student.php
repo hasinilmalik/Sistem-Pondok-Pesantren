@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Addition;
+use App\Models\MadinInstitution;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,10 @@ class Student extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function madin()
+    {
+        return $this->belongsTo(MadinInstitution::class);
     }
     public function family()
     {
@@ -32,4 +37,5 @@ class Student extends Model
              // do the rest of the cleanup...
         });
     }
+   
 }
