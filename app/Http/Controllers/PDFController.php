@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use Illuminate\Support\Facades\Auth;
 
 class PDFController extends Controller
 {
@@ -13,7 +14,9 @@ class PDFController extends Controller
     {
         $data = Student::findOrFail($id);
         $pdf = PDF::loadView('pdf.biodata', compact('data'));
-        return $pdf->download('bio-'.$data->nama.'.pdf');
+       
+            return $pdf->stream();
+     
     }
     public function mou($id)
     {
