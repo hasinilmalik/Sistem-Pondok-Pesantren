@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label for="tanggal_lahir" class="form-control-label ucfirst">tanggal_lahir</label>
                             <input name="tanggal_lahir" placeholder="tanggal_lahir" class="form-control"
-                                id="tanggal_lahir" type="text">
+                                id="tanggal_lahir" type="date">
                         </div>
                         <div class="form-group">
                             <label for="jenis_kelamin" class="form-control-label ucfirst">jenis_kelamin</label>

@@ -87,7 +87,7 @@
         <tr>
             <td style="padding-left: 30px">Tempat, Tanggal lahir</td>
             <td style="width: 300px" class="capitalize">:
-                {{ str()->title($data->tempat_lahir) . ', ' . $data->tanggal_lahir }}
+                {{ str()->title($data->tempat_lahir) . ', ' . Carbon\Carbon::parse($data->tanggal_lahir)->isoFormat('D MMMM Y') }}
             </td>
         </tr>
         <tr>
