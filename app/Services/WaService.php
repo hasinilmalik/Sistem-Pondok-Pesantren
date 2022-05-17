@@ -89,6 +89,6 @@ Class WaService{
         
         curl_close($curl);
         $r = json_decode($response);
-        dd($r);
+        return $r;
     }
 }
