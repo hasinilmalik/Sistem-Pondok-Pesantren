@@ -97,6 +97,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
         integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @livewireStyles
+    @stack('head')
 </head>
 
 <body>
@@ -181,26 +183,26 @@
                         <input name="rtrw" value="{{ old('rtrw') }}" placeholder="" class="form-control" id="rtrw"
                             type="text">
                     </div>
+
+                    {{-- <livewire:ui.pilih-alamat /> --}}
                     <div class="form-group mb-3">
-                        <label for="nama" class="form-control-label ucfirst">desa</label>
-                        <input name="desa" value="{{ old('desa') }}" placeholder="" class="form-control" id="desa"
-                            type="text">
+                        <label for="nama" class="form-control-label ucfirst">Provinsi</label>
+                        <input name="provinsi" value="{{ old('provinsi') }}" placeholder="" class="form-control"
+                            id="provinsi" type="text">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nama" class="form-control-label ucfirst">kecamatan</label>
-                        <input name="kecamatan" oninput="this.value = this.value.toUpperCase()"
-                            value="{{ old('kecamatan') }}" placeholder="" class="form-control" id="kecamatan"
-                            type="text">
+                        <label for="nama" class="form-control-label ucfirst">Kecamatan</label>
+                        <input name="kecamatan" value="{{ old('kecamatan') }}" placeholder="" class="form-control"
+                            id="kecamatan" type="text">
                     </div>
                     <div class="form-group mb-3">
                         <label for="nama" class="form-control-label ucfirst">kota</label>
-                        <input name="kota" oninput="this.value = this.value.toUpperCase()" value="{{ old('kota') }}"
-                            placeholder="" class="form-control" id="kota" type="text">
+                        <input name="kota" value="{{ old('kota') }}" placeholder="" class="form-control" id="kota"
+                            type="text">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="nama" class="form-control-label ucfirst">provinsi</label>
-                        <input name="provinsi" oninput="this.value = this.value.toUpperCase()"
-                            value="{{ old('provinsi') }}" placeholder="" class="form-control" id="provinsi"
+                        <label for="nama" class="form-control-label ucfirst">Desa</label>
+                        <input name="desa" value="{{ old('desa') }}" placeholder="" class="form-control" id="desa"
                             type="text">
                     </div>
                     <div class="form-group mb-3">
@@ -719,6 +721,8 @@
             x[n].className += " active";
         }
     </script>
+    @livewireScripts
+    @stack('foot')
 </body>
 
 </html>

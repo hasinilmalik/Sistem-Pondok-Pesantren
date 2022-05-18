@@ -6,7 +6,7 @@ Class WaService{
     protected $random_sender;
     public function __construct()
     {
-        $sender = ["6285233002598", "6285333920007"];
+        $sender = ["6285158762445"];
         $this->random_sender = $sender[array_rand($sender)];
     }
     public function infoAkun($number,$data)

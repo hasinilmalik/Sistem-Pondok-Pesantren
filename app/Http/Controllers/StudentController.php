@@ -103,7 +103,7 @@ class StudentController extends Controller
         if($request['email']){
             $email=$request['email'];
         }else{
-            $email = $datanis . '@bakid.com';
+            $email = time() . '@bakid.id';
         }     
         // input ke tabel users
         $id = DB::table('users')->insertGetId([

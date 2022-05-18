@@ -40,80 +40,39 @@
         <div class="card mb-3" id="extab1">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        {{-- <div class="form-group">
-                            <label for="daerah" class="form-select-label">status</label>
-                            <select name="status" class="form-select">
-                                <option>santri</option>
-                                <option>alumni</option>
-                            </select>
-                        </div> --}}
-                        <div class="form-group">
-                            <label for="email" class="form-control-label ucfirst">email</label>
-                            <input name="email" placeholder="email" class="form-control" id="email" type="text"
-                                oninput="this.value = this.value.toUpperCase()">
+                    @if ($errors->any())
+                        <div class="alert">
+                            <ul class="text-danger">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
+                    @endif
+                    <div class="col-md-6">
+                        <x-form.input name="email" type="text" value="{{ old('email') }}" />
+
                         <div class="form-group">
                             <label for="nama" class="form-control-label ucfirst">nama</label>
                             <input name="nama" placeholder="nama" class="form-control" id="nama" type="text"
                                 oninput="this.value = this.value.toUpperCase()" autofocus>
                         </div>
-                        <div class="form-group">
-                            <label for="nik" class="form-control-label ucfirst">nik</label>
-                            <input name="nik" placeholder="nik" class="form-control" id="nik" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="tempat_lahir" class="form-control-label ucfirst">tempat_lahir</label>
-                            <input name="tempat_lahir" placeholder="tempat_lahir" class="form-control" id="tempat_lahir"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="tanggal_lahir" class="form-control-label ucfirst">tanggal_lahir</label>
-                            <input name="tanggal_lahir" placeholder="tanggal_lahir" class="form-control"
-                                id="tanggal_lahir" type="date">
-                        </div>
-                        <div class="form-group">
-                            <label for="jenis_kelamin" class="form-control-label ucfirst">jenis_kelamin</label>
-                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-select">
-                                <option class="ucfirst">laki-laki</option>
-                                <option class="ucfirst">perempuan</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="alamat" class="form-control-label ucfirst">alamat</label>
-                            <input name="alamat" placeholder="alamat" class="form-control" id="alamat" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="rtrw" class="form-control-label ucfirst">rtrw</label>
-                            <input name="rtrw" placeholder="rtrw" class="form-control" id="rtrw" type="text">
-                        </div>
+
+                        <x-form.input name="nik" type="number" value="{{ old('nik') }}" />
+                        <x-form.input name="tempat_lahir" type="text" value="{{ old('tempat_lahir') }}" />
+                        <x-form.input name="tanggal_lahir" type="date" value="{{ old('tanggal_lahir') }}" />
+                        <x-form.select name="jenis_kelamin" :options="['Laki-laki', 'Perempuan']" />
+                        <x-form.input name="alamat" type="text" value="{{ old('alamat') }}" />
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="nama" class="form-control-label ucfirst">desa</label>
-                            <input name="desa" placeholder="desa" class="form-control" id="desa" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama" class="form-control-label ucfirst">kecamatan</label>
-                            <input name="kecamatan" placeholder="kecamatan" class="form-control" id="kecamatan"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama" class="form-control-label ucfirst">kota</label>
-                            <input name="kota" placeholder="kota" class="form-control" id="kota" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama" class="form-control-label ucfirst">provinsi</label>
-                            <input name="provinsi" placeholder="provinsi" class="form-control" id="provinsi" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama" class="form-control-label ucfirst">kode_pos</label>
-                            <input name="kode_pos" placeholder="kode_pos" class="form-control" id="kode_pos" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="daerah" class="form-control-label ucfirst">daerah</label>
-                            <input name="daerah" placeholder="daerah" class="form-control" id="daerah" type="text">
-                        </div>
+                        <x-form.input name="rtrw" label="Rt/Rw" type="text" value="{{ old('rtrw') }}"
+                            placeholder="RT/RW" />
+                        <x-form.input name="desa" type="text" value="{{ old('desa') }}" />
+                        <x-form.input name="kecamatan" type="text" value="{{ old('kecamatan') }}" />
+                        <x-form.input name="kota" type="text" value="{{ old('kota') }}" />
+                        <x-form.input name="provinsi" type="text" value="{{ old('provinsi') }}" />
+                        <x-form.input name="kode_pos" type="number" value="{{ old('kode_pos') }}" />
+                        <x-form.input name="daerah" label="Daerah/Asrama" type="text" value="{{ old('daerah') }}" />
                     </div>
                 </div>
             </div>
@@ -122,69 +81,102 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="a_kk" class="form-control-label ucfirst">kk Ayah</label>
-                            <input name="a_kk" placeholder="a_kk" class="form-control" id="a_kk" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="a_nik" class="form-control-label ucfirst">nik Ayah</label>
-                            <input name="a_nik" placeholder="a_nik" class="form-control" id="a_nik" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama" class="form-control-label ucfirst">nama Ayah</label>
-                            <input name="a_nama" placeholder="a_nama" class="form-control" id="a_nama" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="a_pendidikan" class="form-control-label ucfirst">Pendidikan Ayah</label>
-                            <input name="a_pendidikan" placeholder="a_pendidikan" class="form-control" id="a_pendidikan"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="a_pekerjaan" class="form-control-label ucfirst">pekerjaan Ayah</label>
-                            <input name="a_pekerjaan" placeholder="a_pekerjaan" class="form-control" id="a_pekerjaan"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="a_phone" class="form-control-label ucfirst">phone Ayah</label>
-                            <input name="a_phone" placeholder="a_phone" class="form-control" id="a_phone" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="a_penghasilan" class="form-control-label ucfirst">penghasilan Ayah</label>
-                            <input name="a_penghasilan" placeholder="a_penghasilan" class="form-control"
-                                id="a_penghasilan" type="text">
-                        </div>
-
-
+                        <x-form.input name="a_kk" label="No KK (Kartu Keluarga)" type="number"
+                            value="{{ old('a_kk') }}" />
+                        <x-form.input name="a_nik" label="NIK (No KTP)" type="number" value="{{ old('a_nik') }}" />
+                        <x-form.input name="a_nama" label="Nama Ayah" type="text" value="{{ old('a_nama') }}" />
+                        <x-form.input name="a_phone" label="No Hp/Wa Ayah" type="number" value="{{ old('a_phone') }}" />
+                        <x-form.select name="a_pendidikan" label="Pendidikan Ayah" :options="[
+                            'Tidak memiliki pendidikan formal',
+                            'SD/MI/sederajat',
+                            'SMP/MTs/sederajat',
+                            'SMA/MA/SMK/sederajat',
+                            'D1',
+                            'D2',
+                            'D3',
+                            'D4/S1',
+                            'S2',
+                            'S3',
+                        ]" />
+                        <x-form.select name="a_pekerjaan" label="Pekerjaan Ayah" :options="[
+                            'Tidak Bekerja',
+                            'Nelayan',
+                            'Petani',
+                            'Peternak',
+                            'PNS/TNI/Polri',
+                            'Karyawan Swasta',
+                            'Pedagang Kecil',
+                            'Pedagang Besar',
+                            'Wiraswasta',
+                            'Wirausaha',
+                            'Buruh',
+                            'Pensiunan',
+                            'Tenaga Kerja Indonesia',
+                            'Tidak dapat diterapkan',
+                            'Sudah Meninggal',
+                            'Lainnya',
+                        ]" />
+                        <x-form.select name="a_penghasilan" label="Penghasilan Ayah" :options="[
+                            'Tidak berpenghasilan',
+                            'kurang dari Rp. 1.000.000',
+                            'Rp. 1.000.000 - Rp. 2.000.000',
+                            'lebh dari Rp. 2.000.000',
+                            'kurang dari Rp. 500.000',
+                            'Rp. 500.000 - Rp. 999.000',
+                            'Rp. 1.000.000 - Rp. 1.999.000',
+                            'Rp. 2.000.000 - Rp. 4.999.000',
+                            'Rp. 5.000.000 - Rp. 20.000.000',
+                            'Lebih dari Rp. 20.000.000',
+                            'Lainnya',
+                        ]" />
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="a_nik" class="form-control-label ucfirst">nik Ibu</label>
-                            <input name="i_nik" placeholder="i_nik" class="form-control" id="i_nik" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="nama" class="form-control-label ucfirst">nama Ibu</label>
-                            <input name="i_nama" placeholder="i_nama" class="form-control" id="i_nama" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="i_pendidikan" class="form-control-label ucfirst">Pendidikan Ibu</label>
-                            <input name="i_pendidikan" placeholder="i_pendidikan" class="form-control" id="i_pendidikan"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="i_pekerjaan" class="form-control-label ucfirst">pekerjaan Ibu</label>
-                            <input name="i_pekerjaan" placeholder="i_pekerjaan" class="form-control" id="i_pekerjaan"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="i_phone" class="form-control-label ucfirst">phone Ibu</label>
-                            <input name="i_phone" placeholder="i_phone" class="form-control" id="i_phone" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="i_penghasilan" class="form-control-label ucfirst">penghasilan Ibu</label>
-                            <input name="i_penghasilan" placeholder="i_penghasilan" class="form-control"
-                                id="i_penghasilan" type="text">
-                        </div>
-
+                        <x-form.input name="i_nik" label="NIK Ibu (No KTP)" type="number" value="{{ old('a_nik') }}" />
+                        <x-form.input name="i_nama" label="Nama Ibu" type="text" value="{{ old('a_nama') }}" />
+                        <x-form.input name="i_phone" label="No Hp/Wa Ibu" type="number" value="{{ old('a_phone') }}" />
+                        <x-form.select name="i_pendidikan" label="Pendidikan Ibu" :options="[
+                            'Tidak memiliki pendidikan formal',
+                            'SD/MI/sederajat',
+                            'SMP/MTs/sederajat',
+                            'SMA/MA/SMK/sederajat',
+                            'D1',
+                            'D2',
+                            'D3',
+                            'D4/S1',
+                            'S2',
+                            'S3',
+                        ]" />
+                        <x-form.select name="i_pekerjaan" label="Pekerjaan Ibu" :options="[
+                            'Tidak Bekerja',
+                            'Nelayan',
+                            'Petani',
+                            'Peternak',
+                            'PNS/TNI/Polri',
+                            'Karyawan Swasta',
+                            'Pedagang Kecil',
+                            'Pedagang Besar',
+                            'Wiraswasta',
+                            'Wirausaha',
+                            'Buruh',
+                            'Pensiunan',
+                            'Tenaga Kerja Indonesia',
+                            'Tidak dapat diterapkan',
+                            'Sudah Meninggal',
+                            'Lainnya',
+                        ]" />
+                        <x-form.select name="i_penghasilan" label="Penghasilan Ibu" :options="[
+                            'Tidak berpenghasilan',
+                            'kurang dari Rp. 1.000.000',
+                            'Rp. 1.000.000 - Rp. 2.000.000',
+                            'lebh dari Rp. 2.000.000',
+                            'kurang dari Rp. 500.000',
+                            'Rp. 500.000 - Rp. 999.000',
+                            'Rp. 1.000.000 - Rp. 1.999.000',
+                            'Rp. 2.000.000 - Rp. 4.999.000',
+                            'Rp. 5.000.000 - Rp. 20.000.000',
+                            'Lebih dari Rp. 20.000.000',
+                            'Lainnya',
+                        ]" />
                     </div>
                 </div>
             </div>
@@ -193,32 +185,43 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="w_hubungan_wali" class="form-control-label ucfirst">hubungan Wali</label>
-                            <input name="w_hubungan_wali" placeholder="w_hubungan_wali" class="form-control"
-                                id="w_hubungan_wali" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="w_nik" class="form-control-label ucfirst">nik Wali</label>
-                            <input name="w_nik" placeholder="w_nik" class="form-control" id="w_nik" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="w_nama" class="form-control-label ucfirst">nama Wali</label>
-                            <input name="w_nama" placeholder="w_nama" class="form-control" id="w_nama" type="text">
-                        </div>
-
+                        <x-form.input label="Hubungan Wali" name="w_hubungan_wali"
+                            value="{{ old('w_hubungan_wali') }}" />
+                        <x-form.input label="NIK Wali" name="w_nik" value="{{ old('w_nik') }}" />
+                        <x-form.input label="Nama Wali" name="w_nama" value="{{ old('w_nama') }}" />
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="w_pekerjaan" class="form-control-label ucfirst">pekerjaan Wali</label>
-                            <input name="w_pekerjaan" placeholder="w_pekerjaan" class="form-control" id="w_pekerjaan"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="w_penghasilan" class="form-control-label ucfirst">penghasilan Wali</label>
-                            <input name="w_penghasilan" placeholder="w_penghasilan" class="form-control"
-                                id="w_penghasilan" type="text">
-                        </div>
+                        <x-form.select name="w_pekerjaan" label="Pekerjaan Wali" :options="[
+                            'Tidak Bekerja',
+                            'Nelayan',
+                            'Petani',
+                            'Peternak',
+                            'PNS/TNI/Polri',
+                            'Karyawan Swasta',
+                            'Pedagang Kecil',
+                            'Pedagang Besar',
+                            'Wiraswasta',
+                            'Wirausaha',
+                            'Buruh',
+                            'Pensiunan',
+                            'Tenaga Kerja Indonesia',
+                            'Tidak dapat diterapkan',
+                            'Sudah Meninggal',
+                            'Lainnya',
+                        ]" />
+                        <x-form.select name="w_penghasilan" label="Penghasilan Wali" :options="[
+                            'Tidak berpenghasilan',
+                            'kurang dari Rp. 1.000.000',
+                            'Rp. 1.000.000 - Rp. 2.000.000',
+                            'lebh dari Rp. 2.000.000',
+                            'kurang dari Rp. 500.000',
+                            'Rp. 500.000 - Rp. 999.000',
+                            'Rp. 1.000.000 - Rp. 1.999.000',
+                            'Rp. 2.000.000 - Rp. 4.999.000',
+                            'Rp. 5.000.000 - Rp. 20.000.000',
+                            'Lebih dari Rp. 20.000.000',
+                            'Lainnya',
+                        ]" />
                     </div>
                 </div>
             </div>
@@ -227,45 +230,50 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="nism" class="form-control-label ucfirst">nism</label>
-                            <input name="nism" placeholder="nism" class="form-control" id="nism" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="kip" class="form-control-label ucfirst">kip</label>
-                            <input name="kip" placeholder="kip" class="form-control" id="kip" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="pkh" class="form-control-label ucfirst">pkh</label>
-                            <input name="pkh" placeholder="pkh" class="form-control" id="pkh" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="kks" class="form-control-label ucfirst">kks</label>
-                            <input name="kks" placeholder="kks" class="form-control" id="kks" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="agama" class="form-control-label ucfirst">agama</label>
-                            <input name="agama" placeholder="agama" class="form-control" id="agama" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="hobi" class="form-control-label ucfirst">hobi</label>
-                            <input name="hobi" placeholder="hobi" class="form-control" id="hobi" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="cita_cita" class="form-control-label ucfirst">cita_cita</label>
-                            <input name="cita_cita" placeholder="cita_cita" class="form-control" id="cita_cita"
-                                type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="kewarganegaraan" class="form-control-label ucfirst">kewarganegaraan</label>
-                            <input name="kewarganegaraan" placeholder="kewarganegaraan" class="form-control"
-                                id="kewarganegaraan" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="kebutuhan khusus" class="form-control-label ucfirst">kebutuhan khusus</label>
-                            <input name="kebutuhan khusus" placeholder="kebutuhan khusus" class="form-control"
-                                id="kebutuhan khusus" type="text">
-                        </div>
+                        <x-form.input name="nism" label="No NISM (Nomor Induk Siswa Madrasah)" type="number"
+                            value="{{ old('nism') }}" />
+                        <x-form.input name="kip" label="No KIP (Kartu Indonesia Pintar)" type="number"
+                            value="{{ old('kip') }}" />
+                        <x-form.input name="pkh" label="No PKH (Program Keluarga Harapan)" type="number"
+                            value="{{ old('pkh') }}" />
+                        <x-form.input name="kks" label="No KKS (Kartu keluarga Sejahtera)" type="number"
+                            value="{{ old('kks') }}" />
+                        <x-form.select name="agama" label="Agama" :options="['Islam', 'Kristen', 'Katolik', 'Hindu', 'Budha', 'Kong Hu Cu', 'Lainnya']" />
+                        <x-form.select name="hobi" label="Hobi" :options="['olahraga', 'kesenian', 'membaca', 'menulis', 'jalan-jalan', 'lainnya']" />
+                        <x-form.select name="cita_cita" label="cita_cita" :options="[
+                            'lainnya',
+                            'PNS',
+                            'TNI/Polri',
+                            'Guru/Dosen',
+                            'Dokter',
+                            'Politikus',
+                            'Wiraswasta',
+                            'Seniman/Artis',
+                            'Ilmuwan',
+                            'Agamawan',
+                        ]" />
+                        <x-form.select name="kewarganegaraan" label="Kewarganegaraan" :options="['WNI', 'WNA']" />
+                        <x-form.select name="kebutuhan_khusus" label="Kebutuhan Khusus" :options="[
+                            'Tidak',
+                            'Netra',
+                            'Rungu',
+                            'Grahita Ringan',
+                            'Grahita Sedang',
+                            'Daksa Ringan',
+                            'Daksa Sedang',
+                            'Laras',
+                            'Wicara',
+                            'Tuna Ganda',
+                            'Hiper Aktif',
+                            'Cerdas Istimewa',
+                            'Bakat Istimewa',
+                            'Kesulitan Belajar',
+                            'Narkoba',
+                            'Indigo',
+                            'Down Sindrome',
+                            'Autis',
+                            'Lainnya',
+                        ]" />
                         <div class="form-group">
                             <label for="status_rumah" class="form-control-label ucfirst">status_rumah</label>
                             <input name="status_rumah" placeholder="status_rumah" class="form-control" id="status_rumah"

@@ -84,6 +84,8 @@
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('pdf.biodata', $item->id) }}"
                                             target="_blank"><i class="fas fa-print"></i> Biodata </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('pdf.mou', $item->id) }}"
+                                            target="_blank"><i class="fas fa-print"></i> MoU </a></li>
                                     <li><a class="dropdown-item" href="#"><i class="fas fa-print"></i> KTS </a></li>
                                     <li><a class="dropdown-item"
                                             href="{{ route('cetak.mahrom', [$item->id, $item->nama]) }}"><i
