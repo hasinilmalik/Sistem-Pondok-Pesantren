@@ -15,5 +15,5 @@
     </div>
 @endhasrole
 @hasrole('admin|super admin')
-    @livewire('ui.cek-wa')
+    {{-- @livewire('ui.cek-wa') --}}
 @endhasrole
