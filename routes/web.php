@@ -106,7 +106,7 @@ Route::get('/coba', function ()
 
 route::get('cekwa', function ()
 {
-    return (new WaService())->cekWa('6285 33392 0007');
+    return (new WaService())->cekWa('6285333920007');
 });
 
 Route::get('convert', function ()

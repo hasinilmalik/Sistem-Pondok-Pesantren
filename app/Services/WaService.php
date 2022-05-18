@@ -67,8 +67,8 @@ Class WaService{
     {
         $data = [
             'api_key' => 'b2d95af932eedb4de92b3496f338aa5f97b36ae0',
-            'sender'  => $no,
-            'number'  => $no,
+            'sender'  => '6285333920007',
+            'number'  => '6285333920007',
             'message' => "cek notifikasi wa",
         ];
         
@@ -88,7 +88,7 @@ Class WaService{
         $response = curl_exec($curl);
         
         curl_close($curl);
-        $r = json_decode($response);
-        return $r;
+        // $r = json_decode($response);
+        return $response;
     }
 }
