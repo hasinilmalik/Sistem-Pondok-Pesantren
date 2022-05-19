@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Services\WaService;
+
 class StudentController extends Controller
 {
     public function index($status=null)
@@ -171,7 +173,15 @@ class StudentController extends Controller
             'no_un'=>$request['no_un'],
         ]);
         
-        
+        $wa = new WaService();
+        $data = [
+            'name' => $request['nama'],
+            'email' => $email,
+            'password' => '12345678',
+        ];
+        $wa->infoAkun($request['a_phone'],$data);
+        $wa->infoAkun($request['i_phone'],$data);
+
         Alert::success('Berhasil', 'Tambah data santri');
         return redirect()->route('students.status','baru');
     }

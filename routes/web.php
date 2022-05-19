@@ -129,11 +129,15 @@ route::get('cekwa', function ()
     $response = curl_exec($curl);
     
     curl_close($curl);
-    // $r = json_decode($response);
+    $r = json_decode($response);
     return $response;
 });
 
 Route::get('convert', function ()
 {
     return view('convert');
+});
+Route::get('nota', function ()
+{
+    return view('pdf.nota');
 });
