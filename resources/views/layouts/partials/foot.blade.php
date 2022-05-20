@@ -1,6 +1,7 @@
 <!--   Core JS Files   -->
 @livewireScripts
 @stack('foot')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 @include('layouts.partials.alert')
 <script src="{{ asset('assets/softui') }}/js/core/popper.min.js"></script>
 <script src="{{ asset('assets/softui') }}/js/core/bootstrap.min.js"></script>

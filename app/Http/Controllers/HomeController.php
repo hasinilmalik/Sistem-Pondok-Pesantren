@@ -91,7 +91,7 @@ class HomeController extends Controller
     }
     public function _isAdmin()
     {
-        $role = Auth::user()->HasRole('super admin');
+        $role = Auth::user()->HasRole('super admin|admin');
         return $role;
     }
 }

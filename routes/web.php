@@ -83,6 +83,7 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
        Route::get('/transaction/list/{method}','daftarTransaksi')->name('pay.list');
        Route::get('/checkout/{for}','checkout')->name('pay.checkout');
        Route::post('/checkout_proses','store')->name('pay.request');   
+       Route::post('/checkout_proses2','storeViaAdmin')->name('pay.requestViaAdmin');   
        Route::get('/guest/bills','guestBills')->name('guest.bills');
    });
 });

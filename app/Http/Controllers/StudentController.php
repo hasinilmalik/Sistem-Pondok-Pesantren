@@ -183,7 +183,8 @@ class StudentController extends Controller
         $wa->infoAkun($request['i_phone'],$data);
 
         Alert::success('Berhasil', 'Tambah data santri');
-        return redirect()->route('students.status','baru');
+        return redirect()->route('pay.checkout',1)->with('email',$email);
+        // return redirect()->route('students.status','baru');
     }
     public function show(Student $student)
     {

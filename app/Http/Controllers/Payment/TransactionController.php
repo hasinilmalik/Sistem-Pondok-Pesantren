@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Payment;
 
-use Illuminate\Http\Request;
-use App\Services\TripayService;
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\BillType;
 use App\Models\Transaction;
 use App\Services\WaService;
+use Illuminate\Http\Request;
+use App\Services\TripayService;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Carbon\Carbon;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TransactionController extends Controller
@@ -18,7 +19,8 @@ class TransactionController extends Controller
     {
         $tripay = new TripayService();
         $channels= $tripay->getPaymentChannels();
-        return view('payment.checkout',compact('channels'));
+        $bill_types = BillType::whereIn('id', [1, 5, 6])->get();
+        return view('payment.checkout',compact('channels','bill_types'));
     }
     public function store(Request $request)
     {
@@ -46,7 +48,7 @@ class TransactionController extends Controller
                     'total_amount'=>$transaction->amount,
                     'status'=>$transaction->status
                 ]);
-
+                
                 $wa = new WaService();
                 $nohp = $user->student->family->a_phone;
                 $nohp2 = $user->student->family->i_phone;
@@ -58,6 +60,26 @@ class TransactionController extends Controller
             return back()->with('error','Bill type not found');
         }
     }
+    public function storeViaAdmin(Request $request)
+    {
+        $u = User::where('email',$request->email)->first();
+        if(!isset($u)){
+            return back()->with('error','User not found');
+        }else{
+            $merchant_ref = 'REG'.time();
+            Transaction::create([
+                'user_id'=>$u->id,
+                'bill_type_id'=>$request->bill_type_id,
+                'reference'=>'MBKD-'.time(),
+                'merchant_ref'=>$merchant_ref,
+                'total_amount'=>$request->amount,
+                'is_cash'=>true,
+                'status'=>$request->status,
+            ]);
+            return redirect()->route('students.index','baru')->with('success','Pembayaran berhasil diterapkan');
+        }
+    }
+    
     public function show($reference){   
         $transaksi = Transaction::where('reference',$reference)->first();
         $bill_type_id = $transaksi->bill_type_id;
@@ -192,8 +214,9 @@ class TransactionController extends Controller
     }
     // public function payCash(Request $request)
     // {
-    //     $transaksi = Transaction::where('reference',$request->reference)->update(['status'=>'PAID']);
-    //     Alert::success('Success','Pembayaran Berhasil');
-    //     return redirect()->route('pay.list','offline');
-    // }
-}
+        //     $transaksi = Transaction::where('reference',$request->reference)->update(['status'=>'PAID']);
+        //     Alert::success('Success','Pembayaran Berhasil');
+        //     return redirect()->route('pay.list','offline');
+        // }
+    }
+    

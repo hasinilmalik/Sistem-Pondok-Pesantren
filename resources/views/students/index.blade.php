@@ -4,6 +4,7 @@
 
 <x-datatables />
 @section('content')
+    <x-ui.toastr />
     <div class="d-lg-flex justify-content-between">
         <div>
             <a href="{{ route('students.create') }}" class="mt-2 badge bg-gradient-primary">+ Tambah</a>

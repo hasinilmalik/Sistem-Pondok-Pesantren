@@ -32,6 +32,16 @@ class BillTypeSeeder extends Seeder
                 'name'=>'kalender',
                 'amount'=>15000
             ],
+            [
+                'name'=>'pendaftaran2',
+                'amount'=>200000
+            ],
+            
+            [
+                'name'=>'pendaftaran3',
+                'amount'=>0
+            ],
+            
         ];
         foreach ($data as $ok) {
             BillType::create($ok);

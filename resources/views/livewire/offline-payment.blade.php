@@ -1,5 +1,5 @@
 <div>
-    {{-- hello {{ $message }} --}}
+    hello {{ $message }}
     {{-- hi {{ $reference }} --}}
     {{-- <button wire:click="clickTest">test</button> --}}
     <table id="datatable" class="table table-striped table-bordered nowrap" style="width:100%">
@@ -10,8 +10,8 @@
                 <th>Nominal</th>
                 <th>Status</th>
                 <th>Untuk</th>
-                <th>Aksi</th>
                 <th>Tgl Request</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +32,12 @@
                     <td>{{ $item->bill_type->name }}</td>
                     <td>{{ Carbon\Carbon::parse($item->created_at)->isoFormat('D MMM Y H:m') }}</td>
                     <td>
-                        <button wire:click="bayar({{ $item->id }})" class="btn badge bg-primary">Bayar</button>
+                        @if ($item->status == 'unpaid')
+                            <button wire:click="bayar({{ $item->id }})" class="btn badge bg-primary">Bayar</button>
+                        @else
+                            <button wire:click="cancel({{ $item->id }})"
+                                class="btn badge bg-danger">Batalkan</button>
+                        @endif
                     </td>
                 </tr>
             @endforeach

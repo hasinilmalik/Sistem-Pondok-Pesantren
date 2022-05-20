@@ -3,6 +3,40 @@
 @section('prefix', 'Dashboard')
 <x-datatables />
 @section('content')
+    <x-ui.toastr />
+    <script>
+        toastr.success('{{ Session('success') }}');
+    </script>
+
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+
+    @if ($message = Session::get('error'))
+        <div class="alert alert-danger alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+
+    @if ($message = Session::get('warning'))
+        <div class="alert alert-warning alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+
+    @if ($message = Session::get('info'))
+        <div class="alert alert-info alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+
 
     @hasrole('guest')
         <div class="alert alert-secondary alert-dismissible fade show" role="alert">

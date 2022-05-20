@@ -152,14 +152,14 @@
         }
 
         #laundry {
-            background-color: #FF0101;
+            background-color: #32a852;
             min-height: 260px;
             padding-bottom: 50px;
             z-index: 99;
         }
 
         #laundry+svg .curvy {
-            fill: #FF0101;
+            fill: #32a852;
             opacity: 0.9;
         }
 
@@ -178,8 +178,8 @@
                 style="width: 480px; background-color: #ccc; margin: 20px auto; padding: 2rem 4rem; border-radius: 10px; background-color: #ffffff;box-shadow: 0 1px 2px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.07), 0 4px 8px rgba(0,0,0,0.07), 0 8px 16px rgba(0,0,0,0.07),0 16px 32px rgba(0,0,0,0.07), 0 32px 64px rgba(0,0,0,0.07); margin-bottom: 20px;">
 
                 <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
-                    <img src="http://ryopercetakan.ptryodigitalprinting.com/assets/RDP.png" width="32" height="38"
-                        alt="logo" border="0" />
+                    <img src="https://mubakid.or.id/wp-content/uploads/2019/01/LOGO-PPMU-PNG-Copy-300x300.png"
+                        height="60" alt="logo" border="0" />
                     <p
                         style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right; font-weight: bold;">
                         Invoice</p>
@@ -191,18 +191,22 @@
                         N1705220076 <br> 17-05-2022</p>
                 </div>
 
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="font-family: 'Open Sans'; margin: 0; margin-bottom: 2rem;">Ryo Digital Printing</h3>
-                    <p style="font-size: 12px; font-family: 'Open Sans';">Halo, PPMU. <br> Terima Kasih telah
-                        Menggunakan Jasa <br> Kami.</p>
+                <div style="">
+                    <h3 style="font-family: 'Open Sans'; margin: 0; ">PP. MIftahul Ulum
+                    </h3><br>
+
+
+                    <p style="font-size: 12px; font-family: 'Open Sans';">Atas Nama : <br />M Hasin Ilmalik <br>
                 </div>
 
                 <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
                     <div>
                         <h4 style="font-family: 'Open Sans'; font-size: 12px; font-weight: bold; color: #5B5B5B;">
                             BILLING INFORMATION</h4>
-                        <p style="font-size: 12px; font-family: 'Open Sans'; margin: 0; text-align: left;">PPMU <br> lmj
-                            <br> No: +6282333879922
+                        <p style="font-size: 12px; font-family: 'Open Sans'; margin: 0; text-align: left;">Kode:
+                            5646dfgdf<br>
+                            Tgl: fgd656
+                            <br>
                         </p>
                     </div>
                     <div>
@@ -210,8 +214,7 @@
                             style="font-family: 'Open Sans'; font-size: 12px; font-weight: bold; text-align: right; color: #5B5B5B;">
                             PAYMENT METHOD</h4>
                         <p style="font-size: 12px; font-family: 'Open Sans'; margin: 0; text-align: right;">
-                            CASH <br> Status Pembayaran: <u style="color: #ff0000;">LUNAS</u><br>
-                            Pengambilan: JAM 16.00 </p>
+                            CASH <br> Status Pembayaran: <u style="color: #ff0000;">LUNAS</u></p>
                     </div>
                 </div>
 
@@ -222,19 +225,19 @@
                             <tr>
                                 <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;"
                                     width="52%" align="left">
-                                    Nama Barang
+                                    Keperluan
                                 </th>
                                 <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;"
                                     align="center">
-                                    Jumlah
+
                                 </th>
                                 <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;"
                                     align="right">
-                                    Harga
+
                                 </th>
                                 <th style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;"
                                     align="right">
-                                    Total Harga
+                                    Nominal
                                 </th>
                             </tr>
                             <tr>
@@ -245,37 +248,19 @@
                                     class="article">
                                     <p style="color: #ff0000;line-height: 18px;">FRONLITE 380 GR</p>
                                     <p style="color: #2E2E2E;">
-                                        Panjang : 3.5 m , Lebar : 1.5 m<br>Finishing Outdoor : Plong Pojok Lebih dari 4
-                                        , Jumlah : 6 pcs <br> Keterangan : - PLONG A3B3 </p>
+                                        keterangan </p>
                                 </td>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="center">1</td>
+                                    align="center"> </td>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="right">Rp. 121,750</td>
+                                    align="right"></td>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
                                     align="right">Rp. 121,750</td>
                             </tr>
                             <tr>
                                 <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                             </tr>
-                            <tr>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; vertical-align: top; padding:10px 0;"
-                                    class="article">
-                                    <p style="color: #ff0000;line-height: 18px;">FRONLITE 380 GR</p>
-                                    <p style="color: #2E2E2E;">
-                                        Panjang : 2.5 m , Lebar : 1 m<br>Finishing Outdoor : Plong Pojok Lebih dari 4 ,
-                                        Jumlah : 6 pcs <br> Keterangan : - PLONG A3B3 </p>
-                                </td>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="center">1</td>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="right">Rp. 58,500</td>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="right">Rp. 58,500</td>
-                            </tr>
-                            <tr>
-                                <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
-                            </tr>
+
                         </tbody>
                     </table>
                     <!-- /Order Details -->
@@ -288,7 +273,7 @@
                             <tr>
                                 <td
                                     style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
-                                    Total Harga
+                                    Total
                                 </td>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;"
                                     width="80">

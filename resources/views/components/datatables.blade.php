@@ -18,6 +18,8 @@
             $(document).ready(function() {
                 var table = $('#datatable').DataTable({
                     // serverSide: true,
+                    // "ordering": false,
+                    'bsort': false,
                     responsive: true,
                     lengthChange: false,
                     lengthMenu: [10, 25, 50, 100],

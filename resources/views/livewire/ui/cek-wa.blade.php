@@ -6,5 +6,11 @@
     @else
         <span class="badge badge-pill bg-gradient-secondary"></span>
     @endif
+    <br> wa Developer (007) <span wire:loading>Loading ...</span>
+    @if ($wa2 == true)
+        <span class="badge badge-pill bg-gradient-success"></span>
+    @else
+        <span class="badge badge-pill bg-gradient-secondary"></span>
+    @endif
 
 </div>
