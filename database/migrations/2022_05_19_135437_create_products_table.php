@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('bill_type_id');
             $table->string('name');
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->integer('amount');
             $table->timestamps();
         });
