@@ -10,6 +10,7 @@ use App\Services\WaService;
 use Illuminate\Http\Request;
 use App\Services\TripayService;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -212,11 +213,12 @@ class TransactionController extends Controller
         }
         return view('payment.list', compact('transactions'));
     }
-    // public function payCash(Request $request)
-    // {
-        //     $transaksi = Transaction::where('reference',$request->reference)->update(['status'=>'PAID']);
-        //     Alert::success('Success','Pembayaran Berhasil');
-        //     return redirect()->route('pay.list','offline');
-        // }
-    }
     
+    public function invoice($reference)
+    {
+        $trx = Transaction::where('reference',$reference)->first();
+        $products = Product::where('bill_type_id',$trx->bill_type_id)->get();
+        $total = $products->sum('amount');
+        return view('pdf.nota',compact('trx','products','total'));
+    }
+}

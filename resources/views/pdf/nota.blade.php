@@ -196,7 +196,8 @@
                     </h3><br>
 
 
-                    <p style="font-size: 12px; font-family: 'Open Sans';">Atas Nama : <br />M Hasin Ilmalik <br>
+                    <p style="font-size: 12px; font-family: 'Open Sans';">Atas Nama : <br />{{ $trx->user->name }}
+                        <br>
                 </div>
 
                 <div style="display: flex; justify-content: space-between; margin-bottom: 2rem;">
@@ -204,8 +205,8 @@
                         <h4 style="font-family: 'Open Sans'; font-size: 12px; font-weight: bold; color: #5B5B5B;">
                             BILLING INFORMATION</h4>
                         <p style="font-size: 12px; font-family: 'Open Sans'; margin: 0; text-align: left;">Kode:
-                            5646dfgdf<br>
-                            Tgl: fgd656
+                            {{ $trx->reference }}<br>
+                            Tgl: {{ Carbon\Carbon::parse($trx->created_at)->format('d-m-Y') }}<br>
                             <br>
                         </p>
                     </div>
@@ -214,7 +215,18 @@
                             style="font-family: 'Open Sans'; font-size: 12px; font-weight: bold; text-align: right; color: #5B5B5B;">
                             PAYMENT METHOD</h4>
                         <p style="font-size: 12px; font-family: 'Open Sans'; margin: 0; text-align: right;">
-                            CASH <br> Status Pembayaran: <u style="color: #ff0000;">LUNAS</u></p>
+                            @if ($trx->is_cash == true)
+                                CASH
+                            @else
+                                TRANSFER
+                                @endif <br> Status Pembayaran: <u style="color: #ff0000;">
+                                    @if ($trx->status == 'paid')
+                                        LUNAS
+                                    @else
+                                        BELUM DIBAYAR
+                                    @endif
+                                </u>
+                        </p>
                     </div>
                 </div>
 
@@ -243,24 +255,27 @@
                             <tr>
                                 <td height="1" style="background: #bebebe;" colspan="4"></td>
                             </tr>
-                            <tr>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; vertical-align: top; padding:10px 0;"
-                                    class="article">
-                                    <p style="color: #ff0000;line-height: 18px;">FRONLITE 380 GR</p>
-                                    <p style="color: #2E2E2E;">
-                                        keterangan </p>
-                                </td>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="center"> </td>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="right"></td>
-                                <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
-                                    align="right">Rp. 121,750</td>
-                            </tr>
-                            <tr>
-                                <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
-                            </tr>
 
+                            {{-- disini foreach --}}
+                            @foreach ($products as $pro)
+                                <tr>
+                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; vertical-align: top; padding:10px 0;"
+                                        class="article">
+                                        <p style="color: #ff0000;line-height: 18px;">{{ $pro->name }}</p>
+                                        <p style="color: #2E2E2E;">
+                                            {{ $pro->note }} </p>
+                                    </td>
+                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"
+                                        align="center"> </td>
+                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
+                                        align="right"></td>
+                                    <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;"
+                                        align="right">Rp. {{ number_format($pro->amount) }}</td>
+                                </tr>
+                                <tr>
+                                    <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                     <!-- /Order Details -->
@@ -277,7 +292,7 @@
                                 </td>
                                 <td style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; white-space:nowrap;"
                                     width="80">
-                                    Rp. 180,250 </td>
+                                    Rp. {{ number_format($total) }} </td>
                             </tr>
                             <tr>
                                 <td
@@ -286,7 +301,15 @@
                                 </td>
                                 <td
                                     style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #646a6e; line-height: 22px; vertical-align: top; text-align:right; ">
-                                    Rp. 200,000 </td>
+
+
+                                    @if ($trx->status == 'paid')
+                                        Rp. {{ number_format($total) }}
+                                    @else
+                                        Rp. 0
+                                    @endif
+
+                                </td>
                             </tr>
                             <tr>
                                 <td
@@ -295,7 +318,14 @@
                                 </td>
                                 <td
                                     style="font-size: 12px; font-family: 'Open Sans', sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                                    <strong>Rp. 19,750</strong>
+                                    <strong>
+                                        @if ($trx->status == 'paid')
+                                            Rp. 0
+                                        @else
+                                            - Rp. {{ number_format($total) }}
+                                        @endif
+
+                                    </strong>
                                 </td>
                             </tr>
                             <!-- <tr>

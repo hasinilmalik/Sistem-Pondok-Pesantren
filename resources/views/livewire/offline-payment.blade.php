@@ -39,6 +39,9 @@
                                 class="btn badge bg-danger">Batalkan</button>
                         @endif
                     </td>
+                    <td>
+                        <a href="{{ route('pay.invoice', $item->reference) }}" target="_blank">Link Nota</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
