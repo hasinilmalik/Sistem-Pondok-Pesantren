@@ -37,8 +37,8 @@ Class WaService{
         $error = curl_error($curl);
         curl_close($curl);
         
+        dd($response);
         $response = json_decode($response);
-        // dd($response);
         return $response ? : $error;
     }
     public function infoBayar($number,$transaction)
