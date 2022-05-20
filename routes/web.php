@@ -85,10 +85,10 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
        Route::post('/checkout_proses','store')->name('pay.request');   
        Route::post('/checkout_proses2','storeViaAdmin')->name('pay.requestViaAdmin');   
        Route::get('/guest/bills','guestBills')->name('guest.bills');
-       Route::get('/nota/{reference}','invoice')->name('pay.invoice');
-   });
+    });
 });
 Route::post('callback',[TripayCallbackController::class,'handle']);
+Route::get('/nota/{reference}',[TransactionController::class,'invoice'])->name('pay.invoice');
 
 // NOTE:TRY
 // =======================================================

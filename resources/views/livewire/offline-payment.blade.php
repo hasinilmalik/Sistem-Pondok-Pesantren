@@ -12,6 +12,7 @@
                 <th>Untuk</th>
                 <th>Tgl Request</th>
                 <th>Aksi</th>
+                <th>Link</th>
             </tr>
         </thead>
         <tbody>

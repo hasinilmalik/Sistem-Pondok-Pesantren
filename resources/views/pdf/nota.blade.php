@@ -182,13 +182,16 @@
                         height="60" alt="logo" border="0" />
                     <p
                         style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right; font-weight: bold;">
-                        Invoice</p>
+                        NOTA</p>
                 </div>
 
                 <div>
                     <p class="text-order"
                         style="font-size: 12px; font-family: 'Open Sans'; margin: 0; text-align: right;">No Nota
-                        N1705220076 <br> 17-05-2022</p>
+                        N{{ date('dmy') . $trx->id }}
+                        {{-- <br> {{ date('d-m-Y') }} --}}
+
+                    </p>
                 </div>
 
                 <div style="">

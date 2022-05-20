@@ -68,7 +68,7 @@ class TransactionController extends Controller
             return back()->with('error','User not found');
         }else{
             $merchant_ref = 'REG'.time();
-            Transaction::create([
+            $trx = Transaction::create([
                 'user_id'=>$u->id,
                 'bill_type_id'=>$request->bill_type_id,
                 'reference'=>'MBKD-'.time(),
@@ -77,6 +77,24 @@ class TransactionController extends Controller
                 'is_cash'=>true,
                 'status'=>$request->status,
             ]);
+
+            $wa = new WaService();
+            $nohp = $u->student->family->a_phone;
+            $nohp2 = $u->student->family->i_phone;
+
+            if($request->status=='paid'){
+                $s = 'Lunas';
+            }else{
+                $s = 'Belum Lunas';
+            }
+            
+                $nama=$u->student->nama;
+                $amount=$request->amount;
+                $status=$s;
+                $link = 'https://santribaru.com/nota/'.$trx->reference;
+        
+            $wa->kirimNota($nohp,$nama,$amount,$status, $link);
+
             return redirect()->route('students.index','baru')->with('success','Pembayaran berhasil diterapkan');
         }
     }
