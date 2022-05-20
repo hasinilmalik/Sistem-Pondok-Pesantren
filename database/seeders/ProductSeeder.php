@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
     */
     public function run()
     {
-        DB::table('products')->insert(
+        DB::table('products')->insert([
             [
                 'bill_type_id' => 1,
                 'name' => 'Administrasi Santri Baru',
@@ -47,6 +47,7 @@ class ProductSeeder extends Seeder
                 'name' => 'Infaq Gedung',
                 'amount' => 0,
             ],
+        ]
         );
     }
 }
