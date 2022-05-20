@@ -179,11 +179,16 @@ class StudentController extends Controller
             'email' => $email,
             'password' => '12345678',
         ];
-        $wa->infoAkun($request['a_phone'],$data);
-        $wa->infoAkun($request['i_phone'],$data);
-
+        
+        $wa1 = $wa->infoAkun($request['a_phone'],$data);
+        $wa2 = $wa->infoAkun($request['i_phone'],$data);
+        if($wa1->status==true||$wa2->status==true){
+            $status = 'Berhasil kirimn WA';
+        }else{
+            $status = 'Gagal kirimn WA';
+        }
         Alert::success('Berhasil', 'Tambah data santri');
-        return redirect()->route('pay.checkout',1)->with('email',$email);
+        return redirect()->route('pay.checkout',1)->with(['email'=>$email, 'success'=>'Berhasil tambah data', 'info'=>$status]);
         // return redirect()->route('students.status','baru');
     }
     public function show(Student $student)
