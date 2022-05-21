@@ -34,10 +34,10 @@ Class WaService{
         );
         
         $response = curl_exec($curl);
+        dd($response);
         $error = curl_error($curl);
         curl_close($curl);
-
-        $response = json_decode($response);
+        $response = json_decode($response)->status;
         // dd($response);
         return $response;
     }
