@@ -18,8 +18,8 @@ class TransactionController extends Controller
 {
     public function checkout()
     {
-        // $tripay = new TripayService();
-        // $channels= $tripay->getPaymentChannels();
+        $tripay = new TripayService();
+        $channels= $tripay->getPaymentChannels();
         $bill_types = BillType::whereIn('id', [1, 5, 6])->get();
         return view('payment.checkout',compact('bill_types'));
     }

@@ -182,7 +182,7 @@
                         height="60" alt="logo" border="0" />
                     <p
                         style="font-size: 21px; color: #ff0000; letter-spacing: -1px; font-family: 'Open Sans', sans-serif; line-height: 1; vertical-align: top; text-align: right; font-weight: bold;">
-                        NOTA</p>
+                        INVOICE</p>
                 </div>
 
                 <div>
