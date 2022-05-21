@@ -37,6 +37,7 @@ Class WaService{
         $error = curl_error($curl);
         curl_close($curl);
         
+
         $response = json_decode($response);
         return $response ? : $error;
     }
@@ -151,6 +152,7 @@ Class WaService{
         
         curl_close($curl);
         $r = json_decode($response)->status;
+        dd($r);
         return $r;
     }
     
