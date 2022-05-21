@@ -91,7 +91,7 @@ class TransactionController extends Controller
                 $nama=$u->student->nama;
                 $amount=$request->amount;
                 $status=$s;
-                $link = 'https://santribaru.com/nota/'.$trx->reference;
+                $link = 'https://mubakid.xyz/nota/'.$trx->reference;
         
             $wa->kirimNota($nohp,$nama,$amount,$status, $link);
 
