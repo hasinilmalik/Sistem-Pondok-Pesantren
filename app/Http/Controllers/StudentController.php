@@ -182,8 +182,8 @@ class StudentController extends Controller
         
         $wa1 = $wa->infoAkun($request['a_phone'],$data);
         $wa2 = $wa->infoAkun($request['i_phone'],$data);
-        
-        if($wa1->status==true or $wa2->status==true){
+
+        if($wa1==true or $wa2==true){
             $status = 'Berhasil kirimn WA';
         }else{
             $status = 'Gagal kirimn WA';
