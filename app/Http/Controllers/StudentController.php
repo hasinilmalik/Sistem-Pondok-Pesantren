@@ -22,16 +22,16 @@ use App\Http\Requests\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
-    public function json()
+    public function json($status)
     {
-        $data = Student::with('addition')->select(['id', 'nama', 'kota','daerah']);
+        $data = Student::with('addition')->select(['id', 'nama', 'kota','daerah'])->where('status', $status);
         return DataTables::of($data)
         ->addColumn('action',function($data){
-            $url_show = url('students/'.$data->id.'');
-            $url_edit = url('students/'.$data->id.'/edit');
+            $url_show = url('students/'.$data->id);
+            $url_edit = url('students/'. $data->id .'/edit');
             $url_delete = url('students/'.$data->id.'/delete');
-            $biodata = url('pdf/biodata/'.$data->id.'');
-            $mou = url('pdf/mou/'.$data->id.'');
+            $biodata = url('pdf/biodata/'. $data->id);
+            $mou = url('pdf/mou/'.$data->id);
 
             $b1 = '<div class="btn-group"><button type="button" class="btn bg-gradient-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button><ul class="dropdown-menu">
             <li><a class="dropdown-item" href="'.$url_show.'">Lihat</a></li>

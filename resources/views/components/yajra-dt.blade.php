@@ -14,9 +14,19 @@
         <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
 
-
+        @php
+            $url = Request::segment(2);
+            if ($url == null) {
+                $url = 'santri';
+            } else {
+                $url = $url;
+            }
+        @endphp
         <script type="text/javascript">
             $(document).ready(function() {
+                var url = {!! json_encode($url) !!};
+                // var c = "{{ url('student/' . $url . '/json') }}";
+                // console.log(c);
                 var table = $('#student-table').DataTable({
                     dom: 'lBfrtip',
                     buttons: [
@@ -32,7 +42,7 @@
                     "oLanguage": {
                         "sSearch": ""
                     },
-                    ajax: "{{ url('/student/json') }}",
+                    ajax: "{{ url('student/' . $url . '/json') }}",
                     columns: [{
                             data: 'nama',
                             name: 'nama'
