@@ -36,7 +36,7 @@ class StudentController extends Controller
             $b1 = '<div class="btn-group"><button type="button" class="btn bg-gradient-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button><ul class="dropdown-menu">
             <li><a class="dropdown-item" href="'.$url_show.'">Lihat</a></li>
             <li><a class="dropdown-item" href="'.$url_edit.'">Edit</a></li>
-            <li><a style="color:red" class="dropdown-item" href="'.$url_delete.'">Hapus</a></li>
+            <!-- <li><a style="color:red" class="dropdown-item" href="'.$url_delete.'">Hapus</a></li> -->
             <li><hr class="dropdown-divider"></li>';
             $b2 = '<li><a class="dropdown-item" href="'.$biodata.'" target="_blank"><i class="fas fa-print"></i> Biodata </a></li><li><a class="dropdown-item" href="'.$mou.'" target="_blank"><i class="fas fa-print"></i> MoU </a></li> <li><a class="dropdown-item" href="#"><i class="fas fa-print"></i> KTS </a></li><li><a class="dropdown-item" href=""><i class="fas fa-print"></i> Mahrom </a></li></ul></div>';
             $button = $b1.$b2;
