@@ -6,9 +6,11 @@ use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\Student;
 use App\Models\Addition;
+use App\Services\WaService;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Imports\StudentImport;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -17,10 +19,33 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Services\WaService;
 
 class StudentController extends Controller
 {
+    public function json()
+    {
+        $data = Student::with('addition')->select(['id', 'nama', 'kota','daerah']);
+        return DataTables::of($data)
+        ->addColumn('action',function($data){
+            $url_show = url('students/'.$data->id.'');
+            $url_edit = url('students/'.$data->id.'/edit');
+            $url_delete = url('students/'.$data->id.'/delete');
+            $biodata = url('pdf/biodata/'.$data->id.'');
+            $mou = url('pdf/mou/'.$data->id.'');
+
+            $b1 = '<div class="btn-group"><button type="button" class="btn bg-gradient-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button><ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="'.$url_show.'">Lihat</a></li>
+            <li><a class="dropdown-item" href="'.$url_edit.'">Edit</a></li>
+            <li><a style="color:red" class="dropdown-item" href="'.$url_delete.'">Hapus</a></li>
+            <li><hr class="dropdown-divider"></li>';
+            $b2 = '<li><a class="dropdown-item" href="'.$biodata.'" target="_blank"><i class="fas fa-print"></i> Biodata </a></li><li><a class="dropdown-item" href="'.$mou.'" target="_blank"><i class="fas fa-print"></i> MoU </a></li> <li><a class="dropdown-item" href="#"><i class="fas fa-print"></i> KTS </a></li><li><a class="dropdown-item" href=""><i class="fas fa-print"></i> Mahrom </a></li></ul></div>';
+            $button = $b1.$b2;
+            return $button;
+        })
+        ->rawColumns(['action'])
+        ->make(true);
+    }
+    
     public function index($status=null)
     {
         $jml_baru = $this->_getCountNewStudent();
@@ -29,7 +54,7 @@ class StudentController extends Controller
         }else{
             $students = $this->getStudents($status);
         }  
-        return view('students.index', compact('students','jml_baru'));
+        return view('students.index', compact('jml_baru'));
     }
     public function getStudents($status='santri')
     {
@@ -182,7 +207,7 @@ class StudentController extends Controller
         
         $wa1 = $wa->infoAkun($request['a_phone'],$data);
         $wa2 = $wa->infoAkun($request['i_phone'],$data);
-
+        
         if($wa1==true or $wa2==true){
             $status = 'Berhasil kirimn WA';
         }else{
@@ -199,7 +224,6 @@ class StudentController extends Controller
     }
     public function edit(Student $student)
     {
-        // dd($student);
         $forView = 'edit';
         return view('students.edit', compact('student','forView'));
     }
@@ -307,6 +331,12 @@ class StudentController extends Controller
             $jml_data = Student::where('status','baru')->where('jenis_kelamin',$admin)->count();
         }
         return $jml_data;
+    }
+    public function delete(Student $student)
+    {
+        Student::find($student->id)->delete();
+        Alert::success('Berhasil', 'Hapus data');
+        return redirect()->route('students.index');   
     }
 }
 

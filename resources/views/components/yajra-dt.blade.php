@@ -18,16 +18,16 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 var table = $('#student-table').DataTable({
-                    // dom: 'lBfrtip',
-                    // buttons: [
-                    //     'copy', 'excel', 'pdf', 'csv', 'print'
-                    // ],
+                    dom: 'lBfrtip',
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'csv', 'print'
+                    ],
                     processing: true,
                     serverSide: true,
                     'bsort': false,
                     responsive: true,
                     lengthChange: false,
-                    // lengthMenu: [10, 25, 50, 100],
+                    lengthMenu: [10, 25, 50, 100],
                     pageLength: 20,
                     "oLanguage": {
                         "sSearch": ""
@@ -47,7 +47,7 @@
                         },
                         {
                             data: 'action',
-                            name: 'Action'
+                            name: 'action'
                         },
                     ]
                 });

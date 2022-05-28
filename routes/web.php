@@ -1,15 +1,20 @@
 <?php
 
-use App\Helpers\Malik;
 use App\Models\User;
+use App\Helpers\Malik;
 use App\Imports\UserImport;
+use App\Services\WaService;
 use Illuminate\Http\Request;
+use App\Models\MadinInstitution;
 use Yajra\DataTables\DataTables;
+use App\Models\FormalInstitution;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\StudentsComponent;
 use App\Http\Controllers\CetakController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ConvertController;
@@ -17,10 +22,6 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DataTableAjaxCRUDController;
 use App\Http\Controllers\Payment\TransactionController;
 use App\Http\Controllers\Payment\TripayCallbackController;
-use App\Http\Controllers\PDFController;
-use App\Models\FormalInstitution;
-use App\Models\MadinInstitution;
-use App\Services\WaService;
 
 // NOTE:AUTH
 // =======================================================
@@ -42,10 +43,13 @@ Route::post('/students/import_excel', [StudentController::class,'import_data'])-
 Route::group(['middleware' => ['role:super admin|admin']], function () {
     Route::controller(StudentController::class)->group( function ()
     {
+        Route::get('/student/json','json');
         Route::get('/student/import','import_excel');
         Route::get('/student/{status?}','index')->name('students.status');
+        Route::get('/students/{student}/delete','delete');
     });  
     Route::resource('students', StudentController::class);
+    // Route::get('students', StudentsComponent::class)->name('students');
 });
 
 // NOTE:GUEST
@@ -63,6 +67,10 @@ Route::group(['middleware'=>['role:guest']], function (){
         Route::post('guest/upload_foto',[GuestController::class,'store_foto'])->name('guest.store_foto');
         Route::post('/daftar',[GuestController::class,'store'])->name('guest.store');
     });
+});
+
+Route::group(['middleware'=>['role:admin|super admin']], function (){
+   Route::resource('user', UserController::class);
 });
 
 Route::controller(PDFController::class)->name('pdf.')->group(function ()

@@ -183,6 +183,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\MalikServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -202,6 +203,7 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,  
         'reImage' => Intervention\Image\Facades\Image::class,
         'Malik' => App\Helpers\Malik::class,
+        'DATATABEL' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];
