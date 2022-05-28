@@ -1,0 +1,4 @@
+#1 ngambil url segment in blade
+Request::url(), or Request::fullUrl(), or Request::path(), Request::is() and also Request::segment().
+
+#2

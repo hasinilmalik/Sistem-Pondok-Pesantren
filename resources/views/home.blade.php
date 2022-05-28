@@ -3,7 +3,6 @@
 @section('prefix', 'Dashboard')
 <x-datatables />
 @section('content')
-    <x-ui.toastr />
     <script>
         toastr.success('{{ Session('success') }}');
     </script>

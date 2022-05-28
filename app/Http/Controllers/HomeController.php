@@ -69,13 +69,17 @@ class HomeController extends Controller
     }
     public function cekJumlahSantri()
     {
-        $jumlah_putri = Student::where('jenis_kelamin','perempuan')->count();
-        $jumlah_putra = Student::where('jenis_kelamin','laki-laki')->count();
+        $jumlah_putri = Student::where('jenis_kelamin','perempuan')->where('status','!=','alumni')->count();
+        $jumlah_putra = Student::where('jenis_kelamin','laki-laki')->where('status','!=','alumni')->count();
         $alumni = Student::where('status','alumni')->count();
+        $baru = Student::whereYear('created_at', date('Y'))->count();
+        $total_santri = Student::where('status','!=','alumni')->count();
         $jumlah = [
             'jumlah_putri' => $jumlah_putri,
             'jumlah_putra' => $jumlah_putra,
-            'alumni' => $alumni
+            'alumni' => $alumni,
+            'baru' => $baru,
+            'total_santri' => $total_santri
         ];
         return $jumlah;
     }

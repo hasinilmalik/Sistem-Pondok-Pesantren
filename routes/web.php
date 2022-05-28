@@ -45,7 +45,7 @@ Route::group(['middleware' => ['role:super admin|admin']], function () {
     {
         Route::get('/student/{status}/json','json');
         Route::get('/student/import','import_excel');
-        Route::get('/student/{status?}','index')->name('students.status');
+        Route::get('/students/{status?}','index')->name('students.status');
         Route::get('/students/{student}/delete','delete');
     });  
     Route::resource('students', StudentController::class);
