@@ -193,8 +193,7 @@ class StudentController extends Controller
             'kebutuhan_khusus'=>$request['kebutuhan_khusus'],
             'status_rumah'=>$request['status_rumah'],
             'status_mukim'=>$request['status_mukim'],
-            'lembaga_formal'=>$request['lembaga_formal'],
-            'madin'=>$request['madin'],
+
             'sekolah_asal'=>$request['sekolah_asal'],
             'alamat_sekolah_asal'=>$request['alamat_sekolah_asal'],
             'npsn_sekolah_asal'=>$request['npsn_sekolah_asal'],

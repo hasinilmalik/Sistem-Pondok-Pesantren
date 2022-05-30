@@ -1,13 +1,5 @@
 <div>
-    <div class="form-group mb-3">
-        <label for="desa_id" class="form-control-label ucfirst">Desa</label>
-        <input type="text" name="desa" class="form-control">
-
-    </div>
-    <div class="form-group mb-3">
-        <label for="kecamatan_id" class="form-control-label ucfirst">Kecamatan</label>
-        <input type="text" name="kecamatan" class="form-control">
-    </div>
+    <x-ui.loading />
     <div class="form-group mb-3">
         <label for="provinsi_id" class="form-control-label ucfirst">Provinsi</label>
         <select name="provinsi" id="provinsi_id" class="form-select" wire:model='selectedProvinsi'>
@@ -17,7 +9,7 @@
             @endforeach
         </select>
     </div>
-    <span wire:loading class="text-danger">Tunggu ya...</span>
+
     @if (!is_null($kota))
         <div class="form-group mb-3">
             <label for="kota_id" class="form-control-label ucfirst">Kota</label>

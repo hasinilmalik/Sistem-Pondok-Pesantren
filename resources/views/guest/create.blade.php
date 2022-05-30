@@ -163,27 +163,26 @@
                             class="form-control" id="tanggal_lahir" type="date">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="jenis_kelamin" class="form-control-label ucfirst">jenis kelamin</label>
-                        <select name="jenis_kelamin" value="{{ old('jenis_kelamin') }}" id="jenis_kelamin"
-                            class="form-select">
-                            <option class="ucfirst">laki-laki</option>
-                            <option class="ucfirst">perempuan</option>
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
                         <label for="alamat" class="form-control-label ucfirst">alamat</label>
                         <input name="alamat" value="{{ old('alamat') }}" placeholder="" class="form-control"
                             id="alamat" type="text">
                     </div>
-
-                </div>
-                <div class="col-md-6">
                     <div class="form-group mb-3">
                         <label for="rtrw" class="form-control-label ucfirst">rt/rw</label>
                         <input name="rtrw" value="{{ old('rtrw') }}" placeholder="" class="form-control" id="rtrw"
                             type="text">
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="desa_id" class="form-control-label ucfirst">Desa</label>
+                        <input type="text" name="desa" class="form-control">
 
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="kecamatan_id" class="form-control-label ucfirst">Kecamatan</label>
+                        <input type="text" name="kecamatan" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <livewire:ui.pilih-alamat />
                     {{-- <div class="form-group mb-3">
                         <label for="nama" class="form-control-label ucfirst">Provinsi</label>

@@ -7,16 +7,22 @@ use Livewire\Component;
 
 class ChooseDormitory extends Component
 {
+    public $selectedJk;
     public $selectedDaerah;
+    public $dormitories;
     public $asrama;
     public function render()
     {
-        $dormitories = Dormitory::all();
-        return view('livewire.choose-dormitory', compact('dormitories'));
+     
+        return view('livewire.choose-dormitory');
     }
-    public function updatedSelectedDaerah($daerah_id)
+    public function updatedSelectedJk()
     {
-        $jml = Dormitory::where('id', $daerah_id)->first()->rooms;
+        $this->dormitories = Dormitory::where('gender', 'LIKE','%'.$this->selectedJk.'%')->get();
+    }
+    public function updatedSelectedDaerah($dormitory_id)
+    {
+        $jml = Dormitory::where('id', $dormitory_id)->first()->rooms;
         $this->asrama = $jml;
     }
 }
