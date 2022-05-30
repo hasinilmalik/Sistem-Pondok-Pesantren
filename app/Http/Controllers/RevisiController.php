@@ -48,8 +48,9 @@ class RevisiController extends Controller
     {
         $students = Student::get();
         foreach ($students as $student) {
-            $formal = $student->addition->lembaga_formal;
-            if($formal){     
+            $formal = $student->addition;
+            if($formal!=null){     
+                $formal = $student->addition->lembaga_formal;
                 $inst = FormalInstitution::where('name','LIKE','%'.$formal.'%')->first();
                 if($inst){
                     Student::find($student->id)->update(['fromal_institution_id' => $inst->id]);
