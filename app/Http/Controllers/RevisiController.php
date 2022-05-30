@@ -22,10 +22,10 @@ class RevisiController extends Controller
         $students = Student::get();
         foreach ($students as $student) {
             $madin = $student->addition->madin;
-            if(!is_null($madin)){     
-                $id = MadinInstitution::where('name','LIKE','%'.$madin.'%')->first()->id;
-                if(!is_null($id)){
-                    Student::find($student->id)->update(['madin_institution_id' => $id]);
+            if($madin){     
+                $inst = MadinInstitution::where('name','LIKE','%'.$madin.'%')->first();
+                if($inst){
+                    Student::find($student->id)->update(['madin_institution_id' => $inst->id]);
                 }
             }
             
