@@ -32,6 +32,7 @@ class RevisiController extends Controller
         }
         return 'done';
     }
+    // mengisi madin_institution_id yang ada pada tb_students
     public function isiMadinNull()
     {
         return  Student::where('madin_institution_id',null)->update([
