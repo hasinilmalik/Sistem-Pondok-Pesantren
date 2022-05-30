@@ -53,10 +53,10 @@ class RevisiController extends Controller
                 $formal = $student->addition->lembaga_formal;
                 $inst = FormalInstitution::where('name','LIKE','%'.$formal.'%')->first();
                 if($inst){
-                    Student::find($student->id)->update(['formal_institution_id' => $inst->id]);
+                    $ok = Student::find($student->id)->update(['formal_institution_id' => $inst->id]);
                 }
             }
         }
-        return 'done';
+        return $ok;
     }
 }
