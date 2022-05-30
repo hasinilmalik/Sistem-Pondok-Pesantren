@@ -61,7 +61,6 @@
                         <x-form.input name="nik" type="number" value="{{ old('nik') }}" />
                         <x-form.input name="tempat_lahir" type="text" value="{{ old('tempat_lahir') }}" />
                         <x-form.input name="tanggal_lahir" type="date" value="{{ old('tanggal_lahir') }}" />
-                        <x-form.select name="jenis_kelamin" :options="['Laki-laki', 'Perempuan']" />
                         <x-form.input name="alamat" type="text" value="{{ old('alamat') }}" />
                     </div>
                     <div class="col-md-6">
@@ -293,7 +292,7 @@
                             <input name="lembaga_formal" placeholder="lembaga_formal" class="form-control"
                                 id="lembaga_formal" type="text">
                         </div>
-                       <livewire:choose-madin/>
+                        <livewire:choose-madin />
                         <div class="form-group">
                             <label for="sekolah_asal" class="form-control-label ucfirst">sekolah_asal</label>
                             <input name="sekolah_asal" placeholder="sekolah_asal" class="form-control" id="sekolah_asal"
