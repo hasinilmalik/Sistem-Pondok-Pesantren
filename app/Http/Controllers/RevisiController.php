@@ -14,7 +14,7 @@ class RevisiController extends Controller
         $students = Addition::where('madin',null)->get();
         foreach ($students as $student) {
             Addition::find($student->student_id)->update(['madin' => 'Belum diterapkan']);
-            Student::find($student->student_id)->update(['madin_institution_id' => 11]);
+            Student::find($student->student_id)->update(['madin_institution_id' => 1]);
         }
     }
     public function revisiMadin()
