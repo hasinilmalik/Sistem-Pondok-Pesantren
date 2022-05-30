@@ -184,8 +184,8 @@
                             type="text">
                     </div>
 
-                    {{-- <livewire:ui.pilih-alamat /> --}}
-                    <div class="form-group mb-3">
+                    <livewire:ui.pilih-alamat />
+                    {{-- <div class="form-group mb-3">
                         <label for="nama" class="form-control-label ucfirst">Provinsi</label>
                         <input name="provinsi" value="{{ old('provinsi') }}" placeholder="" class="form-control"
                             id="provinsi" type="text">
@@ -204,7 +204,7 @@
                         <label for="nama" class="form-control-label ucfirst">Desa</label>
                         <input name="desa" value="{{ old('desa') }}" placeholder="" class="form-control" id="desa"
                             type="text">
-                    </div>
+                    </div> --}}
                     <div class="form-group mb-3">
                         <label for="nama" class="form-control-label ucfirst">kode pos</label>
                         <input name="kode_pos" value="{{ old('kode_pos') }}" placeholder="" class="form-control"

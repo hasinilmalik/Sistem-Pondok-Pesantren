@@ -1,33 +1,49 @@
 <div>
     <div class="form-group mb-3">
+        <label for="desa_id" class="form-control-label ucfirst">Desa</label>
+        <input type="text" name="desa" class="form-control">
+
+    </div>
+    <div class="form-group mb-3">
+        <label for="kecamatan_id" class="form-control-label ucfirst">Kecamatan</label>
+        <input type="text" name="kecamatan" class="form-control">
+    </div>
+    <div class="form-group mb-3">
         <label for="provinsi_id" class="form-control-label ucfirst">Provinsi</label>
         <select name="provinsi" id="provinsi_id" class="form-select" wire:model='selectedProvinsi'>
+            <option value="">--Pilih Provinsi--</option>
             @foreach ($prov as $pro)
                 <option value="{{ $pro->id }}">{{ $pro->name }}</option>
             @endforeach
         </select>
     </div>
-    <span wire:loading class="text-danger">Loading...</span>
+    <span wire:loading class="text-danger">Tunggu ya...</span>
     @if (!is_null($kota))
         <div class="form-group mb-3">
             <label for="kota_id" class="form-control-label ucfirst">Kota</label>
             <select name="kota" id="kota_id" class="form-select">
-                @foreach ($kota as $kota)
-                    <option value="{{ $kota->id }}">{{ $kota->name }}</option>
+                <option value="">--Pilih Kota--</option>
+                @foreach ($kota as $key => $kt)
+                    <option value="{{ $kt->name }}">{{ $kt->name }}</option>
                 @endforeach
             </select>
         </div>
     @endif
     {{-- @if (!is_null($kecamatan))
+        @php
+            // dd($kecamatan);
+        @endphp
         <div class="form-group mb-3">
             <label for="kecamatan_id" class="form-control-label ucfirst">Kecamatan</label>
-            <select name="kecamatan" id="kecamatan_id" class="form-select" wire:model="selectedKecamatan">
-                @foreach ($kecamatan as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+            <select name="kecamatan" id="kecamatan_id" class="form-select">
+                <option value="">--Pilih kecamatan--</option>
+                @foreach ($kecamatan as $kt)
+                    <option value="{{ $kt->name }}">{{ $kt->name }}</option>
                 @endforeach
             </select>
         </div>
     @endif --}}
+
 </div>
 
 @push('head')
@@ -44,46 +60,31 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
-            $("#provinsi").select2({
-                placeholder: "Please Select"
-            });
-        });
-        $(document).ready(function() {
             $("#a_pekerjaan").select2({
                 placeholder: "Please Select"
             });
-        });
-        $(document).ready(function() {
             $("#a_penghasilan").select2({
                 placeholder: "Please Select"
             });
-        });
-        $(document).ready(function() {
+
             $("#i_pendidikan").select2({
                 placeholder: "Please Select"
             });
-        });
-        $(document).ready(function() {
+
             $("#i_pekerjaan").select2({
                 placeholder: "Please Select"
             });
-        });
-        $(document).ready(function() {
+
             $("#i_penghasilan").select2({
                 placeholder: "Please Select"
             });
-        });
-        $(document).ready(function() {
             $("#w_pekerjaan").select2({
                 placeholder: "Please Select"
             });
-        });
-        $(document).ready(function() {
             $("#w_penghasilan").select2({
                 placeholder: "Please Select"
             });
-        });
-        $(document).ready(function() {
+
             $("#kebutuhan_khusus").select2({
                 placeholder: "Please Select"
             });

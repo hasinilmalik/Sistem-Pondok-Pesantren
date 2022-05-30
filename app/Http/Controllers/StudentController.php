@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Imports\StudentImport;
 use Yajra\DataTables\DataTables;
+use App\Services\LocationService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -74,6 +75,9 @@ class StudentController extends Controller
     }
     public function create()
     {
+        // $LS = new LocationService();
+        // $kota = $LS->kota();
+        // dd($kota);
         return view('students.create');
     }
     public function imageStore($foto, $foto_wali, $nama_foto = null, $nama_foto_wali = null)

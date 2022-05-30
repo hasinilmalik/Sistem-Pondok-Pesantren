@@ -16,7 +16,7 @@
     <ul class="nav nav-tabs mb-3" id="mytab" role="tablist">
         <li class="nav-item" role="presentation">
             <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#extab1" role="tab" aria-controls="extab1"
-                aria-selected="true">Data pribadi</a>
+                aria-selected="true">Data pribadi </a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#extab2" role="tab" aria-controls="extab2"
@@ -67,12 +67,13 @@
                     <div class="col-md-6">
                         <x-form.input name="rtrw" label="Rt/Rw" type="text" value="{{ old('rtrw') }}"
                             placeholder="RT/RW" />
-                        <x-form.input name="desa" type="text" value="{{ old('desa') }}" />
+                        <livewire:ui.pilih-alamat />
+                        {{-- <x-form.input name="desa" type="text" value="{{ old('desa') }}" />
                         <x-form.input name="kecamatan" type="text" value="{{ old('kecamatan') }}" />
                         <x-form.input name="kota" type="text" value="{{ old('kota') }}" />
-                        <x-form.input name="provinsi" type="text" value="{{ old('provinsi') }}" />
+                        <x-form.input name="provinsi" type="text" value="{{ old('provinsi') }}" /> --}}
                         <x-form.input name="kode_pos" type="number" value="{{ old('kode_pos') }}" />
-                        <x-form.input name="daerah" label="Daerah/Asrama" type="text" value="{{ old('daerah') }}" />
+                        <livewire:choose-dormitory />
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Addition;
+use App\Models\Dormitory;
 use App\Models\MadinInstitution;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -28,6 +29,10 @@ class Student extends Model
     {
         return $this->hasOne(Addition::class);
     }
+    public function dormitory()
+    {
+        return $this->belongsTo(Dormitory::class);
+    }
     public static function boot() {
         parent::boot();
 
@@ -37,5 +42,4 @@ class Student extends Model
              // do the rest of the cleanup...
         });
     }
-   
 }
