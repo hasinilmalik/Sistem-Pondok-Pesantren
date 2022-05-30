@@ -114,6 +114,7 @@ Route::post('delete-company', [DataTableAjaxCRUDController::class, 'destroy']);
 // NOTE:REVISI
 // =======================================================
 Route::get('isimadin',[RevisiController::class,'isiMadin']);
+Route::get('isimadin0',[RevisiController::class,'isiMadinNull']);
 Route::get('revisimadin',[RevisiController::class,'revisiMadin']);
 
 

@@ -32,5 +32,14 @@ class RevisiController extends Controller
         }
         return 'done';
     }
-   
+    public function isiMadinNull()
+    {
+        return  Student::where('madin_institution_id',null)->update([
+            'madin_institution_id' => 1
+        ]);
+    }
+    public function revisiSantriLama()
+    {
+        Student::whereDate('id','<',2000)->update(['created_at' => '2020-01-01 00:00:00']);
+    }
 }
