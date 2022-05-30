@@ -13,7 +13,7 @@ class ExportStudents implements FromCollection, WithMapping, WithHeadings
 
     public function collection()
     {
-        return Student::with('family','addition')->get();
+        return Student::with('family','addition','madin','formal')->get();
     }
     public function map($student): array
     {
@@ -33,6 +33,8 @@ class ExportStudents implements FromCollection, WithMapping, WithHeadings
             $student->kota,
             $student->provinsi,
             $student->kode_pos,
+
+            $student->daerah,
 
             // $student->family->a_kk,
             // $student->family->a_nik,
@@ -67,6 +69,8 @@ class ExportStudents implements FromCollection, WithMapping, WithHeadings
             'Kota',
             'Provinsi',
             'Kode_pos',
+
+            'Daerah',
 
             // 'KK ayah',
             // 'NIK ayah',
