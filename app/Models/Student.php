@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Addition;
 use App\Models\Dormitory;
 use App\Models\MadinInstitution;
+use App\Models\FormalInstitution;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,10 @@ class Student extends Model
     public function madin()
     {
         return $this->belongsTo(MadinInstitution::class);
+    }
+    public function formal()
+    {
+        return $this->belongsTo(FormalInstitution::class);
     }
     public function family()
     {

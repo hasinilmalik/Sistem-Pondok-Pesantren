@@ -293,10 +293,7 @@
                             <input name="lembaga_formal" placeholder="lembaga_formal" class="form-control"
                                 id="lembaga_formal" type="text">
                         </div>
-                        <div class="form-group">
-                            <label for="madin" class="form-control-label ucfirst">madin</label>
-                            <input name="madin" placeholder="madin" class="form-control" id="madin" type="text">
-                        </div>
+                       <livewire:choose-madin/>
                         <div class="form-group">
                             <label for="sekolah_asal" class="form-control-label ucfirst">sekolah_asal</label>
                             <input name="sekolah_asal" placeholder="sekolah_asal" class="form-control" id="sekolah_asal"

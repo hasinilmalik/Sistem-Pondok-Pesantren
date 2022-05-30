@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Addition;
-use App\Models\MadinInstitution;
 use App\Models\Student;
+use App\Models\Addition;
 use Illuminate\Http\Request;
+use App\Models\MadinInstitution;
+use App\Models\FormalInstitution;
 
 class RevisiController extends Controller
 {
@@ -42,5 +43,19 @@ class RevisiController extends Controller
     public function revisiSantriLama()
     {
         Student::whereDate('id','<',2000)->update(['created_at' => '2020-01-01 00:00:00']);
+    }
+    public function revisiFormal()
+    {
+        $students = Student::get();
+        foreach ($students as $student) {
+            $formal = $student->addition->lembaga_formal;
+            if($formal){     
+                $inst = FormalInstitution::where('name','LIKE','%'.$formal.'%')->first();
+                if($inst){
+                    Student::find($student->id)->update(['fromal_institution_id' => $inst->id]);
+                }
+            }
+        }
+        return 'done';
     }
 }
