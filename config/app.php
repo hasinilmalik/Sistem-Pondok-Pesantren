@@ -184,7 +184,6 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\MalikServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-
     ],
 
     /*

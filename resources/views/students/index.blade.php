@@ -7,7 +7,7 @@
     <div class="d-lg-flex justify-content-between mb-3">
         <div>
             <a href="{{ route('students.create') }}" class="mt-2 badge bg-gradient-primary">+ Tambah</a>
-            <a href="#" class="mt-2 badge bg-gradient-primary">Excel</a>
+            <a href="{{ route('export.students') }}" class="mt-2 badge bg-gradient-primary">Excel</a>
         </div>
         <div>
             @php

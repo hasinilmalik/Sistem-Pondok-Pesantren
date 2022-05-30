@@ -20,6 +20,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ConvertController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DataTableAjaxCRUDController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\Payment\TransactionController;
 use App\Http\Controllers\Payment\TripayCallbackController;
 use App\Http\Controllers\RevisiController;
@@ -71,7 +72,7 @@ Route::group(['middleware'=>['role:guest']], function (){
 });
 
 Route::group(['middleware'=>['role:admin|super admin']], function (){
-   Route::resource('user', UserController::class);
+    Route::resource('user', UserController::class);
 });
 
 Route::controller(PDFController::class)->name('pdf.')->group(function ()
@@ -84,16 +85,16 @@ Route::controller(PDFController::class)->name('pdf.')->group(function ()
 // NOTE:PAYMENT
 Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
 {
-   Route::controller(TransactionController::class)->group(function ()
-   {
-       Route::post('/transaction/cash','payCash')->name('pay.cash');
-       Route::get('/transaction/detail/{reference}','show')->name('pay.detail');
-       Route::get('/transaction/change-method/{reference}','changeMethod')->name('pay.change');
-       Route::get('/transaction/list/{method}','daftarTransaksi')->name('pay.list');
-       Route::get('/checkout/{for}','checkout')->name('pay.checkout');
-       Route::post('/checkout_proses','store')->name('pay.request');   
-       Route::post('/checkout_proses2','storeViaAdmin')->name('pay.requestViaAdmin');   
-       Route::get('/guest/bills','guestBills')->name('guest.bills');
+    Route::controller(TransactionController::class)->group(function ()
+    {
+        Route::post('/transaction/cash','payCash')->name('pay.cash');
+        Route::get('/transaction/detail/{reference}','show')->name('pay.detail');
+        Route::get('/transaction/change-method/{reference}','changeMethod')->name('pay.change');
+        Route::get('/transaction/list/{method}','daftarTransaksi')->name('pay.list');
+        Route::get('/checkout/{for}','checkout')->name('pay.checkout');
+        Route::post('/checkout_proses','store')->name('pay.request');   
+        Route::post('/checkout_proses2','storeViaAdmin')->name('pay.requestViaAdmin');   
+        Route::get('/guest/bills','guestBills')->name('guest.bills');
     });
 });
 Route::post('callback',[TripayCallbackController::class,'handle']);
@@ -108,8 +109,15 @@ Route::post('edit-company', [DataTableAjaxCRUDController::class, 'edit']);
 Route::post('delete-company', [DataTableAjaxCRUDController::class, 'destroy']);
 
 
-
-
+// NOTE:EXPORT
+// =======================================================
+Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
+{
+    Route::controller(ExportController::class)->group(function ()
+    {
+        Route::get('/export/{type}/students','students')->name('export.students');
+    });
+});
 
 // NOTE:REVISI
 // =======================================================
@@ -123,7 +131,7 @@ Route::post('delete-company', [DataTableAjaxCRUDController::class, 'destroy']);
 // =======================================================
 Route::get('/coba', function ()
 {
-//    return (new WaService())->infoAkun('6285233002598',session()->get('secretData'));
+    //    return (new WaService())->infoAkun('6285233002598',session()->get('secretData'));
     // $sender = ["6285233002598", "6285333920007"];
     // echo $sender[array_rand($sender)];
     return Malik::convertHp('085233002598');
