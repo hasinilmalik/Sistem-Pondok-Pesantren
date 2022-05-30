@@ -22,6 +22,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\DataTableAjaxCRUDController;
 use App\Http\Controllers\Payment\TransactionController;
 use App\Http\Controllers\Payment\TripayCallbackController;
+use App\Http\Controllers\RevisiController;
 
 // NOTE:AUTH
 // =======================================================
@@ -106,6 +107,18 @@ Route::post('store-company', [DataTableAjaxCRUDController::class, 'store']);
 Route::post('edit-company', [DataTableAjaxCRUDController::class, 'edit']);
 Route::post('delete-company', [DataTableAjaxCRUDController::class, 'destroy']);
 
+
+
+
+
+// NOTE:REVISI
+// =======================================================
+Route::get('isimadin',[RevisiController::class,'isiMadin']);
+Route::get('revisimadin',[RevisiController::class,'revisiMadin']);
+
+
+// NOTE:TAWURAN
+// =======================================================
 Route::get('/coba', function ()
 {
 //    return (new WaService())->infoAkun('6285233002598',session()->get('secretData'));

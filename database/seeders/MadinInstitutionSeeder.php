@@ -17,6 +17,9 @@ class MadinInstitutionSeeder extends Seeder
     {
         DB::table('madin_institutions')->insert([
             [
+                'name' =>'Belum diterapkan',
+            ],
+            [
                 'name' =>'Sifir',
             ],
             [
@@ -47,7 +50,7 @@ class MadinInstitutionSeeder extends Seeder
             [
                 'name' =>'3 MTSD',
             ],
-           
+
         ]);
     }
 }
