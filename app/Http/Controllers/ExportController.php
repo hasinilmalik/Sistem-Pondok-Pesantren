@@ -12,6 +12,6 @@ class ExportController extends Controller
     public function students($type)
     {
         $exc = new ExportStudents();
-        return Excel::download($exc, 'coba.xlsx');
+        return Excel::download($exc, 'Santri.xlsx');
     }
 }
