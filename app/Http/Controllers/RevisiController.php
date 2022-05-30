@@ -11,9 +11,9 @@ class RevisiController extends Controller
 {
     public function isiMadin()
     {
-        $students = Addition::where('madin','')->get();
+        $students = Addition::where('madin',null)->get();
         foreach ($students as $student) {
-            // Addition::find($student->student_id)->update(['madin_institution_id' => 11]);
+            Addition::find($student->student_id)->update(['madin' => 'Belum diterapkan']);
             Student::find($student->student_id)->update(['madin_institution_id' => 11]);
         }
     }
