@@ -62,16 +62,12 @@
                         <x-form.input name="tempat_lahir" type="text" value="{{ old('tempat_lahir') }}" />
                         <x-form.input name="tanggal_lahir" type="date" value="{{ old('tanggal_lahir') }}" />
                         <x-form.input name="alamat" type="text" value="{{ old('alamat') }}" />
-                    </div>
-                    <div class="col-md-6">
                         <x-form.input name="rtrw" label="Rt/Rw" type="text" value="{{ old('rtrw') }}"
                             placeholder="RT/RW" />
-                        <livewire:ui.pilih-alamat />
-                        <x-form.input name="kecamatan" type="text" value="{{ old('kecamatan') }}" />
-                        <x-form.input name="desa" type="text" value="{{ old('desa') }}" />
-                        {{-- <x-form.input name="kota" type="text" value="{{ old('kota') }}" />
-                        <x-form.input name="provinsi" type="text" value="{{ old('provinsi') }}" /> --}}
                         <x-form.input name="kode_pos" type="number" value="{{ old('kode_pos') }}" />
+                    </div>
+                    <div class="col-md-6">
+                        <livewire:ui.pilih-alamat />
                         <livewire:choose-dormitory />
                     </div>
                 </div>

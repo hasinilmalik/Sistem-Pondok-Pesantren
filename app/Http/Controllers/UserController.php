@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $data = User::with('student')->select(['id', 'nama', 'created_at','email'])->where('status', $status);
+        $data = User::with('student')->select(['id', 'nama', 'created_at','email'])->where('id','>','1');    
         return DATATABLE::of($data)
         ->addColumn('action',function($data){
             $url_show = url('users/'.$data->id);

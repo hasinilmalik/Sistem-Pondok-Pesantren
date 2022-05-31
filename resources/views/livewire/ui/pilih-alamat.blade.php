@@ -20,6 +20,8 @@
                 @endforeach
             </select>
         </div>
+        <x-form.input name="kecamatan" type="text" value="{{ old('kecamatan') }}" />
+        <x-form.input name="desa" type="text" value="{{ old('desa') }}" />
     @endif
     {{-- @if (!is_null($kecamatan))
         @php
