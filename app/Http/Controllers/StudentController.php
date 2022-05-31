@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Support\Facades\Http;
 
 class StudentController extends Controller
 {
@@ -124,6 +125,7 @@ class StudentController extends Controller
         
         $this->imageStore($request->file('foto'), $request->file('foto_wali'));
         $data = $request->all();
+      
         //ambil tahun sekarang ex:22
         $year = Carbon::now()->format('y');
         // ambil nis terakhir
@@ -153,6 +155,9 @@ class StudentController extends Controller
             $data['foto_wali'] = time() . $foto_wali->getClientOriginalName();
         }
         
+        $response = HTTP::get('https://www.emsifa.com/api-wilayah-indonesia/api/province/'.$request->provinsi.'.json');
+        $data['provinsi'] = json_decode($response->body())->name;
+
         $data['user_id']=$id;
         
         $data['nis']=$datanis;
