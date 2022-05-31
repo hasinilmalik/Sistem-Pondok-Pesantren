@@ -134,6 +134,7 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
 // Route::get('isimadin0',[RevisiController::class,'isiMadinNull']);
 // Route::get('revisimadin',[RevisiController::class,'revisiMadin']);
 // Route::get('revisiformal',[RevisiController::class,'revisiFormal']);
+Route::get('rdaerah',[RevisiController::class,'revisiDaerah']);
 
 
 // NOTE:TAWURAN

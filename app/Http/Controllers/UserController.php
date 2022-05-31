@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function json(Request $request)
     {
-        $data = User::select(['id','email','created_at']);
+        $data = User::select(['id','name','email','created_at']);
         return DATATABLE::of($data)
         ->addColumn('action',function($data){
             $url_show = url('users/'.$data->id);

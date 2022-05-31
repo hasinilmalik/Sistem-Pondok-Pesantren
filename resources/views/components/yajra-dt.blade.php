@@ -61,7 +61,12 @@
                         },
                     ]
                 });
-
+                new $.fn.dataTable.FixedHeader(table);
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // var url = {!! json_encode($url) !!};
                 var table = $('#users-table').DataTable({
                     processing: true,
                     serverSide: true,
@@ -73,22 +78,20 @@
                     "oLanguage": {
                         "sSearch": ""
                     },
-                    ajax: "{{ url('/json/users') }}",
+
+                    ajax: "{{ url('json/users') }}",
+
                     columns: [{
-                            data: 'name',
-                            name: 'name'
+                            data: 'nama',
                         },
                         {
                             data: 'email',
-                            name: 'E-mail'
                         },
                         {
                             data: 'created_at',
-                            name: 'Dibuat'
                         },
                         {
                             data: 'action',
-                            name: 'action'
                         },
                     ]
                 });

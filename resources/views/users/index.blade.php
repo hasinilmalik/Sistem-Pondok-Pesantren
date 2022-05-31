@@ -36,7 +36,7 @@
     <table id="users-table" class="table table-striped table-bordered nowrap" style="width:100%">
         <thead>
             <tr>
-                <th>Nama Santri</th>
+                <th>Nama</th>
                 <th>Email</th>
                 <th>Dibuat</th>
                 <th>Action</th>

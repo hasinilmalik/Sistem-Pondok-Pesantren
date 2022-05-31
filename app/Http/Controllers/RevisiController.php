@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Addition;
+use App\Models\Dormitory;
 use Illuminate\Http\Request;
 use App\Models\MadinInstitution;
 use App\Models\FormalInstitution;
@@ -58,5 +59,24 @@ class RevisiController extends Controller
             }
         }
         return $ok;
+    }
+    public function revisiDaerah()
+    {
+        $students = Student::get();
+        foreach ($students as $student) {
+            $daerah = $student->daerah;
+            $rooms = preg_replace('/[^0-9.]+/', '', $daerah);
+            $huruf = substr($daerah,0,1);
+            $dormitory_id = Dormitory::where('name',$huruf)
+            ->where('gender','LIKE','%'.$student->jenis_kelamin.'%')
+            ->first();
+            if(isset($dormitory_id)){
+                Student::find($student->id)->update([
+                    'dormitory_id'=>$dormitory_id->id,
+                    'rooms'=>$rooms
+                ]);
+            };
+        }
+        return 'ok';
     }
 }
