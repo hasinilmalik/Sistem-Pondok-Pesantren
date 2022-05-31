@@ -26,10 +26,11 @@
             $(document).ready(function() {
                 var url = {!! json_encode($url) !!};
                 var table = $('#student-table').DataTable({
-                    dom: 'lBfrtip',
-                    buttons: [
-                        'copy', 'excel', 'pdf', 'csv', 'print'
-                    ],
+                    columnDefs: [{
+                        targets: [-3, -2, -1],
+                        className: 'dt-body-center'
+                    }],
+
                     processing: true,
                     serverSide: true,
                     'bsort': false,
@@ -40,22 +41,23 @@
                     "oLanguage": {
                         "sSearch": ""
                     },
+
                     ajax: "{{ url('student/' . $url . '/json') }}",
+
                     columns: [{
                             data: 'nama',
-                            name: 'nama'
                         },
                         {
                             data: 'kota',
-                            name: 'kota'
                         },
                         {
-                            data: 'daerah',
-                            name: 'Daerah'
+                            data: 'dormitory.name',
+                        },
+                        {
+                            data: 'rooms',
                         },
                         {
                             data: 'action',
-                            name: 'action'
                         },
                     ]
                 });

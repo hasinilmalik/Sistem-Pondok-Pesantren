@@ -26,7 +26,8 @@ class StudentController extends Controller
 {
     public function json($status)
     {
-        $data = Student::with('addition')->select(['id', 'nama', 'kota','daerah'])->where('status', $status);
+        $data = Student::with('dormitory:id,name')
+        ->where('status', $status);
         return DataTables::of($data)
         ->addColumn('action',function($data){
             $url_show = url('students/'.$data->id);

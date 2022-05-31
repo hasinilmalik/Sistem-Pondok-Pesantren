@@ -34,6 +34,7 @@
                 <th>Nama</th>
                 <th>Kota</th>
                 <th>Daerah</th>
+                <th>Asrama</th>
                 <th>Action</th>
             </tr>
         </thead>
