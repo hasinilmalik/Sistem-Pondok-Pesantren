@@ -67,9 +67,9 @@
                         <x-form.input name="rtrw" label="Rt/Rw" type="text" value="{{ old('rtrw') }}"
                             placeholder="RT/RW" />
                         <livewire:ui.pilih-alamat />
-                        {{-- <x-form.input name="desa" type="text" value="{{ old('desa') }}" />
                         <x-form.input name="kecamatan" type="text" value="{{ old('kecamatan') }}" />
-                        <x-form.input name="kota" type="text" value="{{ old('kota') }}" />
+                        <x-form.input name="desa" type="text" value="{{ old('desa') }}" />
+                        {{-- <x-form.input name="kota" type="text" value="{{ old('kota') }}" />
                         <x-form.input name="provinsi" type="text" value="{{ old('provinsi') }}" /> --}}
                         <x-form.input name="kode_pos" type="number" value="{{ old('kode_pos') }}" />
                         <livewire:choose-dormitory />

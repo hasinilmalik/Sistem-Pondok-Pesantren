@@ -25,8 +25,6 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 var url = {!! json_encode($url) !!};
-                // var c = "{{ url('student/' . $url . '/json') }}";
-                // console.log(c);
                 var table = $('#student-table').DataTable({
                     dom: 'lBfrtip',
                     buttons: [
@@ -54,6 +52,37 @@
                         {
                             data: 'daerah',
                             name: 'Daerah'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action'
+                        },
+                    ]
+                });
+
+                var table = $('#users-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    'bsort': false,
+                    responsive: true,
+                    lengthChange: false,
+                    lengthMenu: [10, 25, 50, 100],
+                    pageLength: 20,
+                    "oLanguage": {
+                        "sSearch": ""
+                    },
+                    ajax: "{{ url('users/json') }}",
+                    columns: [{
+                            data: 'nama',
+                            name: 'nama'
+                        },
+                        {
+                            data: 'email',
+                            name: 'email'
+                        },
+                        {
+                            data: 'created_at',
+                            name: 'Dibuat'
                         },
                         {
                             data: 'action',

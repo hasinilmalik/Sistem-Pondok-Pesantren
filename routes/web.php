@@ -39,20 +39,7 @@ Route::controller(CetakController::class)->name('cetak.')->group(function ()
     Route::get('/cetak/mahrom/{id}/{name}','mahrom')->name('mahrom');
 });
 
-// NOTE:STUDENTS
-// =======================================================
-Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
-Route::group(['middleware' => ['role:super admin|admin']], function () {
-    Route::controller(StudentController::class)->group( function ()
-    {
-        Route::get('/student/{status}/json','json');
-        Route::get('/student/import','import_excel');
-        Route::get('/student/{status?}','index')->name('students.status');
-        Route::get('/students/{student}/delete','delete');
-    });  
-    Route::resource('students', StudentController::class);
-    // Route::get('students', StudentsComponent::class)->name('students');
-});
+
 
 // NOTE:GUEST
 // =======================================================
@@ -82,9 +69,12 @@ Route::controller(PDFController::class)->name('pdf.')->group(function ()
 });
 
 
-// NOTE:PAYMENT
+// NOTE:GROUP_MIDDLEWARE_ADMIN
+// =======================================================
 Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
 {
+    // NOTE:PAYMENT
+    // =======================================================
     Route::controller(TransactionController::class)->group(function ()
     {
         Route::post('/transaction/cash','payCash')->name('pay.cash');
@@ -96,6 +86,24 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
         Route::post('/checkout_proses2','storeViaAdmin')->name('pay.requestViaAdmin');   
         Route::get('/guest/bills','guestBills')->name('guest.bills');
     });
+
+    // NOTE:USERS
+    // =======================================================
+    Route::get('users/json',[UserController::class,'json']);
+    Route::resource('users',UserController::class);
+    // NOTE:STUDENTS
+    // =======================================================
+    Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
+    Route::controller(StudentController::class)->group( function ()
+    {
+        Route::get('/student/{status}/json','json');
+        Route::get('/student/import','import_excel');
+        Route::get('/student/{status?}','index')->name('students.status');
+        Route::get('/students/{student}/delete','delete');
+    });  
+    Route::resource('students', StudentController::class);
+
+    
 });
 Route::post('callback',[TripayCallbackController::class,'handle']);
 Route::get('/nota/{reference}',[TransactionController::class,'invoice'])->name('pay.invoice');
