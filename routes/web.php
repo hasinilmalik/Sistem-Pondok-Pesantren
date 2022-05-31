@@ -89,7 +89,8 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
 
     // NOTE:USERS
     // =======================================================
-    Route::get('users/json',[UserController::class,'json']);
+    Route::get('json/users',[UserController::class,'json']);
+    Route::get('/users/{user}/delete',[UserController::class,'delete']);
     Route::resource('users',UserController::class);
     // NOTE:STUDENTS
     // =======================================================

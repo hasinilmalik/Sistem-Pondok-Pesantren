@@ -1,7 +1,5 @@
 <div>
-    hello {{ $message }}
-    {{-- hi {{ $reference }} --}}
-    {{-- <button wire:click="clickTest">test</button> --}}
+
     <table id="datatable" class="table table-striped table-bordered nowrap" style="width:100%">
         <thead>
             <tr>

@@ -71,14 +71,14 @@
                     "oLanguage": {
                         "sSearch": ""
                     },
-                    ajax: "{{ url('users/json') }}",
+                    ajax: "{{ url('/json/users') }}",
                     columns: [{
-                            data: 'nama',
-                            name: 'nama'
+                            data: 'name',
+                            name: 'name'
                         },
                         {
                             data: 'email',
-                            name: 'email'
+                            name: 'E-mail'
                         },
                         {
                             data: 'created_at',

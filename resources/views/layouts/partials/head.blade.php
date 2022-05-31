@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="{{ asset('assets/bakid') }}/favicon.ico">
     <title>
         @php
-            $app_name = env('APP_NAME');
+            $app_name = config('app.name');
             $uri = Request::segment(1);
         @endphp
         {{ $app_name . ' - ' . $uri }}

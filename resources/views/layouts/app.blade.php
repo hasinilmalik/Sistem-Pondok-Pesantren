@@ -22,7 +22,7 @@ if ($student == null) {
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href="{{ route('home') }}" target="_blank">
                 <img src="{{ asset('assets/bakid') }}/favicon.png" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold">{{ str(env('APP_NAME'))->upper() }}</span>
+                <span class="ms-1 font-weight-bold">{{ str(config('app.name'))->upper() }}</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
