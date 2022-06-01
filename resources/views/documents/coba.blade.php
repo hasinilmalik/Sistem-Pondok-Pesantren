@@ -205,13 +205,13 @@
     </div>
 
     @php
-        $nama_file = $nama_santri . '-kts.png';
+        $nama_file = 'kts-' . $nama_santri . '.png';
     @endphp
     <script>
         $(document).ready(function() {
             var element = $("#html-content-holder"); // global variable
             var getCanvas; // global variable
-
+            var namafile = {{ $nama_file }};
             $("#btn-Convert-Html2Image").on('click', function() {
 
                 html2canvas(element, {
@@ -224,7 +224,7 @@
                 var imgageData = getCanvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                $("#btn-Convert-Html2Image").attr("download", $nama_file).attr("href", newData);
+                $("#btn-Convert-Html2Image").attr("download", namafile).attr("href", newData);
             });
 
         });
