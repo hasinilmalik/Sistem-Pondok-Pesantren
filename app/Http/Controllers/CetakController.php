@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dormitory;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ class CetakController extends Controller
         $kecamatan = str($data->kecamatan)->lower();
         $kota = str($data->kota)->lower();
 
+        $data['daerah'] = $data->dormitory->name . $data->rooms;
         $alamat = str($data->desa)->title().' - '.str($data->kecamatan)->title().' - '.str($data->kota)->title();
         return view('documents.coba',compact('data','nama_santri','alamat'));
     }
