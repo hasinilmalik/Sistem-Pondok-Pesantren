@@ -130,7 +130,7 @@
 
 <body>
     <input id="btn-Preview-Image" type="button" value="Preview" />
-    <button id="btn-Convert-Html2Image" class="block">Download</button>
+    <a href="#" id="btn-Convert-Html2Image" class="block">Download</a>
     <br />
     <br>
 
