@@ -129,8 +129,8 @@
 </head>
 
 <body>
-    {{-- <input id="btn-Preview-Image" type="button" value="Preview" /> --}}
-    <a id="btn-Convert-Html2Image" href="#" class="block">Download</a>
+    <input id="btn-Preview-Image" type="button" value="Preview" />
+    <button id="btn-Convert-Html2Image" class="block">Download</button>
     <br />
     <br>
 
@@ -204,27 +204,26 @@
     <div id="previewImage">
     </div>
 
-    @php
-        $nama_file = 'kts-' . $nama_santri . '.png';
-    @endphp
+
     <script>
         $(document).ready(function() {
             var element = $("#html-content-holder"); // global variable
             var getCanvas; // global variable
-            var namafile = {{ $nama_file }};
-            $("#btn-Convert-Html2Image").on('click', function() {
 
+            $("#btn-Preview-Image").on('click', function() {
                 html2canvas(element, {
                     onrendered: function(canvas) {
                         $("#previewImage").append(canvas);
                         getCanvas = canvas;
                     }
                 });
+            });
 
+            $("#btn-Convert-Html2Image").on('click', function() {
                 var imgageData = getCanvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                $("#btn-Convert-Html2Image").attr("download", namafile).attr("href", newData);
+                $("#btn-Convert-Html2Image").attr("download", "kts.png").attr("href", newData);
             });
 
         });
