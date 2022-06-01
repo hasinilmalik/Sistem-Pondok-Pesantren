@@ -102,7 +102,7 @@
                         data: 'email',
                     },
                     {
-                        data: 'roles.name',
+                        data: 'roles[].name',
                     },
                     {
                         data: 'created_at',
