@@ -22,9 +22,9 @@ class UserController extends Controller
             $url_delete = url('users/'.$data->id.'/delete');
 
             $b1 = '<div class="btn-group"><button type="button" class="btn bg-gradient-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button><ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="'.$url_show.'">Lihat</a></li>
-            <li><a class="dropdown-item" href="'.$url_edit.'">Edit</a></li>
-            <li><a style="color:red" class="dropdown-item" href="'.$url_delete.'">Hapus</a></li>
+            <li><a class="dropdown-item" href="">Lihat</a></li>
+            <li><a class="dropdown-item" href="">Edit</a></li>
+            <li><a style="color:red" class="dropdown-item" href="">Hapus</a></li>
             <li><hr class="dropdown-divider"></li>';
 
             return $b1;
