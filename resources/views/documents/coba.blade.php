@@ -28,6 +28,16 @@
             padding-left: 36;
         }
 
+        .block {
+            display: block;
+            width: 100%;
+            border: none;
+            background-color: #04AA6D;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
 
         #qrcode {
             padding-top: 1350px;
@@ -119,8 +129,8 @@
 </head>
 
 <body>
-    <input id="btn-Preview-Image" type="button" value="Preview" />
-    <a id="btn-Convert-Html2Image" href="#">Download</a>
+    {{-- <input id="btn-Preview-Image" type="button" value="Preview" /> --}}
+    <a id="btn-Convert-Html2Image" href="#" class="block">Download</a>
     <br />
     <br>
 
@@ -200,16 +210,15 @@
             var element = $("#html-content-holder"); // global variable
             var getCanvas; // global variable
 
-            $("#btn-Preview-Image").on('click', function() {
+            $("#btn-Convert-Html2Image").on('click', function() {
+
                 html2canvas(element, {
                     onrendered: function(canvas) {
                         $("#previewImage").append(canvas);
                         getCanvas = canvas;
                     }
                 });
-            });
 
-            $("#btn-Convert-Html2Image").on('click', function() {
                 var imgageData = getCanvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
