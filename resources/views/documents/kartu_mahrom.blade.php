@@ -22,6 +22,17 @@
 
         }
 
+        .block {
+            display: block;
+            width: 100%;
+            border: none;
+            background-color: #04AA6D;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+
         img {
             width: 200px;
             margin-bottom: 20px
@@ -84,8 +95,8 @@
 </head>
 
 <body>
-    <input id="btn-Preview-Image" type="button" value="Preview" />
-    <a id="btn-Convert-Html2Image" href="#">Download</a>
+    {{-- <input id="btn-Preview-Image" type="button" value="Preview" /> --}}
+    <a id="btn-Convert-Html2Image" href="#" class="block">Download</a>
     <br />
     <br>
 
