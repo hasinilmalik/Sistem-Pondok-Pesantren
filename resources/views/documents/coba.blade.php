@@ -205,7 +205,7 @@
     </div>
 
     @php
-        $namafile = 'K_MAHROM-' . $nama_santri . '.png';
+        $namafile = 'K_MAHROM - ' . $nama_santri . '.png';
     @endphp
 
     <script>
