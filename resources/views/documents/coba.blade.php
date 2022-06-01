@@ -204,25 +204,27 @@
     <div id="previewImage">
     </div>
 
-
+    @php
+        $nama_file = $nama_santri . '-kts.png';
+    @endphp
     <script>
         $(document).ready(function() {
             var element = $("#html-content-holder"); // global variable
             var getCanvas; // global variable
 
             $("#btn-Convert-Html2Image").on('click', function() {
+
                 html2canvas(element, {
                     onrendered: function(canvas) {
                         $("#previewImage").append(canvas);
                         getCanvas = canvas;
                     }
                 });
-            });
-            $("#btn-Convert-Html2Image").on('click', function() {
+
                 var imgageData = getCanvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                $("#btn-Convert-Html2Image").attr("download", "kts.png").attr("href", newData);
+                $("#btn-Convert-Html2Image").attr("download", $nama_file).attr("href", newData);
             });
 
         });
