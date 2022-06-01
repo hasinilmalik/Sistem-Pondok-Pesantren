@@ -28,7 +28,8 @@
                 var table = $('#student-table').DataTable({
                     "columnDefs": [{
                         "targets": '_all',
-                        "defaultContent": ""
+                        "defaultContent": "",
+                        "className": 'dt-body-center'
                     }],
 
                     processing: true,
