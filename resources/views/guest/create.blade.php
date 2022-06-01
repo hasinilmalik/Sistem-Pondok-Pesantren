@@ -94,6 +94,87 @@
         }
 
     </style>
+    <style>
+        .lds-heart {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            transform: rotate(45deg);
+            transform-origin: 40px 40px;
+        }
+
+        .lds-heart div {
+            top: 32px;
+            left: 32px;
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .lds-heart div:after,
+        .lds-heart div:before {
+            content: " ";
+            position: absolute;
+            display: block;
+            width: 32px;
+            height: 32px;
+            background: #fff;
+        }
+
+        .lds-heart div:before {
+            left: -24px;
+            border-radius: 50% 0 0 50%;
+        }
+
+        .lds-heart div:after {
+            top: -24px;
+            border-radius: 50% 50% 0 0;
+        }
+
+        @keyframes lds-heart {
+            0% {
+                transform: scale(0.95);
+            }
+
+            5% {
+                transform: scale(1.1);
+            }
+
+            39% {
+                transform: scale(0.85);
+            }
+
+            45% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(0.9);
+            }
+        }
+
+        .full_layar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            opacity: 0.75;
+        }
+
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"
         integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -102,6 +183,13 @@
 </head>
 
 <body>
+    <div wire:loading>
+        <div class="full_layar">
+            <div class="lds-heart">
+                <div></div>
+            </div>
+        </div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Pendaftaran</a>
@@ -173,42 +261,14 @@
                             type="text">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="desa_id" class="form-control-label ucfirst">Desa</label>
-                        <input type="text" name="desa" class="form-control">
-
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="kecamatan_id" class="form-control-label ucfirst">Kecamatan</label>
-                        <input type="text" name="kecamatan" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <livewire:ui.pilih-alamat />
-                    {{-- <div class="form-group mb-3">
-                        <label for="nama" class="form-control-label ucfirst">Provinsi</label>
-                        <input name="provinsi" value="{{ old('provinsi') }}" placeholder="" class="form-control"
-                            id="provinsi" type="text">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="nama" class="form-control-label ucfirst">Kecamatan</label>
-                        <input name="kecamatan" value="{{ old('kecamatan') }}" placeholder="" class="form-control"
-                            id="kecamatan" type="text">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="nama" class="form-control-label ucfirst">kota</label>
-                        <input name="kota" value="{{ old('kota') }}" placeholder="" class="form-control" id="kota"
-                            type="text">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="nama" class="form-control-label ucfirst">Desa</label>
-                        <input name="desa" value="{{ old('desa') }}" placeholder="" class="form-control" id="desa"
-                            type="text">
-                    </div> --}}
-                    <div class="form-group mb-3">
                         <label for="nama" class="form-control-label ucfirst">kode pos</label>
                         <input name="kode_pos" value="{{ old('kode_pos') }}" placeholder="" class="form-control"
                             id="kode_pos" type="text">
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <livewire:ui.pilih-alamat />
+                    <livewire:choose-dormitory />
                 </div>
             </div>
         </div>
@@ -231,8 +291,8 @@
                             id="a_nama" type="text">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="a_pendidikan" class="form-control-label ucfirst">Pendidikan Ayah</label>
-                        <select name="a_pendidikan" id="a_pendidikan" class="form-select">
+                        <label for="sfgfsgdsg" class="form-control-label ucfirst">Pendidikan Ayah</label>
+                        <select name="a_pendidikan" id="sfgfsgdsg" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak memiliki pendidikan formal</option>
                             <option>sd/mi/sederajat</option>
@@ -247,8 +307,8 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="a_pekerjaan" class="form-control-label ucfirst">pekerjaan Ayah</label>
-                        <select name="a_pekerjaan" id="a_pekerjaan" class="form-select">
+                        <label for="aaasasa" class="form-control-label ucfirst">pekerjaan Ayah</label>
+                        <select name="a_pekerjaan" id="aaasasa" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak bekerja</option>
                             <option>buruh (tani/pabrik/bangunan)</option>
@@ -271,13 +331,13 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="a_phone" class="form-control-label ucfirst">phone Ayah</label>
+                        <label for="a_phone" class="form-control-label ucfirst">Nomer Hp/Wa Ayah</label>
                         <input name="a_phone" value="{{ old('a_phone') }}" placeholder="" class="form-control"
                             id="a_phone" type="number">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="a_penghasilan" class="form-control-label ucfirst">penghasilan Ayah</label>
-                        <select name="a_penghasilan" id="a_penghasilan" class="form-select">
+                        <label for="546dfdg" class="form-control-label ucfirst">penghasilan Ayah</label>
+                        <select name="a_penghasilan" id="546dfdg" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak berpenghasilan</option>
                             <option>kurang dari 500.000</option>
@@ -302,8 +362,8 @@
                             id="i_nama" type="text">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="i_pendidikan" class="form-control-label ucfirst">Pendidikan Ibu</label>
-                        <select name="i_pendidikan" id="i_pendidikan" class="form-select">
+                        <label for="mmmvcxgb" class="form-control-label ucfirst">Pendidikan Ibu</label>
+                        <select name="i_pendidikan" id="mmmvcxgb" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak memiliki pendidikan formal</option>
                             <option>sd/mi/sederajat</option>
@@ -318,8 +378,8 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="i_pekerjaan" class="form-control-label ucfirst">pekerjaan Ibu</label>
-                        <select name="i_pekerjaan" id="i_pekerjaan" class="form-select">
+                        <label for="fsgdgsdgsdgsdg" class="form-control-label ucfirst">pekerjaan Ibu</label>
+                        <select name="i_pekerjaan" id="fsgdgsdgsdgsdg" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak bekerja</option>
                             <option>buruh (tani/pabrik/bangunan)</option>
@@ -347,8 +407,8 @@
                             id="i_phone" type="number">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="i_penghasilan" class="form-control-label ucfirst">penghasilan Ibu</label>
-                        <select name="i_penghasilan" id="i_penghasilan" class="form-select">
+                        <label for="sfsdfasfd" class="form-control-label ucfirst">penghasilan Ibu</label>
+                        <select name="i_penghasilan" id="sfsdfasfd" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak berpenghasilan</option>
                             <option>kurang dari 500.000</option>
@@ -390,8 +450,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group mb-3">
-                        <label for="w_pekerjaan" class="form-control-label ucfirst">pekerjaan Wali</label>
-                        <select name="w_pekerjaan" id="w_pekerjaan" class="form-select">
+                        <label for="w_fsgsdg" class="form-control-label ucfirst">pekerjaan Wali</label>
+                        <select name="w_pekerjaan" id="fsgsdg" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak bekerja</option>
                             <option>buruh (tani/pabrik/bangunan)</option>
@@ -414,8 +474,8 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="w_penghasilan" class="form-control-label ucfirst">penghasilan Wali</label>
-                        <select name="w_penghasilan" id="w_penghasilan" class="form-select">
+                        <label for="sdfgdghhee" class="form-control-label ucfirst">penghasilan Wali</label>
+                        <select name="w_penghasilan" id="sdfgdghhee" class="form-select">
                             <option value="" selected disabled>Pilih</option>
                             <option>tidak berpenghasilan</option>
                             <option>kurang dari 500.000</option>
@@ -433,12 +493,12 @@
         <div class="tab">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group mb-3">
+                    {{-- <div class="form-group mb-3">
                         <label for="daerah" class="form-control-label ucfirst">Asrama</label>
                         <input name="daerah" oninput="this.value = this.value.toUpperCase()"
                             value="{{ old('daerah') }}" placeholder="" class="form-control" id="daerah"
                             type="text">
-                    </div>
+                    </div> --}}
                     <div class="form-group mb-3">
                         <label for="nism" class="form-control-label ucfirst">nism</label>
                         <input name="nism" value="{{ old('nism') }}" placeholder="" class="form-control" id="nism"
@@ -501,8 +561,8 @@
                         </select>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="kebutuhan khusus" class="form-control-label ucfirst">kebutuhan khusus</label>
-                        <select name="kebutuhan_khusus" id="kebutuhan_khusus" class="form-select">
+                        <label for="kebutuhan sgd" class="form-control-label ucfirst">kebutuhan khusus</label>
+                        <select name="kebutuhan_khusus" id="sdgsdg" class="form-select">
                             <option value="" disabled selected>Pilih</option>
                             <option value="">Tidak ada</option>
                             <option>tuna netra</option>
@@ -536,28 +596,7 @@
                         <input name="status_mukim" value="{{ old('status_mukim') }}" placeholder=""
                             class="form-control" id="status_mukim" type="text">
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="lembaga_formal" class="form-control-label ucfirst">lembaga formal</label>
-                        <p><small style="color: gray; font-style:italic"> (Lembaga formal yang akan ditempuh di
-                                pesantren) </small>
-                        </p>
-                        <select name="lembaga_formal" id="formal" class="form-control">
-                            @foreach ($formal as $m)
-                                <option value="{{ $m->id }}">{{ $m->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="madin" class="form-control-label ucfirst">madin</label>
-                        <p><small style="color: gray; font-style:italic"> (Madrasah diniyah yang akan ditempuh di
-                                pesantren) </small>
-                        </p>
-                        <select name="madin" id="madin" class="form-select">
-                            @foreach ($madin as $m)
-                                <option value="{{ $m->id }}">{{ $m->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    <livewire:choose-madin />
                     <div class="form-group mb-3">
                         <label for="sekolah_asal" class="form-control-label ucfirst">sekolah asal</label>
                         <input name="sekolah_asal" value="{{ old('sekolah_asal') }}" placeholder=""
@@ -606,18 +645,18 @@
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
         integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script>
         $(document).ready(function() {
-            $("#formal").select2({
-                placeholder: "Pilih lembaga formal"
-            });
+            // $("#formal").select2({
+            //     placeholder: "Pilih lembaga formal"
+            // });
 
-            $("#madin").select2({
-                placeholder: "Pilih Madin"
-            });
+            // $("#madin").select2({
+            //     placeholder: "Pilih Madin"
+            // });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

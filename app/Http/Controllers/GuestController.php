@@ -72,8 +72,8 @@ class GuestController extends Controller
             'kebutuhan_khusus'=>$request['kebutuhan_khusus'],
             'status_rumah'=>$request['status_rumah'],
             'status_mukim'=>$request['status_mukim'],
-            'lembaga_formal'=>$request['lembaga_formal'],
-            'madin'=>$request['madin'],
+            // 'lembaga_formal'=>$request['lembaga_formal'],
+            // 'madin'=>$request['madin'],
             'sekolah_asal'=>$request['sekolah_asal'],
             'alamat_sekolah_asal'=>$request['alamat_sekolah_asal'],
             'npsn_sekolah_asal'=>$request['npsn_sekolah_asal'],
@@ -86,7 +86,7 @@ class GuestController extends Controller
         $wa->infoAkun(Malik::convertHp($request['a_phone']),session()->get('secretData'));
         $wa->infoAkun(Malik::convertHp($request['i_phone']),session()->get('secretData'));
         session()->forget('secretData');
-        return redirect()->route('home')->with('info','Terima kasih telah mendaftar, lengkapi foto dan selesaikan pembayaran');
+        return redirect()->route('home');
     }
     
     public function store_foto(Request $request)
