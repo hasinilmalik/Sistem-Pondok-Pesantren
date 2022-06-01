@@ -204,11 +204,15 @@
     <div id="previewImage">
     </div>
 
+    @php
+        $namafile = 'KTS-' . $nama_santri . '.png';
+    @endphp
 
     <script>
         $(document).ready(function() {
             var element = $("#html-content-holder"); // global variable
             var getCanvas; // global variable
+            var something = <?php echo json_encode($namafile); ?>;
 
             $("#btn-Preview-Image").on('click', function() {
                 html2canvas(element, {
@@ -223,7 +227,7 @@
                 var imgageData = getCanvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                $("#btn-Convert-Html2Image").attr("download", {{ 'KTS-' . $nama_santri . '.png' }}).attr(
+                $("#btn-Convert-Html2Image").attr("download", something).attr(
                     "href", newData);
             });
 
