@@ -27,10 +27,14 @@
                 var url = {!! json_encode($url) !!};
                 var table = $('#student-table').DataTable({
                     "columnDefs": [{
-                        "targets": '_all',
-                        "defaultContent": "",
-                        "className": 'dt-body-center'
-                    }],
+                            "targets": '_all',
+                            "defaultContent": "",
+                        },
+                        {
+                            "targets": [2, 3, 4],
+                            "className": 'dt-body-center'
+                        },
+                    ],
 
                     processing: true,
                     serverSide: true,
