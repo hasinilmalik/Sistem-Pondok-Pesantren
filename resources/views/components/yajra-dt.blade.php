@@ -26,9 +26,9 @@
             $(document).ready(function() {
                 var url = {!! json_encode($url) !!};
                 var table = $('#student-table').DataTable({
-                    columnDefs: [{
-                        targets: [-3, -2, -1],
-                        className: 'dt-body-center'
+                    "columnDefs": [{
+                        "targets": '_all',
+                        "defaultContent": ""
                     }],
 
                     processing: true,
@@ -64,7 +64,7 @@
                 new $.fn.dataTable.FixedHeader(table);
             });
         </script>
-        <script type="text/javascript">
+        {{-- <script type="text/javascript">
             $(document).ready(function() {
                 // var url = {!! json_encode($url) !!};
                 var table = $('#users-table').DataTable({
@@ -97,6 +97,6 @@
                 });
                 new $.fn.dataTable.FixedHeader(table);
             });
-        </script>
+        </script> --}}
     @endpush
 </div>
