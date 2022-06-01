@@ -14,6 +14,7 @@
         <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
 
+
         @php
             $url = Request::segment(2);
             if ($url == null) {
@@ -69,39 +70,5 @@
                 new $.fn.dataTable.FixedHeader(table);
             });
         </script>
-        {{-- <script type="text/javascript">
-            $(document).ready(function() {
-                // var url = {!! json_encode($url) !!};
-                var table = $('#users-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    'bsort': false,
-                    responsive: true,
-                    lengthChange: false,
-                    lengthMenu: [10, 25, 50, 100],
-                    pageLength: 20,
-                    "oLanguage": {
-                        "sSearch": ""
-                    },
-
-                    ajax: "{{ url('json/users') }}",
-
-                    columns: [{
-                            data: 'nama',
-                        },
-                        {
-                            data: 'email',
-                        },
-                        {
-                            data: 'created_at',
-                        },
-                        {
-                            data: 'action',
-                        },
-                    ]
-                });
-                new $.fn.dataTable.FixedHeader(table);
-            });
-        </script> --}}
     @endpush
 </div>
