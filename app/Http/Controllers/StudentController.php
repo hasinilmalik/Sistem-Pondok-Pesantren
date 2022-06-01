@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Malik;
 use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\Student;
@@ -36,7 +37,7 @@ class StudentController extends Controller
             $biodata = url('pdf/biodata/'. $data->id);
             $mou = url('pdf/mou/'.$data->id);
             $mahrom_card = url('/cetak/mahrom/'.$data->id.'/'.$data->nama);
-
+            
             $b1 = '<div class="btn-group"><button type="button" class="btn bg-gradient-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button><ul class="dropdown-menu">
             <li><a class="dropdown-item" href="'.$url_show.'">Lihat</a></li>
             <li><a class="dropdown-item" href="'.$url_edit.'">Edit</a></li>
@@ -126,7 +127,7 @@ class StudentController extends Controller
         
         $this->imageStore($request->file('foto'), $request->file('foto_wali'));
         $data = $request->all();
-      
+        
         //ambil tahun sekarang ex:22
         $year = Carbon::now()->format('y');
         // ambil nis terakhir
@@ -158,7 +159,7 @@ class StudentController extends Controller
         
         $response = HTTP::get('https://www.emsifa.com/api-wilayah-indonesia/api/province/'.$request->provinsi.'.json');
         $data['provinsi'] = json_decode($response->body())->name;
-
+        
         $data['user_id']=$id;
         
         $data['nis']=$datanis;
@@ -199,7 +200,7 @@ class StudentController extends Controller
             'kebutuhan_khusus'=>$request['kebutuhan_khusus'],
             'status_rumah'=>$request['status_rumah'],
             'status_mukim'=>$request['status_mukim'],
-
+            
             'sekolah_asal'=>$request['sekolah_asal'],
             'alamat_sekolah_asal'=>$request['alamat_sekolah_asal'],
             'npsn_sekolah_asal'=>$request['npsn_sekolah_asal'],
@@ -241,6 +242,12 @@ class StudentController extends Controller
     {
         // cara menyimpan bisa juga menggunakan storeAs() atau put()
         $data = $request->all();
+        if($request->daerah!=null){
+            $mh = new Malik();
+            $data = $mh->convertDaerah($request->jenis_kelamin,$request->daerah);
+            $data['rooms'];
+        }
+        
         if ($file = $request->file('foto')) {
             $path = 'foto_santri/';
             $fileName_santri   = time() . $file->getClientOriginalName();
@@ -292,8 +299,8 @@ class StudentController extends Controller
             'kebutuhan_khusus'=>$request->kebutuhan_khusus,
             'status_rumah'=>$request->status_rumah,
             'status_mukim'=>$request->status_mukim,
-            'lembaga_formal'=>$request->lembaga_formal,
-            'madin'=>$request->madin,
+            // 'lembaga_formal'=>$request->lembaga_formal,
+            // 'madin'=>$request->madin,
             'sekolah_asal'=>$request->sekolah_asal,
             'alamat_sekolah_asal'=>$request->alamat_sekolah_asal,
             'npsn_sekolah_asal'=>$request->npsn_sekolah_asal,

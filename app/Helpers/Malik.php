@@ -1,6 +1,8 @@
 <?php
 namespace App\Helpers;
 
+use App\Models\Dormitory;
+
 class Malik {
     
     public static function convertHp($nomorhp) {
@@ -27,5 +29,20 @@ class Malik {
             }
         }
         return $nomorhp;
+    }
+    public function convertDaerah($jk,$ori)
+    {
+        $rooms = preg_replace('/[^0-9.]+/', '', $ori);
+        $huruf = substr($ori,0,1);
+        $dormitory_id = Dormitory::where('name',$huruf)
+        ->where('gender','LIKE','%'.$jk.'%')
+        ->first();
+        if(isset($dormitory_id)){
+            $data = [
+                'dormitory_id'=>$dormitory_id->id,
+                'rooms'=>$rooms
+            ];
+        }
+        return $data;
     }
 }

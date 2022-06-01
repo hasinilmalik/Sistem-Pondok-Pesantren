@@ -170,12 +170,11 @@
                                     value="{{ $student->kode_pos }}" placeholder="kode_pos" class="form-control"
                                     id="kode_pos" type="text" />
                             </div>
-
                             <div class="form-group">
                                 <label for="daerah" class="form-control-label ucfirst">daerah</label>
                                 <input @if ($forView == 'show') disabled @endif name="daerah"
-                                    value="{{ $student->daerah }}" placeholder="daerah" class="form-control"
-                                    id="daerah" type="text" />
+                                    value="{{ $student->dormitory->name . $student->rooms }}" placeholder="daerah"
+                                    class="form-control" id="daerah" type="text" />
                             </div>
                         </div>
                     </div>
@@ -196,8 +195,8 @@
                             <div class="form-group">
                                 <label for="a_nik" class="form-control-label ucfirst">nik Ayah</label>
                                 <input @if ($forView == 'show') disabled @endif name="a_nik"
-                                    value="{{ $student->family->a_nik ?? '' }}" placeholder="a_nik" class="form-control"
-                                    id="a_nik" type="text" />
+                                    value="{{ $student->family->a_nik ?? '' }}" placeholder="a_nik"
+                                    class="form-control" id="a_nik" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="nama" class="form-control-label ucfirst">nama Ayah</label>
@@ -229,8 +228,8 @@
                             <div class="form-group">
                                 <label for="a_nik" class="form-control-label ucfirst">nik Ibu</label>
                                 <input @if ($forView == 'show') disabled @endif name="i_nik"
-                                    value="{{ $student->family->i_nik ?? '' }}" placeholder="i_nik" class="form-control"
-                                    id="i_nik" type="text" />
+                                    value="{{ $student->family->i_nik ?? '' }}" placeholder="i_nik"
+                                    class="form-control" id="i_nik" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="nama" class="form-control-label ucfirst">nama Ibu</label>
@@ -271,8 +270,8 @@
                             <div class="form-group">
                                 <label for="w_nik" class="form-control-label ucfirst">nik Wali</label>
                                 <input @if ($forView == 'show') disabled @endif name="w_nik"
-                                    value="{{ $student->family->w_nik ?? '' }}" placeholder="w_nik" class="form-control"
-                                    id="w_nik" type="text" />
+                                    value="{{ $student->family->w_nik ?? '' }}" placeholder="w_nik"
+                                    class="form-control" id="w_nik" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="w_nama" class="form-control-label ucfirst">nama Wali</label>
@@ -308,8 +307,8 @@
                             <div class="form-group">
                                 <label for="nism" class="form-control-label ucfirst">nism</label>
                                 <input @if ($forView == 'show') disabled @endif name="nism"
-                                    value="{{ $student->addition->nism ?? '' }}" placeholder="nism" class="form-control"
-                                    id="nism" type="text" />
+                                    value="{{ $student->addition->nism ?? '' }}" placeholder="nism"
+                                    class="form-control" id="nism" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="kip" class="form-control-label ucfirst">kip</label>
@@ -338,8 +337,8 @@
                             <div class="form-group">
                                 <label for="hobi" class="form-control-label ucfirst">hobi</label>
                                 <input @if ($forView == 'show') disabled @endif name="hobi"
-                                    value="{{ $student->addition->hobi ?? '' }}" placeholder="hobi" class="form-control"
-                                    id="hobi" type="text" />
+                                    value="{{ $student->addition->hobi ?? '' }}" placeholder="hobi"
+                                    class="form-control" id="hobi" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="cita_cita" class="form-control-label ucfirst">cita_cita</label>
@@ -357,8 +356,9 @@
                             <div class="form-group">
                                 <label for="kebutuhan_khusus" class="form-control-label ucfirst">kebutuhan_khusus</label>
                                 <input @if ($forView == 'show') disabled @endif name="kebutuhan_khusus"
-                                    value="{{ $student->addition->kebutuhan_khusus ?? '' }}" placeholder="kebutuhan_khusus"
-                                    class="form-control" id="kebutuhan_khusus" type="text" />
+                                    value="{{ $student->addition->kebutuhan_khusus ?? '' }}"
+                                    placeholder="kebutuhan_khusus" class="form-control" id="kebutuhan_khusus"
+                                    type="text" />
                             </div>
 
                             <div class="form-group">
@@ -375,7 +375,7 @@
                                     value="{{ $student->addition->status_mukim ?? '' }}" placeholder="status_mukim"
                                     class="form-control" id="status_mukim" type="text" />
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="lembaga_formal" class="form-control-label ucfirst">lembaga_formal</label>
                                 <input @if ($forView == 'show') disabled @endif name="lembaga_formal"
                                     value="{{ $student->addition->lembaga_formal ?? '' }}" placeholder="lembaga_formal"
@@ -385,7 +385,7 @@
                                 <label for="madin" class="form-control-label ucfirst">madin</label>
                                 <input @if ($forView == 'show') disabled @endif name="madin" value=""
                                     placeholder="madin" class="form-control" id="madin" type="text" />
-                            </div>
+                            </div> --}}
                             <div class="form-group">
                                 <label for="sekolah_asal" class="form-control-label ucfirst">sekolah_asal</label>
                                 <input @if ($forView == 'show') disabled @endif name="sekolah_asal"
@@ -410,8 +410,9 @@
                             <div class="form-group">
                                 <label for="nsm_sekolah_asal" class="form-control-label ucfirst">nsm_sekolah_asal</label>
                                 <input @if ($forView == 'show') disabled @endif name="nsm_sekolah_asal"
-                                    value="{{ $student->addition->nsm_sekolah_asal ?? '' }}" placeholder="nsm_sekolah_asal"
-                                    class="form-control" id="nsm_sekolah_asal" type="text" />
+                                    value="{{ $student->addition->nsm_sekolah_asal ?? '' }}"
+                                    placeholder="nsm_sekolah_asal" class="form-control" id="nsm_sekolah_asal"
+                                    type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="no_ijazah" class="form-control-label ucfirst">no_ijazah</label>
