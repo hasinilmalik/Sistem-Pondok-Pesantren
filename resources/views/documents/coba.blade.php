@@ -223,7 +223,8 @@
                 var imgageData = getCanvas.toDataURL("image/png");
                 // Now browser starts downloading it instead of just showing it
                 var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
-                $("#btn-Convert-Html2Image").attr("download", "kts.png").attr("href", newData);
+                $("#btn-Convert-Html2Image").attr("download", {{ 'KTS-' . $nama_santri . '.png' }}).attr(
+                    "href", newData);
             });
 
         });
