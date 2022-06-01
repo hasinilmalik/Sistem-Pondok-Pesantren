@@ -173,8 +173,8 @@
                             <div class="form-group">
                                 <label for="daerah" class="form-control-label ucfirst">daerah</label>
                                 <input @if ($forView == 'show') disabled @endif name="daerah"
-                                    value="{{ $student->dormitory->name . $student->rooms }}" placeholder="daerah"
-                                    class="form-control" id="daerah" type="text" />
+                                    value="{{ $student->dormitory->name ?? '' }} {{ $student->rooms ?? '' }}"
+                                    placeholder="daerah" class="form-control" id="daerah" type="text" />
                             </div>
                         </div>
                     </div>
