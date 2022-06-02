@@ -31,12 +31,12 @@
     <table id="student-table" class="table table-striped table-bordered nowrap" style="width:100%">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Nama</th>
                 <th>JK</th>
-                <th>Kota</th>
                 <th>Daerah</th>
                 <th>Asrama</th>
-                <th>Action</th>
+                <th>Kota</th>
             </tr>
         </thead>
     </table>

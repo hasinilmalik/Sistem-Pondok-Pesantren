@@ -51,13 +51,13 @@
                     ajax: "{{ url('student/' . $url . '/json') }}",
 
                     columns: [{
+                            data: 'action',
+                        },
+                        {
                             data: 'nama',
                         },
                         {
                             data: 'jenis_kelamin',
-                        },
-                        {
-                            data: 'kota',
                         },
                         {
                             data: 'dormitory.name',
@@ -66,7 +66,7 @@
                             data: 'rooms',
                         },
                         {
-                            data: 'action',
+                            data: 'kota',
                         },
                     ]
                 });
