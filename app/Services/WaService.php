@@ -36,7 +36,7 @@ Class WaService{
         $response = curl_exec($curl);
         $error = curl_error($curl);
         curl_close($curl);
-
+        
         $response = json_decode($response)->status;
         // dd($response);
         return $response;
@@ -70,34 +70,7 @@ Class WaService{
         $response = json_decode($response)->data;
         return $response ? : $error;
     }
-    public function cekWa()
-    {
-        $data = [
-            'api_key' => 'b2d95af932eedb4de92b3496f338aa5f97b36ae0',
-            'sender'  => '6285333920007',
-            'number'  => '6285333920007',
-            'message' => "cek notifikasi wa",
-        ];
-        
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://wa.mubakid.xyz/app/api/send-message",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => json_encode($data))
-        );
-        
-        $response = curl_exec($curl);
-        
-        curl_close($curl);
-        // $r = json_decode($response);
-        return $response;
-    }
+
     public function cekOn($no)
     {
         $data = [
@@ -121,10 +94,14 @@ Class WaService{
         );
         
         $response = curl_exec($curl);
-        
         curl_close($curl);
-        $r = json_decode($response)->status;
-        return $r;
+        $r = json_decode($response);
+        
+        if($r->status==true){
+            return 'true';
+        }else{
+            return 'false';
+        }
     }
     public function kirimNota($nohp, $nama, $amount, $status, $link)
     {

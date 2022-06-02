@@ -13,8 +13,7 @@ class CekWa extends Component
     {
         $wa = new WaService();
         $this->wa1 = $wa->cekOn('6285158762445');
-        $this->wa2 = $wa->cekWa('6285333920007');
-        // $this->wa1 = 
+        $this->wa2 = $wa->cekOn('6285333920007');
     }
     public function render()
     {

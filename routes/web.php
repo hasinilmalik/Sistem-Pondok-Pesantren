@@ -170,10 +170,14 @@ route::get('cekwa', function ()
     );
     
     $response = curl_exec($curl);
-    
     curl_close($curl);
     $r = json_decode($response);
-    return $response;
+
+    if($r->status==true){
+        return true;
+    }else{
+        return 'false';
+    }
 });
 
 Route::get('convert', function ()
