@@ -23,7 +23,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'bill_type_id' => 1,
-                'name' => 'Infaq Gedung',
+                'name' => 'Infaq Pengembangan Sarana',
                 'amount' => 250000,
             ],
             [
@@ -33,7 +33,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'bill_type_id' => 5,
-                'name' => 'Infaq Gedung',
+                'name' => 'Infaq Pengembangan Sarana',
                 'amount' => 0,
             ],
             
@@ -44,7 +44,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'bill_type_id' => 6,
-                'name' => 'Infaq Gedung',
+                'name' => 'Infaq Pengembangan Sarana',
                 'amount' => 0,
             ],
         ]
