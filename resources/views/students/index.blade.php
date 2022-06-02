@@ -32,6 +32,7 @@
         <thead>
             <tr>
                 <th>Nama</th>
+                <th>JK</th>
                 <th>Kota</th>
                 <th>Daerah</th>
                 <th>Asrama</th>

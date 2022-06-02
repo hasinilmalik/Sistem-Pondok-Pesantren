@@ -54,6 +54,9 @@
                             data: 'nama',
                         },
                         {
+                            data: 'jenis_kelamin',
+                        },
+                        {
                             data: 'kota',
                         },
                         {
