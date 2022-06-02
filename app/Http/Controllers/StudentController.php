@@ -28,7 +28,8 @@ class StudentController extends Controller
     public function json($status)
     {
         $data = Student::with('dormitory:id,name')
-        ->where('status', $status);
+        ->where('status', $status)
+        ->orderBy('created_at', 'desc');
         return DataTables::of($data)
         ->addColumn('action',function($data){
             $url_show = url('students/'.$data->id);
