@@ -268,93 +268,113 @@ class StudentController extends Controller
             $data['foto_wali']=$fileName_wali;
         }
         // pastikan kalau mau menggunakan findOrFail (gunakan id)
-        Student::findOrFail($student->id)->update($data);
-        Family::where('student_id',$student->id)->update([
-            'a_kk'=>$request->a_kk,
-            'a_nik'=>$request->a_nik,
-            'a_nama'=>$request->a_nama,
-            'a_pekerjaan'=>$request->a_pekerjaan,
-            'a_pendidikan'=>$request->a_pendidikan,
-            'a_phone'=>$request->a_phone,
-            'a_penghasilan'=>$request->a_penghasilan,
-            'i_nik'=>$request->i_nik,
-            'i_nama'=>$request->i_nama,
-            'i_pekerjaan'=>$request->i_pekerjaan,
-            'i_pendidikan'=>$request->i_pendidikan,
-            'i_phone'=>$request->i_phone,
-            'w_hubungan_wali'=>$request->w_hubungan_wali,
-            'w_nik'=>$request->w_nik,
-            'w_nama'=>$request->w_nama,
-            'w_pekerjaan'=>$request->w_pekerjaan,
-            'w_penghasilan'=>$request->w_penghasilan,
-        ]);
-        Addition::where('student_id',$student->id)->update([
-            'nism'=>$request->nism,
-            'kip'=>$request->kip,
-            'pkh'=>$request->pkh,
-            'kks'=>$request->kks,
-            'agama'=>$request->agama,
-            'hobi'=>$request->hobi,
-            'cita_cita'=>$request->cita_cita,
-            'kewarganegaraan'=>$request->kewarganegaraan,
-            'kebutuhan_khusus'=>$request->kebutuhan_khusus,
-            'status_rumah'=>$request->status_rumah,
-            'status_mukim'=>$request->status_mukim,
-            // 'lembaga_formal'=>$request->lembaga_formal,
-            // 'madin'=>$request->madin,
-            'sekolah_asal'=>$request->sekolah_asal,
-            'alamat_sekolah_asal'=>$request->alamat_sekolah_asal,
-            'npsn_sekolah_asal'=>$request->npsn_sekolah_asal,
-            'nsm_sekolah_asal'=>$request->nsm_sekolah_asal,
-            'no_ijazah'=>$request->no_ijazah,
-            'no_un'=>$request->no_un,
-        ]);
-        Alert::success('Berhasil', 'Edit data');
-        return redirect()->route('students.index');   
-    }
-    public function destroy(Student $student)
-    {
-        Student::find($student->id)->delete();
-        Alert::success('Berhasil', 'Hapus data');
-        return redirect()->route('students.index');   
-    }
-    public function import_excel()
-    {
-        $terbaru = Student::orderby('id','DESC')->first();
-        return view('documents.import_students',compact('terbaru'));
-    }
-    public function import_data(Request $request)
-    {
-        // menangkap file excel
-        $file = $request->file('file');
-        
-        // membuat nama file unik
-        $nama_file = rand().$file->getClientOriginalName();
-        
-        // upload ke folder file_siswa di dalam folder public
-        $file->move('file_santri', $nama_file);
-        
-        // import data
-        Excel::import(new StudentImport($request->start, $request->limit), public_path('/file_santri/'.$nama_file));
-        // alihkan halaman kembali
-        return back()->with('success', 'Berhasil Import data!');
-    }
-    function _getCountNewStudent()
-    {
-        $user = Auth::user()->roles->first()->name;
-        if($user=='super admin'){
-            $jml_data = Student::where('status','baru')->count();
-        }else{
-            $admin = Auth::user()->jk;
-            $jml_data = Student::where('status','baru')->where('jenis_kelamin',$admin)->count();
+        Student::find($student->id)->update(
+            [
+                'nama'=>$request->nama,
+                'nik'=>$request->nik,
+                'nis'=>$request->nis,
+                'tempat_lahir'=>$request->tempat_lahir,
+                'tanggal_lahir'=>$request->tanggal_lahir,
+                'jenis_kelamin'=>$request->jenis_kelamin,
+                
+                'alamat'=>$request->alamat,
+                'rtrw'=>$request->rtrw,
+                'desa'=>$request->desa,
+                'kecamatan'=>$request->kecamatan,
+                'kota'=>$request->kota,
+                'provinsi'=>$request->provinsi,
+                'kode_pos'=>$request->kode_pos,
+                'daerah'=>$request->daerah,
+                ]
+            );
+            
+            Family::where('student_id',$student->id)->update([
+                'a_kk'=>$request->a_kk,
+                'a_nik'=>$request->a_nik,
+                'a_nama'=>$request->a_nama,
+                'a_pekerjaan'=>$request->a_pekerjaan,
+                'a_pendidikan'=>$request->a_pendidikan,
+                'a_phone'=>$request->a_phone,
+                'a_penghasilan'=>$request->a_penghasilan,
+                'i_nik'=>$request->i_nik,
+                'i_nama'=>$request->i_nama,
+                'i_pekerjaan'=>$request->i_pekerjaan,
+                'i_pendidikan'=>$request->i_pendidikan,
+                'i_phone'=>$request->i_phone,
+                'w_hubungan_wali'=>$request->w_hubungan_wali,
+                'w_nik'=>$request->w_nik,
+                'w_nama'=>$request->w_nama,
+                'w_pekerjaan'=>$request->w_pekerjaan,
+                'w_penghasilan'=>$request->w_penghasilan,
+            ]);
+            Addition::where('student_id',$student->id)->update([
+                'nism'=>$request->nism,
+                'kip'=>$request->kip,
+                'pkh'=>$request->pkh,
+                'kks'=>$request->kks,
+                'agama'=>$request->agama,
+                'hobi'=>$request->hobi,
+                'cita_cita'=>$request->cita_cita,
+                'kewarganegaraan'=>$request->kewarganegaraan,
+                'kebutuhan_khusus'=>$request->kebutuhan_khusus,
+                'status_rumah'=>$request->status_rumah,
+                'status_mukim'=>$request->status_mukim,
+                // 'lembaga_formal'=>$request->lembaga_formal,
+                // 'madin'=>$request->madin,
+                'sekolah_asal'=>$request->sekolah_asal,
+                'alamat_sekolah_asal'=>$request->alamat_sekolah_asal,
+                'npsn_sekolah_asal'=>$request->npsn_sekolah_asal,
+                'nsm_sekolah_asal'=>$request->nsm_sekolah_asal,
+                'no_ijazah'=>$request->no_ijazah,
+                'no_un'=>$request->no_un,
+            ]);
+            Alert::success('Berhasil', 'Edit data');
+            return redirect()->route('students.index');   
         }
-        return $jml_data;
+        public function destroy(Student $student)
+        {
+            Student::find($student->id)->delete();
+            Alert::success('Berhasil', 'Hapus data');
+            return redirect()->route('students.index');   
+        }
+        public function import_excel()
+        {
+            $terbaru = Student::orderby('id','DESC')->first();
+            return view('documents.import_students',compact('terbaru'));
+        }
+        public function import_data(Request $request)
+        {
+            // menangkap file excel
+            $file = $request->file('file');
+            
+            // membuat nama file unik
+            $nama_file = rand().$file->getClientOriginalName();
+            
+            // upload ke folder file_siswa di dalam folder public
+            $file->move('file_santri', $nama_file);
+            
+            // import data
+            Excel::import(new StudentImport($request->start, $request->limit), public_path('/file_santri/'.$nama_file));
+            // alihkan halaman kembali
+            return back()->with('success', 'Berhasil Import data!');
+        }
+        function _getCountNewStudent()
+        {
+            $user = Auth::user()->roles->first()->name;
+            if($user=='super admin'){
+                $jml_data = Student::where('status','baru')->count();
+            }else{
+                $admin = Auth::user()->jk;
+                $jml_data = Student::where('status','baru')->where('jenis_kelamin',$admin)->count();
+            }
+            return $jml_data;
+        }
+        public function delete(Student $student)
+        {
+            Student::find($student->id)->delete();
+            Alert::success('Berhasil', 'Hapus data');
+            return redirect()->route('students.index');   
+        }
     }
-    public function delete(Student $student)
-    {
-        Student::find($student->id)->delete();
-        Alert::success('Berhasil', 'Hapus data');
-        return redirect()->route('students.index');   
-    }
-}
-
+    
+    

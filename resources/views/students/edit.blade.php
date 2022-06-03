@@ -122,9 +122,17 @@
                             </div>
                             <div class="form-group">
                                 <label for="jenis_kelamin" class="form-control-label ucfirst">jenis_kelamin</label>
-                                <input @if ($forView == 'show') disabled @endif name="jenis_kelamin"
-                                    value="{{ $student->jenis_kelamin }}" placeholder="jenis_kelamin"
-                                    class="form-control" id="jenis_kelamin" type="text" />
+                                <select name="jenis_kelamin" id="jenis_kelamin" class="form-select">
+                                    <option>
+                                        @if ($student)
+                                            {{ $student->jenis_kelamin }}
+                                        @else
+                                            --Pilih--
+                                        @endif
+                                    </option>
+                                    <option>Laki-laki</option>
+                                    <option>Perempuan</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="alamat" class="form-control-label ucfirst">alamat</label>
