@@ -328,7 +328,7 @@ class StudentController extends Controller
             'no_un'=>$request->no_un,
         ]);
         Alert::success('Berhasil', 'Edit data');
-        return redirect()->route('students.index');   
+        return redirect()->route('students.index','baru');   
     }
     public function destroy(Student $student)
     {
