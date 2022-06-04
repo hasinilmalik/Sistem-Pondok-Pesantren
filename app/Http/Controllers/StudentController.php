@@ -25,8 +25,6 @@ use Illuminate\Support\Facades\Http;
 
 class StudentController extends Controller
 {
-    public $foto = "";
-    public $foto_wali = "";
     public function json($status)
     {
         $data = Student::with('dormitory:id,name')
@@ -49,14 +47,14 @@ class StudentController extends Controller
             $moukts = '<li><a class="dropdown-item" href="'.$biodata.'" target="_blank"><i class="fas fa-print"></i> Biodata </a></li><li><a class="dropdown-item" href="'.$mou.'" target="_blank"><i class="fas fa-print"></i> MoU </a></li> <li><a class="dropdown-item" href="#"><i class="fas fa-print"></i> KTS </a></li>';
             $mahrom = '<li><a target="_blank" class="dropdown-item" href="'.$mahrom_card.'"><i class="fas fa-print"></i> Mahrom </a></li>';
             $close = '</ul></div>';
-            
-            
-            
+
+
+          
             $button = $b1.$moukts.$mahrom.$close;
             
             // $button = $b1.$moukts.$close;
-            
-            
+        
+
             return $button;
         })
         ->rawColumns(['action'])
@@ -267,7 +265,7 @@ class StudentController extends Controller
             $file_name  = $file->getClientOriginalName();
             $file_type  = $file->getClientOriginalExtension();
             $filePath   = 'storage/'.$path . $fileName_santri;
-            $this->foto=$fileName_santri;
+            $data['foto']=$fileName_santri;
         }
         if ($file = $request->file('foto_wali')) {
             $path = 'foto_wali/';
@@ -276,7 +274,7 @@ class StudentController extends Controller
             $file_name  = $file->getClientOriginalName();
             $file_type  = $file->getClientOriginalExtension();
             $filePath   = 'storage/'.$path . $fileName_wali;
-            $this->foto_wali=$fileName_wali;
+            $data['foto_wali']=$fileName_wali;
         }
         // pastikan kalau mau menggunakan findOrFail (gunakan id)
         Student::find($student->id)->update(
@@ -296,11 +294,10 @@ class StudentController extends Controller
                 'provinsi'=>$request->provinsi,
                 'kode_pos'=>$request->kode_pos,
                 'daerah'=>$request->daerah,
-                'foto'=>$this->foto,
-                'foto_wali'=>$this->foto_wali,
                 ]
             );
-           
+            Student::find($student->id)->update($data);
+            
             Family::where('student_id',$student->id)->update([
                 'a_kk'=>$request->a_kk,
                 'a_nik'=>$request->a_nik,
