@@ -248,104 +248,6 @@ class StudentController extends Controller
         $forView = 'edit';
         return view('students.edit', compact('student','forView'));
     }
-    // public function update(UpdateStudentRequest $request, Student $student)
-    // {
-    //     // cara menyimpan bisa juga menggunakan storeAs() atau put()
-    //     $data = $request->all();
-    //     if($request->daerah!=null){
-    //         $mh = new Malik();
-    //         $data = $mh->convertDaerah($request->jenis_kelamin,$request->daerah);
-    //         $data['rooms'];
-    //     }
-        
-        
-    //     // pastikan kalau mau menggunakan findOrFail (gunakan id)
-    //     $student = Student::find($student->id);
-        
-    //     if ($file = $request->file('foto')) {
-    //         $path = 'foto_santri/';
-    //         $fileName_santri   = time() . $file->getClientOriginalName();
-    //         Storage::disk('public')->put($path . $fileName_santri, File::get($file));
-    //         $file_name  = $file->getClientOriginalName();
-    //         $file_type  = $file->getClientOriginalExtension();
-    //         $filePath   = 'storage/'.$path . $fileName_santri;
-    //         $santri=$fileName_santri;
-    //     }
-    //     if ($file = $request->file('foto_wali')) {
-    //         $path = 'foto_wali/';
-    //         $fileName_wali   = time() . $file->getClientOriginalName();
-    //         Storage::disk('public')->put($path . $fileName_wali, File::get($file));
-    //         $file_name  = $file->getClientOriginalName();
-    //         $file_type  = $file->getClientOriginalExtension();
-    //         $filePath   = 'storage/'.$path . $fileName_wali;
-    //         $wali=$fileName_wali;
-    //     }
-        
-    //     $student->nama=$request->nama;
-    //     $student->nik=$request->nik;
-    //     $student->nis=$request->nis;
-    //     $student->tempat_lahir=$request->tempat_lahir;
-    //     $student->tanggal_lahir=$request->tanggal_lahir;
-    //     $student->jenis_kelamin=$request->jenis_kelamin;
-        
-    //     $student->alamat=$request->alamat;
-    //     $student->rtrw=$request->rtrw;
-    //     $student->desa=$request->desa;
-    //     $student->kecamatan=$request->kecamatan;
-    //     $student->kota=$request->kota;
-    //     $student->provinsi=$request->provinsi;
-    //     $student->kode_pos=$request->kode_pos;
-    //     $student->daerah=$request->daerah;
-    //     $student->santri = $santri??'';
-    //     $student->wali = $wali??'';
-    //     $student->save;
-        
-        
-    //     // Student::find($student->id)->update($data);
-        
-    //     Family::where('student_id',$student->id)->update([
-    //         'a_kk'=>$request->a_kk,
-    //         'a_nik'=>$request->a_nik,
-    //         'a_nama'=>$request->a_nama,
-    //         'a_pekerjaan'=>$request->a_pekerjaan,
-    //         'a_pendidikan'=>$request->a_pendidikan,
-    //         'a_phone'=>$request->a_phone,
-    //         'a_penghasilan'=>$request->a_penghasilan,
-    //         'i_nik'=>$request->i_nik,
-    //         'i_nama'=>$request->i_nama,
-    //         'i_pekerjaan'=>$request->i_pekerjaan,
-    //         'i_pendidikan'=>$request->i_pendidikan,
-    //         'i_phone'=>$request->i_phone,
-    //         'w_hubungan_wali'=>$request->w_hubungan_wali,
-    //         'w_nik'=>$request->w_nik,
-    //         'w_nama'=>$request->w_nama,
-    //         'w_pekerjaan'=>$request->w_pekerjaan,
-    //         'w_penghasilan'=>$request->w_penghasilan,
-    //     ]);
-    //     Addition::where('student_id',$student->id)->update([
-    //         'nism'=>$request->nism,
-    //         'kip'=>$request->kip,
-    //         'pkh'=>$request->pkh,
-    //         'kks'=>$request->kks,
-    //         'agama'=>$request->agama,
-    //         'hobi'=>$request->hobi,
-    //         'cita_cita'=>$request->cita_cita,
-    //         'kewarganegaraan'=>$request->kewarganegaraan,
-    //         'kebutuhan_khusus'=>$request->kebutuhan_khusus,
-    //         'status_rumah'=>$request->status_rumah,
-    //         'status_mukim'=>$request->status_mukim,
-    //         // 'lembaga_formal'=>$request->lembaga_formal,
-    //         // 'madin'=>$request->madin,
-    //         'sekolah_asal'=>$request->sekolah_asal,
-    //         'alamat_sekolah_asal'=>$request->alamat_sekolah_asal,
-    //         'npsn_sekolah_asal'=>$request->npsn_sekolah_asal,
-    //         'nsm_sekolah_asal'=>$request->nsm_sekolah_asal,
-    //         'no_ijazah'=>$request->no_ijazah,
-    //         'no_un'=>$request->no_un,
-    //     ]);
-    //     Alert::success('Berhasil', 'Edit data');
-    //     return redirect()->route('students.index');   
-    // }
     public function update(UpdateStudentRequest $request, Student $student)
     {
         // cara menyimpan bisa juga menggunakan storeAs() atau put()
@@ -357,23 +259,26 @@ class StudentController extends Controller
             $rooms = $newdae['rooms'];
         }
         if ($file = $request->file('foto')) {
+            // dd($file);
             $path = 'foto_santri/';
             $fileName_santri   = time() . $file->getClientOriginalName();
-            Storage::disk('public')->put($path . $fileName_santri, File::get($file));
+            Storage::disk('local')->put($path . $fileName_santri, File::get($file));
             $file_name  = $file->getClientOriginalName();
             $file_type  = $file->getClientOriginalExtension();
             $filePath   = 'storage/'.$path . $fileName_santri;
             $santri=$fileName_santri;
         }
         if ($file = $request->file('foto_wali')) {
+            // dd($file);
             $path = 'foto_wali/';
             $fileName_wali   = time() . $file->getClientOriginalName();
-            Storage::disk('public')->put($path . $fileName_wali, File::get($file));
+            Storage::disk('local')->put($path . $fileName_wali, File::get($file));
             $file_name  = $file->getClientOriginalName();
             $file_type  = $file->getClientOriginalExtension();
             $filePath   = 'storage/'.$path . $fileName_wali;
             $wali=$fileName_wali;
         }
+        $this->imageStore($request->file('foto'), $request->file('foto_wali'));
         $data['rooms']=$rooms;
         $data['dormitory_id']=$dormitory_id;
         $data['foto']=$santri??'';
