@@ -47,14 +47,14 @@ class StudentController extends Controller
             $moukts = '<li><a class="dropdown-item" href="'.$biodata.'" target="_blank"><i class="fas fa-print"></i> Biodata </a></li><li><a class="dropdown-item" href="'.$mou.'" target="_blank"><i class="fas fa-print"></i> MoU </a></li> <li><a class="dropdown-item" href="#"><i class="fas fa-print"></i> KTS </a></li>';
             $mahrom = '<li><a target="_blank" class="dropdown-item" href="'.$mahrom_card.'"><i class="fas fa-print"></i> Mahrom </a></li>';
             $close = '</ul></div>';
-
-
-            if($data->jenis_kelamin='erempuan'){
+            
+            
+            
             $button = $b1.$moukts.$mahrom.$close;
-            }else{
-            $button = $b1.$moukts.$close;
-            }
-
+            
+            // $button = $b1.$moukts.$close;
+            
+            
             return $button;
         })
         ->rawColumns(['action'])
@@ -296,6 +296,7 @@ class StudentController extends Controller
                 'daerah'=>$request->daerah,
                 ]
             );
+            Student::find($student->id)->update($data);
             
             Family::where('student_id',$student->id)->update([
                 'a_kk'=>$request->a_kk,
