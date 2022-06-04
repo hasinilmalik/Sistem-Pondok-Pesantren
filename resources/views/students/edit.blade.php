@@ -105,8 +105,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="nis" class="form-control-label ucfirst">nis</label>
-                                <input disabled name="nis" value="{{ $student->nis }}" placeholder="nis"
-                                    class="form-control" id="nis" type="text" />
+                                <input @if ($student->nis != null) disabled @endif name="nis"
+                                    value="{{ $student->nis }}" placeholder="nis" class="form-control" id="nis"
+                                    type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="tempat_lahir" class="form-control-label ucfirst">tempat_lahir</label>
