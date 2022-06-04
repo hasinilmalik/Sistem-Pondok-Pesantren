@@ -49,7 +49,7 @@ class StudentController extends Controller
             $close = '</ul></div>';
 
 
-            if($data->jenis_kelamin=='perempuan'){
+            if($data->jenis_kelamin='erempuan'){
             $button = $b1.$moukts.$mahrom.$close;
             }else{
             $button = $b1.$moukts.$close;
