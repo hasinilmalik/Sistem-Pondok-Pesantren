@@ -3,11 +3,7 @@
 @section('prefix', 'Dashboard')
 <x-datatables />
 @section('content')
-    <script>
-        toastr.success('{{ Session('success') }}');
-    </script>
-
-
+    <x-ui.toastr />
     @if ($message = Session::get('success'))
         <div class="alert alert-success alert-block">
             <button type="button" class="close" data-dismiss="alert">×</button>

@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Payment;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Product;
 use App\Models\BillType;
 use App\Models\Transaction;
 use App\Services\WaService;
 use Illuminate\Http\Request;
 use App\Services\TripayService;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -92,10 +93,9 @@ class TransactionController extends Controller
                 $nama=$u->student->nama;
                 $amount=$request->amount;
                 $status=$s;
-                $link = 'https://mubakid.xyz/nota/'.$trx->reference;
+                $link = URL::to($trx->reference);
         
             $wa->kirimNota($nohp,$nama,$amount,$status, $link);
-
             return redirect()->route('students.index','baru')->with('success','Pembayaran berhasil diterapkan');
         }
     }

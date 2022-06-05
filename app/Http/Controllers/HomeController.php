@@ -49,7 +49,7 @@ class HomeController extends Controller
                 
             }else{ //jika dia bukan santri baru
             }
-            return view('home',compact('profil','jumlah','link'));
+            return view('home',compact('profil','jumlah','link'))->with('success','Selamat Datang');
         }
     }
     public function cekFoto()
