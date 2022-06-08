@@ -40,7 +40,7 @@ class ProductSeeder extends Seeder
             [
                 'bill_type_id' => 6,
                 'name' => 'Administrasi Santri Baru',
-                'amount' => 200000,
+                'amount' => 0,
             ],
             [
                 'bill_type_id' => 6,
