@@ -109,7 +109,7 @@ Class WaService{
             'api_key' => 'b2d95af932eedb4de92b3496f338aa5f97b36ae0',
             'sender'  => $this->random_sender,
             'number'  => $nohp,
-            'message' => "*NOTA ELEKTRONIK*\n$link\n\nTerima kasih telah melakukan pembayaran: \n*".$nama."*\n\n~~~~~~~~~~~\nNominal : *Rp. ".number_format($amount)."*\nStatus : $status \n\"\n~~~~~~~~~~~\n\n_Wa ini dikirim otomatis, untuk informasi lebih lanjut hubungi kami di +6285216329458_\n\nwww.mubakid.or.id",
+            'message' => "*NOTA ELEKTRONIK*\n$link\n\nTerima kasih telah melakukan pembayaran: \n*".$nama."*\n\n~~~~~~~~~~~~~~~\nNominal : *Rp. ".number_format($amount)."*\nStatus : $status \n~~~~~~~~~~~~~~~\n\n_Wa ini dikirim otomatis, untuk informasi lebih lanjut hubungi kami di +6285216329458_\n\nwww.mubakid.or.id",
         ];
         
         $curl = curl_init();

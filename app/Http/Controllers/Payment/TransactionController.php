@@ -85,12 +85,13 @@ class TransactionController extends Controller
 
             if($request->status=='paid'){
                 $s = 'Lunas';
+                $amount=$request->amount;
             }else{
                 $s = 'Belum Lunas';
+                $amount = 0;
             }
             
                 $nama=$u->student->nama;
-                $amount=$request->amount;
                 $status=$s;
                 $link = 'https://sip.mubakid.or.id/nota/'.$trx->reference;
         
