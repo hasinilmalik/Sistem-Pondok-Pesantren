@@ -11,19 +11,25 @@ use App\Models\FormalInstitution;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PDFController;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CobaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\StudentsComponent;
-use App\Http\Controllers\CetakController;
-use App\Http\Controllers\GuestController;
-use App\Http\Controllers\ConvertController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\DataTableAjaxCRUDController;
-use App\Http\Controllers\ExportController;
-use App\Http\Controllers\Payment\TransactionController;
-use App\Http\Controllers\Payment\TripayCallbackController;
-use App\Http\Controllers\RevisiController;
+use App\Http\Controllers\{
+    CetakController,
+    GuestController,
+    BackupController,
+    ExportController,
+    RevisiController,
+    ConvertController,
+    StudentController,
+    DataTableAjaxCRUDController
+};
+use App\Http\Controllers\Payment\{TransactionController,
+    TripayCallbackController
+};
+use Illuminate\Support\Facades\Auth;
 
 // NOTE:AUTH
 // =======================================================
@@ -86,12 +92,13 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
         Route::post('/checkout_proses2','storeViaAdmin')->name('pay.requestViaAdmin');   
         Route::get('/guest/bills','guestBills')->name('guest.bills');
     });
-
+    
     // NOTE:USERS
     // =======================================================
     Route::get('json/users',[UserController::class,'json']);
     Route::get('/users/{user}/delete',[UserController::class,'delete']);
     Route::resource('users',UserController::class);
+    
     // NOTE:STUDENTS
     // =======================================================
     Route::post('/students/import_excel', [StudentController::class,'import_data'])->name('students.import');
@@ -103,11 +110,19 @@ Route::group(['middleware'=>['role:guest|admin|super admin']], function ()
         Route::get('/students/{student}/delete','delete');
     });  
     Route::resource('students', StudentController::class);
-
+    
+    
+    // NOTE:BACKUP
+    // =======================================================
+    Route::get('/backup', [BackupController::class,'index']);
+    Route::get('/backup/create',function (){ Artisan::call('backup:run');})->name('backup.create');
+    Route::get('/backup/download/{file_name}', [BackupController::class,'download']);
+    Route::get('/backup/delete/{file_name}', [BackupController::class,'delete']);
     
 });
 Route::post('callback',[TripayCallbackController::class,'handle']);
 Route::get('/nota/{reference}',[TransactionController::class,'invoice'])->name('pay.invoice');
+
 
 // NOTE:TRY
 // =======================================================
@@ -172,7 +187,7 @@ route::get('cekwa', function ()
     $response = curl_exec($curl);
     curl_close($curl);
     $r = json_decode($response);
-
+    
     if($r->status==true){
         return true;
     }else{
@@ -187,4 +202,9 @@ Route::get('convert', function ()
 Route::get('nota', function ()
 {
     return view('pdf.nota');
+});
+
+Route::get('/x', function ()
+{
+    return view('exit_permit.index');
 });

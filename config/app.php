@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Facade;
+use App\Providers\GoogleDriveServiceProvider;
 
 return [
 
@@ -184,6 +185,8 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         App\Providers\MalikServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
+
     ],
 
     /*
