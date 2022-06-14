@@ -33,7 +33,7 @@
                 <td>{{ $ss->kota }}</td>
                 <td>{{ $ss->provinsi }}</td>
                 <td>{{ $ss->kode_pos }}</td>
-                <td>{{ $ss->madin->name ?? '' }}</td>
+                <td>{{ $ss->madin_institution->name ?? '' }}</td>
                 <td>{{ $ss->dormitory->name ?? '' }}{{ $ss->rooms }}</td>
                 <td>{{ \Carbon\Carbon::parse($ss->created_at)->isoFormat('D MMM Y') }}</td>
 

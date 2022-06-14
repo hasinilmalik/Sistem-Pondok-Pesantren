@@ -18,7 +18,7 @@ class Student extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function madin()
+    public function madin_institution()
     {
         return $this->belongsTo(MadinInstitution::class);
     }

@@ -11,7 +11,8 @@ class ExportStudents implements FromView
 {
     public function view(): View
     {
-        $students = Student::all();
+        $students = Student::with('madin_institution')->get();
+        dd($students);
         return view('export.students',compact('students'));
     }
 }
