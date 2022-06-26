@@ -23,6 +23,9 @@
             @method('PATCH')
             @csrf
     @endif
+    @if ($forView == 'show')
+        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary"> <i class="fas fa-edit"></i> Edit</a>
+    @endif
     <ul class="nav nav-tabs" id="myTab">
         <li class="nav-item" role="presentation">
             <a class="nav-link active" href="#extab1">Data pribadi</a>
@@ -57,7 +60,9 @@
                                 <div class="card">
                                     <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
                                         @if ($student->foto)
-                                            <a href="javascript:;" class="d-block">
+                                            <a class="d-block">
+                                                {{-- <img src="{{ asset('storage/foto_santri/' . $student->foto) }}"
+                                                    class="img-fluid border-radius-lg"> --}}
                                                 <img src="{{ asset('storage/foto_santri/' . $student->foto) }}"
                                                     class="img-fluid border-radius-lg">
                                             </a>
@@ -69,7 +74,7 @@
                                 <div class="card">
                                     <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
                                         @if ($student->foto_wali)
-                                            <a href="javascript:;" class="d-block">
+                                            <a class="d-block">
                                                 <img src="{{ asset('storage/foto_wali/' . $student->foto_wali) }}"
                                                     class="img-fluid border-radius-lg">
                                             </a>
@@ -118,8 +123,8 @@
                             <div class="form-group">
                                 <label for="tanggal_lahir" class="form-control-label ucfirst">tanggal_lahir</label>
                                 <input @if ($forView == 'show') disabled @endif name="tanggal_lahir"
-                                    value="{{ $student->tanggal_lahir }}" placeholder="tanggal_lahir"
-                                    class="form-control" id="tanggal_lahir" type="text" />
+                                    value="{{ $student->tanggal_lahir }}" placeholder="tanggal_lahir" class="form-control"
+                                    id="tanggal_lahir" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="jenis_kelamin" class="form-control-label ucfirst">jenis_kelamin</label>
@@ -138,22 +143,22 @@
                             <div class="form-group">
                                 <label for="alamat" class="form-control-label ucfirst">alamat</label>
                                 <input @if ($forView == 'show') disabled @endif name="alamat"
-                                    value="{{ $student->alamat }}" placeholder="alamat" class="form-control" id="alamat"
-                                    type="text" />
+                                    value="{{ $student->alamat }}" placeholder="alamat" class="form-control"
+                                    id="alamat" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="rtrw" class="form-control-label ucfirst">rtrw</label>
                                 <input @if ($forView == 'show') disabled @endif name="rtrw"
-                                    value="{{ $student->rtrw }}" placeholder="rtrw" class="form-control" id="rtrw"
-                                    type="text" />
+                                    value="{{ $student->rtrw }}" placeholder="rtrw" class="form-control"
+                                    id="rtrw" type="text" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nama" class="form-control-label ucfirst">desa</label>
                                 <input @if ($forView == 'show') disabled @endif name="desa"
-                                    value="{{ $student->desa }}" placeholder="desa" class="form-control" id="desa"
-                                    type="text" />
+                                    value="{{ $student->desa }}" placeholder="desa" class="form-control"
+                                    id="desa" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="nama" class="form-control-label ucfirst">kecamatan</label>
@@ -164,8 +169,8 @@
                             <div class="form-group">
                                 <label for="nama" class="form-control-label ucfirst">kota</label>
                                 <input @if ($forView == 'show') disabled @endif name="kota"
-                                    value="{{ $student->kota }}" placeholder="kota" class="form-control" id="kota"
-                                    type="text" />
+                                    value="{{ $student->kota }}" placeholder="kota" class="form-control"
+                                    id="kota" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="nama" class="form-control-label ucfirst">provinsi</label>
@@ -358,8 +363,9 @@
                             <div class="form-group">
                                 <label for="kewarganegaraan" class="form-control-label ucfirst">kewarganegaraan</label>
                                 <input @if ($forView == 'show') disabled @endif name="kewarganegaraan"
-                                    value="{{ $student->addition->kewarganegaraan ?? '' }}" placeholder="kewarganegaraan"
-                                    class="form-control" id="kewarganegaraan" type="text" />
+                                    value="{{ $student->addition->kewarganegaraan ?? '' }}"
+                                    placeholder="kewarganegaraan" class="form-control" id="kewarganegaraan"
+                                    type="text" />
                             </div>
 
                             <div class="form-group">
@@ -410,7 +416,8 @@
                                     type="text" />
                             </div>
                             <div class="form-group">
-                                <label for="npsn_sekolah_asal" class="form-control-label ucfirst">npsn_sekolah_asal</label>
+                                <label for="npsn_sekolah_asal"
+                                    class="form-control-label ucfirst">npsn_sekolah_asal</label>
                                 <input @if ($forView == 'show') disabled @endif name="npsn_sekolah_asal"
                                     value="{{ $student->addition->npsn_sekolah_asal ?? '' }}"
                                     placeholder="npsn_sekolah_asal" class="form-control" id="npsn_sekolah_asal"
@@ -455,7 +462,8 @@
                                         <div class="form-group">
                                             <div class="mb-3">
                                                 <label for="fosan" class="form-label">Foto baru Santri</label>
-                                                <input class="form-control" type="file" id="fosan" name="foto">
+                                                <input class="form-control" type="file" id="fosan"
+                                                    name="foto">
                                             </div>
                                         </div>
                                     </div>
@@ -471,7 +479,8 @@
                                         <div class="form-group">
                                             <div class="mb-3">
                                                 <label for="fosan" class="form-label">Foto Baru Wali</label>
-                                                <input class="form-control" type="file" id="fosan" name="foto_wali">
+                                                <input class="form-control" type="file" id="fosan"
+                                                    name="foto_wali">
                                             </div>
                                         </div>
                                     </div>
