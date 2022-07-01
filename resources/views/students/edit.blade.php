@@ -219,6 +219,12 @@
                                     class="form-control" id="a_nama" type="text" />
                             </div>
                             <div class="form-group">
+                                <label for="nama" class="form-control-label ucfirst">pendidikan Ayah</label>
+                                <input @if ($forView == 'show') disabled @endif name="a_pendidikan"
+                                    value="{{ $student->family->a_pendidikan ?? '' }}" placeholder="a_pendidikan"
+                                    class="form-control" id="a_pendidikan" type="text" />
+                            </div>
+                            <div class="form-group">
                                 <label for="a_pekerjaan" class="form-control-label ucfirst">pekerjaan Ayah</label>
                                 <input @if ($forView == 'show') disabled @endif name="a_pekerjaan"
                                     value="{{ $student->family->a_pekerjaan ?? '' }}" placeholder="a_pekerjaan"
@@ -250,6 +256,12 @@
                                 <input @if ($forView == 'show') disabled @endif name="i_nama"
                                     value="{{ $student->family->i_nama ?? '' }}" placeholder="i_nama"
                                     class="form-control" id="i_nama" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="nama" class="form-control-label ucfirst">pendidikan Ibu</label>
+                                <input @if ($forView == 'show') disabled @endif name="i_pendidikan"
+                                    value="{{ $student->family->i_pendidikan ?? '' }}" placeholder="i_pendidikan"
+                                    class="form-control" id="i_pendidikan" type="text" />
                             </div>
                             <div class="form-group">
                                 <label for="i_pekerjaan" class="form-control-label ucfirst">pekerjaan Ibu</label>
