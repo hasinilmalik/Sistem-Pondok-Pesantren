@@ -62,6 +62,12 @@
     <tbody>
         @foreach ($students as $index => $ss)
             <tr>
+                @php
+                    $a_kk = $ss->family->a_kk ?? '';
+                    $a_nik = $ss->family->a_nik ?? '';
+                    $i_nik = $ss->family->i_nik ?? '';
+                    $w_nik = $ss->family->w_nik ?? '';
+                @endphp
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $ss->nama }}</td>
                 <td>{{ '`' . $ss->nik }}</td>
@@ -77,20 +83,20 @@
                 <td>{{ $ss->madin_institution->name ?? '' }}</td>
                 <td>{{ $ss->dormitory->name ?? '' }}{{ $ss->rooms }}</td>
 
-                <td>{{ '`' . $ss->family->a_kk ?? '' }}</td>
-                <td>{{ '`' . $ss->family->a_nik ?? '' }}</td>
+                <td>{{ '`' . $a_kk }}</td>
+                <td>{{ '`' . $a_nik }}</td>
                 <td>{{ $ss->family->a_nama ?? '' }}</td>
                 <td>{{ $ss->family->a_pekerjaan ?? '' }}</td>
                 <td>{{ $ss->family->a_pendidikan ?? '' }}</td>
                 <td>{{ $ss->family->a_phone ?? '' }}</td>
                 <td>{{ $ss->family->a_penghasilan ?? '' }}</td>
-                <td>{{ '`' . $ss->family->i_nik ?? '' }}</td>
+                <td>{{ '`' . $i_nik ?? '' }}</td>
                 <td>{{ $ss->family->i_nama ?? '' }}</td>
                 <td>{{ $ss->family->i_pekerjaan ?? '' }}</td>
                 <td>{{ $ss->family->i_pendidikan ?? '' }}</td>
                 <td>{{ $ss->family->i_phone ?? '' }}</td>
                 <td>{{ $ss->family->w_hubungan_wali ?? '' }}</td>
-                <td>{{ '`' . $ss->family->w_nik ?? '' }}</td>
+                <td>{{ '`' . $w_nik ?? '' }}</td>
                 <td>{{ $ss->family->w_nama ?? '' }}</td>
                 <td>{{ $ss->family->w_pekerjaan ?? '' }}</td>
                 <td>{{ $ss->family->w_penghasilan ?? '' }}</td>
