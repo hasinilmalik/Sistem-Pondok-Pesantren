@@ -2,20 +2,61 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Nama</th>
-            <th>Nik</th>
-            <th>Nis</th>
-            <th>Tempat_lahir</th>
-            <th>Tanggal_lahir</th>
-            <th>Jenis_kelamin</th>
+            <th>nama</th>
+            <td>nik</td>
+            <th>nis</th>
+            <th>tempat_lahir</th>
+            <th>tanggal_lahir</th>
+            <th>jenis_kelamin</th>
 
-            <th>Kecamatan</th>
-            <th>Kota</th>
-            <th>Provinsi</th>
-            <th>Kode_pos</th>
-            <th>Madin</th>
-            <th>Asrama</th>
-            <th>Tg Input</th>
+            <th>kecamatan</th>
+            <th>kota</th>
+            <th>provinsi</th>
+            <th>kode_pos</th>
+            <th>madin</th>
+            <th>asrama</th>
+
+            <th>kk</th>
+            <th>nik_ayah</th>
+            <th>nama_ayah</th>
+            <th>pekerjaan_ayah</th>
+            <th>pendidikan_ayah</th>
+            <th>phone_ayah</th>
+            <th>penghasilan_ayah</th>
+            <th>nik_ibu</th>
+            <th>nama_ibu</th>
+            <th>pekerjaan_ibu</th>
+            <th>pendidikan_ibu</th>
+            <th>phone_ibu</th>
+            <th>hubungan_wali</th>
+            <th>nik_wali</th>
+            <th>nama_wali</th>
+            <th>pekerjaan_wali</th>
+            <th>penghasilan_wali</th>
+
+            <th>nism</th>
+            <th>kip</th>
+            <th>pkh</th>
+            <th>kks</th>
+
+            <th>agama</th>
+            <th>hobi</th>
+            <th>cita_cita</th>
+            <th>kewarganegaraan</th>
+            <th>kebutuhan_khusus</th>
+            <th>status_rumah</th>
+            <th>status_mukim</th>
+
+
+            <th>lembaga_formal</th>
+            <th>madin</th>
+            <th>sekolah_asal</th>
+            <th>alamat_sekolah_asal</th>
+            <th>npsn_sekolah_asal</th>
+            <th>nsm_sekolah_asal</th>
+            <th>no_ijazah</th>
+            <th>no_un</th>
+            <th>Tgl Input</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +64,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $ss->nama }}</td>
-                <td>{{ $ss->nik }}</td>
+                <td>{{ '`' . $ss->nik }}</td>
                 <td>{{ $ss->nis }}</td>
                 <td>{{ $ss->tempat_lahir }}</td>
                 <td>{{ $ss->tanggal_lahir }}</td>
@@ -36,20 +77,20 @@
                 <td>{{ $ss->madin_institution->name ?? '' }}</td>
                 <td>{{ $ss->dormitory->name ?? '' }}{{ $ss->rooms }}</td>
 
-                <td>{{ $ss->family->a_kk ?? '' }}</td>
-                <td>{{ $ss->family->a_nik ?? '' }}</td>
+                <td>{{ '`' . $ss->family->a_kk ?? '' }}</td>
+                <td>{{ '`' . $ss->family->a_nik ?? '' }}</td>
                 <td>{{ $ss->family->a_nama ?? '' }}</td>
                 <td>{{ $ss->family->a_pekerjaan ?? '' }}</td>
                 <td>{{ $ss->family->a_pendidikan ?? '' }}</td>
                 <td>{{ $ss->family->a_phone ?? '' }}</td>
                 <td>{{ $ss->family->a_penghasilan ?? '' }}</td>
-                <td>{{ $ss->family->i_nik ?? '' }}</td>
+                <td>{{ '`' . $ss->family->i_nik ?? '' }}</td>
                 <td>{{ $ss->family->i_nama ?? '' }}</td>
                 <td>{{ $ss->family->i_pekerjaan ?? '' }}</td>
                 <td>{{ $ss->family->i_pendidikan ?? '' }}</td>
                 <td>{{ $ss->family->i_phone ?? '' }}</td>
                 <td>{{ $ss->family->w_hubungan_wali ?? '' }}</td>
-                <td>{{ $ss->family->w_nik ?? '' }}</td>
+                <td>{{ '`' . $ss->family->w_nik ?? '' }}</td>
                 <td>{{ $ss->family->w_nama ?? '' }}</td>
                 <td>{{ $ss->family->w_pekerjaan ?? '' }}</td>
                 <td>{{ $ss->family->w_penghasilan ?? '' }}</td>
