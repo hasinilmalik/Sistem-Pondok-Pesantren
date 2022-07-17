@@ -24,7 +24,9 @@ use App\Http\Controllers\{
     RevisiController,
     ConvertController,
     StudentController,
-    DataTableAjaxCRUDController
+    DataTableAjaxCRUDController,
+    MadinController,
+    PagesController
 };
 use App\Http\Controllers\Payment\{TransactionController,
     TripayCallbackController
@@ -176,3 +178,6 @@ Route::get('/x', function ()
 {
     return view('exit_permit.index');
 });
+
+Route::get('/madin-home',[MadinController::class,'index']);
+Route::get('/madin-mapel',[MadinController::class,'mapel']);
