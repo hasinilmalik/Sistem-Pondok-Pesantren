@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('madin_nilai', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('student_id');
+            $table->string('madin_mapel_id')->nullable();
+            $table->string('nilai');
+            $table->string('kode_kwartal');
+            $table->foreign('student_id')
+            ->references('id')
+            ->on('students')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

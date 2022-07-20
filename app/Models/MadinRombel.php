@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class MadinRombel extends Model
 {
+    protected $table = 'madin_rombel';
     use HasFactory;
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
 }

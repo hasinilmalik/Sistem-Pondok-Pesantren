@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="mb-3">
+    <div class="mb-3">
+        <div>
             <!-- flash message -->
             <div
                 v-if="$page.props.flash.message"
@@ -80,19 +80,35 @@
                 </div>
             </div>
         </div>
+
         <div class="card border-o rounded shadow-sm">
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">KODE</th>
-                            <th scope="col">PELAJARAN</th>
+                            <th>ID</th>
+                            <th>Kelas</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="mapel in mapels">
-                            <td>{{ mapel.kode_mapel }}</td>
-                            <td>{{ mapel.name }}</td>
+                        <tr v-for="row in data" :key="row.id">
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.name }}</td>
+                            <td class="border px-4 py-2">
+                                <button
+                                    @click="edit(row)"
+                                    class="btn btn-sm btn-outline-primary"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    @click="deleteRow(row)"
+                                    class="btn btn-sm btn-outline-danger"
+                                >
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -100,30 +116,64 @@
         </div>
     </div>
 </template>
-
 <script>
-import { reactive } from "vue";
+import AppLayout from "../../Layouts/App.vue";
 import { Inertia } from "@inertiajs/inertia";
-import LayoutApp from "../../Layouts/App.vue";
-
 export default {
-    layout: LayoutApp,
+    components: {
+        AppLayout,
+    },
     props: {
         title: String,
-        mapels: Array,
+        data: Array,
     },
-
-    setup() {
-        const form = reactive({
-            kode_mapel: null,
-            name: null,
-        });
-        function tutup() {
-            Inertia.post("/madin-mapel", form);
-            this.form.kode_mapel = "";
-            this.form.name = "";
-        }
-        return { form, tutup };
+    data() {
+        return {
+            editMode: false,
+            isOpen: false,
+            form: {
+                name: null,
+            },
+        };
+    },
+    methods: {
+        openModal() {
+            this.isOpen = true;
+        },
+        closeModal() {
+            this.isOpen = false;
+            this.reset();
+            this.editMode = false;
+        },
+        reset() {
+            this.form = {
+                name: null,
+            };
+        },
+        save() {
+            this.$inertia.post("madin-kelas", data);
+            this.reset();
+            this.closeModal();
+            this.editMode = false;
+        },
+        edit(data) {
+            this.form = Object.assign({}, data);
+            this.editMode = true;
+            this.openModal();
+        },
+        update(data) {
+            data._method = "PATCH";
+            this.$inertia.post("/madin-kelas/edit/" + data.id, data);
+            this.reset();
+            this.closeModal();
+        },
+        deleteRow(data) {
+            if (!confirm("Are you sure want to remove?")) return;
+            data._method = "DELETE";
+            this.$inertia.post("/madin-kelas/" + data.id, data);
+            this.reset();
+            this.closeModal();
+        },
     },
 };
 </script>

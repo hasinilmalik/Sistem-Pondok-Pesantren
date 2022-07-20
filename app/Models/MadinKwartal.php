@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class MadinKwartal extends Model
 {
+    protected $table = 'madin_kwartal';
     use HasFactory;
 }

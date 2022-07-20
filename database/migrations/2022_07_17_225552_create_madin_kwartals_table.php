@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('madin_kwartals', function (Blueprint $table) {
+        Schema::create('madin_kwartal', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_kwartal');
+            $table->string('tahun');
+            $table->string('desc')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('madin_kwartals');
+        Schema::dropIfExists('madin_kwartal');
     }
 };

@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class MadinPresensi extends Model
 {
+    protected $table = 'madin_presensi';
     use HasFactory;
 }

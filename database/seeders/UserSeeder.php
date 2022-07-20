@@ -48,9 +48,9 @@ class UserSeeder extends Seeder
         $userpi->assignRole('admin');
 
         // membuat dummy data
-        $users = Family::factory(3)->create();
+        // $users = Family::factory(3)->create();
         // memberi role dummy data
-        $role = Role::findByName('user');
-        $role->users()->attach($users);
+        // $role = Role::findByName('user');
+        // $role->users()->attach($users);
     }
 }

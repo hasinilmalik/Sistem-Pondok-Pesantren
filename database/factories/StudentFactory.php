@@ -35,6 +35,10 @@ class StudentFactory extends Factory
             'foto_wali'=>$this->faker->name(),
             'daerah'=>$this->faker->name(),
             'status'=>$this->faker->randomElement(['alumni','baru','santri']),
+            'madin_institution_id'=>rand(1,9),
+            'dormitory_id'=>rand(1,9),
+            'rooms'=>rand(1,9),
+            'madin_is_verified'=>$this->faker->boolean(50),
         ];
     }
 }

@@ -179,5 +179,11 @@ Route::get('/x', function ()
     return view('exit_permit.index');
 });
 
-Route::get('/madin-home',[MadinController::class,'index']);
+Route::get('/madin-data/{status}',[MadinController::class,'data']);
 Route::get('/madin-mapel',[MadinController::class,'mapel']);
+Route::post('/madin-mapel',[MadinController::class,'mapelPost']);
+Route::get('/madin-mapel/{item}/edit',[MadinController::class,'mapelEdit'])->name('madin-mapel.edit');
+Route::get('/madin-mapel/create',[MadinController::class,'create'])->name('madin-mapel.create');
+
+Route::get('/madin-kelas',[MadinController::class,'kelas']);
+Route::delete('/madin-kelas/{id}',[MadinController::class,'kelasDelete']);

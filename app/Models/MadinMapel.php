@@ -9,4 +9,5 @@ class MadinMapel extends Model
 {
     protected $table = 'madin_mapel';
     use HasFactory;
+    protected $fillable = ['kode_mapel','name'];
 }

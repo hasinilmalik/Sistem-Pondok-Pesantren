@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Addition;
 use App\Models\Dormitory;
+use App\Models\MadinRombel;
 use App\Models\MadinInstitution;
 use App\Models\FormalInstitution;
 use Illuminate\Database\Eloquent\Model;
@@ -46,5 +47,9 @@ class Student extends Model
              $student->addition()->delete();
              // do the rest of the cleanup...
         });
+    }
+    public function madin_rombel()
+    {
+        return $this->belongsTo(MadinRombel::class);
     }
 }

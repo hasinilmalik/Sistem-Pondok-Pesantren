@@ -17,22 +17,27 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <Link class="nav-link" href="/madin-mapel/"
+                            <Link class="nav-link text-uppercase" href="/madin-data/belum"
+                                >Data</Link
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <Link class="nav-link text-uppercase" href="/madin-mapel/"
                                 >MAPEL</Link
                             >
                         </li>
                         <li class="nav-item">
-                            <Link class="nav-link" href="/madin-kelas/"
+                            <Link class="nav-link text-uppercase" href="/madin-kelas/"
                                 >KELAS</Link
                             >
                         </li>
                         <li class="nav-item">
-                            <Link class="nav-link" href="/madin-rombel/"
+                            <Link class="nav-link text-uppercase" href="/madin-rombel/"
                                 >ROMBEL</Link
                             >
                         </li>
                         <li class="nav-item">
-                            <Link class="nav-link" href="/madin-nilai/"
+                            <Link class="nav-link text-uppercase" href="/madin-nilai/"
                                 >NILAI</Link
                             >
                         </li>
