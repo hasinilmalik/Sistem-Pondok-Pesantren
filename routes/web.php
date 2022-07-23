@@ -185,5 +185,6 @@ Route::post('/madin-mapel',[MadinController::class,'mapelPost']);
 Route::get('/madin-mapel/{item}/edit',[MadinController::class,'mapelEdit'])->name('madin-mapel.edit');
 Route::get('/madin-mapel/create',[MadinController::class,'create'])->name('madin-mapel.create');
 
+Route::post('/madin-kelas',[MadinController::class,'kelasStore']);
 Route::get('/madin-kelas',[MadinController::class,'kelas']);
 Route::delete('/madin-kelas/{id}',[MadinController::class,'kelasDelete']);

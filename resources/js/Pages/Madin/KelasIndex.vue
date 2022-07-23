@@ -1,7 +1,6 @@
 <template>
-    <div class="mb-3">
-        <div>
-            <!-- flash message -->
+    <AppLayout>
+        <div class="mb-3">
             <div
                 v-if="$page.props.flash.message"
                 class="alert alert-success alert-dismissible fade show"
@@ -15,72 +14,19 @@
                     aria-label="Close"
                 ></button>
             </div>
-            <!-- Button trigger modal -->
             <div class="d-flex justify-content-between">
                 <h4 class="text-uppercase">{{ title }}</h4>
+                <!-- Button trigger modal -->
                 <button
                     type="button"
                     class="btn btn-primary"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                 >
-                    + Tambah
+                    + Kelas
                 </button>
             </div>
-
-            <!-- Modal -->
-            <div
-                class="modal fade"
-                id="exampleModal"
-                tabindex="-1"
-                aria-labelledby="exampleModalLabel"
-                aria-hidden="true"
-            >
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">
-                                Pelajaran
-                            </h5>
-                            <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            ></button>
-                        </div>
-                        <form>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="name">Kode Mapel</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="form.kode_mapel"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                    <label for="name">Nama Pelajaran</label>
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        v-model="form.name"
-                                    />
-                                </div>
-                                <button
-                                    class="btn btn-primary mt-3"
-                                    v-on:click.prevent="tutup"
-                                    data-bs-dismiss="modal"
-                                >
-                                    Simpan
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
-
         <div class="card border-o rounded shadow-sm">
             <div class="card-body">
                 <table class="table">
@@ -102,23 +48,61 @@
                                 >
                                     Edit
                                 </button>
-                                <button
-                                    @click="deleteRow(row)"
-                                    class="btn btn-sm btn-outline-danger"
-                                >
-                                    Delete
-                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
+
+        <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            {{ title }}
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <input
+                                type="text"
+                                name="kelas"
+                                id="kelas"
+                                v-model="form.name"
+                            />
+                        </div>
+
+                        <button
+                            type="button"
+                            class="btn btn-primary btn-flat"
+                            v-on:click.prevent="saveAndClose"
+                            data-bs-dismiss="modal"
+                        >
+                            Simpan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </AppLayout>
 </template>
+
 <script>
-import AppLayout from "../../Layouts/App.vue";
 import { Inertia } from "@inertiajs/inertia";
+import AppLayout from "../../Layouts/App.vue";
 export default {
     components: {
         AppLayout,
@@ -139,6 +123,7 @@ export default {
     methods: {
         openModal() {
             this.isOpen = true;
+            console.log("ok");
         },
         closeModal() {
             this.isOpen = false;
@@ -150,30 +135,28 @@ export default {
                 name: null,
             };
         },
-        save() {
-            this.$inertia.post("madin-kelas", data);
+        saveAndClose() {
+            Inertia.post("/madin-kelas", form);
             this.reset();
-            this.closeModal();
-            this.editMode = false;
         },
-        edit(data) {
-            this.form = Object.assign({}, data);
-            this.editMode = true;
-            this.openModal();
-        },
-        update(data) {
-            data._method = "PATCH";
-            this.$inertia.post("/madin-kelas/edit/" + data.id, data);
-            this.reset();
-            this.closeModal();
-        },
-        deleteRow(data) {
-            if (!confirm("Are you sure want to remove?")) return;
-            data._method = "DELETE";
-            this.$inertia.post("/madin-kelas/" + data.id, data);
-            this.reset();
-            this.closeModal();
-        },
+        // edit(data) {
+        //     this.form = Object.assign({}, data);
+        //     this.editMode = true;
+        //     this.openModal();
+        // },
+        // update(data) {
+        //     data._method = "PATCH";
+        //     this.$inertia.post("/madin-kelas/edit/" + data.id, data);
+        //     this.reset();
+        //     this.closeModal();
+        // },
+        // deleteRow(data) {
+        //     if (!confirm("Are you sure want to remove?")) return;
+        //     data._method = "DELETE";
+        //     this.$inertia.post("/madin-kelas/" + data.id, data);
+        //     this.reset();
+        //     this.closeModal();
+        // },
     },
 };
 </script>

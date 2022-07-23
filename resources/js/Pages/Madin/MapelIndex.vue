@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <AppLayout>
         <div class="mb-3">
             <!-- flash message -->
             <div
@@ -98,16 +98,18 @@
                 </table>
             </div>
         </div>
-    </div>
+    </AppLayout>
 </template>
 
 <script>
 import { reactive } from "vue";
 import { Inertia } from "@inertiajs/inertia";
-import LayoutApp from "../../Layouts/App.vue";
+import AppLayout from "../../Layouts/App.vue";
 
 export default {
-    layout: LayoutApp,
+    components: {
+        AppLayout,
+    },
     props: {
         title: String,
         mapels: Array,
