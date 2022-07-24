@@ -41,6 +41,7 @@
                             <th scope="col">NAMA</th>
                             <th scope="col">KELAS</th>
                             <th scope="col">ASR</th>
+                            <th scope="col">ACT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +54,13 @@
                             </td>
                             <td>
                                 {{ item.dormitory + item.room }}
+                            </td>
+                            <td>
+                                <Link
+                                    as="button"
+                                    class="btn btn-sm btn-outline-primary"
+                                    :href="item.edit_url"
+                                ></Link>
                             </td>
                         </tr>
                     </tbody>

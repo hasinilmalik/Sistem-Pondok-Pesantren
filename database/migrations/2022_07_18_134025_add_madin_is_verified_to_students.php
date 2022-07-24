@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::table('students', function (Blueprint $table) {
             $table->boolean('madin_is_verified')->after('madin_institution_id')->nullable();
-            $table->unsignedBigInteger('madin_rombel_id')->after('madin_is_verified')->nullable();
-            $table->foreign('madin_rombel_id')->references('id')->on('madin_rombel');
+            $table->bigInteger('madin_rombel_id')->after('madin_is_verified')->nullable();
         });
     }
 

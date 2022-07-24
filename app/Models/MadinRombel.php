@@ -13,4 +13,8 @@ class MadinRombel extends Model
     {
         return $this->hasMany(Student::class);
     }
+    public function madin_institution()
+    {
+        return $this->belongsTo(MadinInstitution::class);
+    }
 }

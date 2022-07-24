@@ -7,6 +7,7 @@ use App\Models\Student;
 use App\Models\MadinMapel;
 use Illuminate\Http\Request;
 use App\Models\MadinInstitution;
+use App\Models\MadinRombel;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\CssSelector\Node\FunctionNode;
@@ -36,13 +37,16 @@ class MadinController extends Controller
                 'rombel' => $rombel,
                 'dormitory' => $item->dormitory->name,
                 'room' => $item->rooms,
-                // etc
+                'edit_url' => URL::route('madin.edit', $item),
             ];
         });
 
         return Inertia::render('Madin/Index', ['items' => $items, 'title' => $title]);
     }
-
+    public function dataEdit($id)
+    {
+        dd($id);
+    }
     public function mapel()
     {
         return Inertia::render('Madin/MapelIndex', [
@@ -68,7 +72,6 @@ class MadinController extends Controller
         );
         return redirect()->back()->with('message', 'Berhasil');
     }
-
     public function kelas(MadinInstitution $madin_kelas)
     {
         return Inertia::render('Madin/KelasIndex', [
@@ -76,7 +79,6 @@ class MadinController extends Controller
             'data' => $madin_kelas->latest()->get()
         ]);
     }
-
     public function kelasStore(Request $request)
     {
         Validator::make($request->all(), [
@@ -88,7 +90,6 @@ class MadinController extends Controller
         return redirect()->back()
             ->with('message', 'Article Created Successfully.');
     }
-
     public function kelasUpdate(Request $request)
     {
         Validator::make($request->all(), [
@@ -101,7 +102,6 @@ class MadinController extends Controller
                 ->with('message', 'Post Updated Successfully.');
         }
     }
-
     public function kelasDelete(Request $request)
     {
         $request->id ?
@@ -111,5 +111,34 @@ class MadinController extends Controller
 
         return redirect()->back()
             ->with('message', 'Article deleted successfully.');
+    }
+    public function rombel()
+    {
+        $rombel = MadinRombel::all()
+            ->map(function ($item) {
+                if ($jk = $item->students->first()) {
+                    $jk = $jk->jenis_kelamin;
+                } else {
+                    $jk = '';
+                }
+                return [
+                    'id' => $item->id,
+                    'name' => $item->name,
+                    'kelas' => $item->madin_institution->name,
+                    'jumlah' => $item->students->count(),
+                    'jk' => $jk
+                ];
+            });
+        return Inertia::render('Madin/RombelIndex', ['title' => 'Rombel', 'rombel' => $rombel]);
+    }
+    public function rombelShow($id)
+    {
+        $rombel = MadinRombel::find($id);
+        dd($rombel);
+    }
+    public function rombelEdit($id)
+    {
+        $rombel = MadinRombel::find($id);
+        dd($rombel);
     }
 }
